@@ -15,6 +15,11 @@ describe Expense do
   it "should not be valid without description" do
   	e = Expense.new()
   	e.should_not be_valid
+  	print e.errors
+  end
+  
+  it "should not be valid with strange amounts" do
+  	e = Expense.new
   end
   
 end
