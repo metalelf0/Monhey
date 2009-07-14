@@ -1,0 +1,113 @@
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM `expenses` [0m
+
+
+Processing ExpensesController#create (for 0.0.0.0 at 2009-07-14 19:12:25) [POST]
+  Parameters: {"expense"=>{}}
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mExpense Create (0.3ms)[0m   [0mINSERT INTO `expenses` (`category`, `created_at`, `buoni`, `updated_at`, `amount`, `date`, `bancomat`, `description`, `ufficio`) VALUES(NULL, '2009-07-14 17:12:25', NULL, '2009-07-14 17:12:25', NULL, NULL, NULL, NULL, NULL)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/expenses/996332878
+Completed in 9ms (DB: 58) | 302 Found [http://test.host/expenses?]
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM `expenses` [0m
+  [4;36;1mSQL (45.6ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM `expenses` [0m
+  [4;35;1mExpense Load (0.2ms)[0m   [0mSELECT * FROM `expenses` WHERE (`expenses`.`id` = 953125641) [0m
+
+
+Processing ExpensesController#destroy (for 0.0.0.0 at 2009-07-14 19:12:25) [DELETE]
+  Parameters: {"id"=>"953125641"}
+  [4;36;1mExpense Load (0.1ms)[0m   [0;1mSELECT * FROM `expenses` WHERE (`expenses`.`id` = 953125641) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mExpense Destroy (0.2ms)[0m   [0;1mDELETE FROM `expenses` WHERE `id` = 953125641[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/expenses
+Completed in 2ms (DB: 47) | 302 Found [http://test.host/expenses/953125641]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM `expenses` [0m
+  [4;35;1mSQL (52.2ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mExpense Load (0.4ms)[0m   [0mSELECT * FROM `expenses` WHERE (`expenses`.`id` = 953125641) [0m
+
+
+Processing ExpensesController#edit (for 0.0.0.0 at 2009-07-14 19:12:25) [GET]
+  Parameters: {"id"=>"953125641"}
+  [4;36;1mExpense Load (0.1ms)[0m   [0;1mSELECT * FROM `expenses` WHERE (`expenses`.`id` = 953125641) [0m
+Rendering template within layouts/expenses
+Rendering expenses/edit
+Completed in 14ms (View: 13, DB: 53) | 200 OK [http://test.host/expenses/953125641/edit]
+  [4;35;1mSQL (0.2ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+
+
+Processing ExpensesController#index (for 0.0.0.0 at 2009-07-14 19:12:25) [GET]
+  [4;35;1mExpense Load (0.4ms)[0m   [0mSELECT * FROM `expenses` [0m
+Rendering template within layouts/expenses
+Rendering expenses/index
+Completed in 9ms (View: 7, DB: 1) | 200 OK [http://test.host/expenses]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+
+
+Processing ExpensesController#new (for 0.0.0.0 at 2009-07-14 19:12:25) [GET]
+Rendering template within layouts/expenses
+Rendering expenses/new
+Completed in 8ms (View: 4, DB: 0) | 200 OK [http://test.host/expenses/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mExpense Load (0.1ms)[0m   [0;1mSELECT * FROM `expenses` WHERE (`expenses`.`id` = 953125641) [0m
+
+
+Processing ExpensesController#show (for 0.0.0.0 at 2009-07-14 19:12:25) [GET]
+  Parameters: {"id"=>"953125641"}
+  [4;35;1mExpense Load (0.1ms)[0m   [0mSELECT * FROM `expenses` WHERE (`expenses`.`id` = 953125641) [0m
+Rendering template within layouts/expenses
+Rendering expenses/show
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://test.host/expenses/953125641]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mExpense Load (0.1ms)[0m   [0;1mSELECT * FROM `expenses` WHERE (`expenses`.`id` = 953125641) [0m
+
+
+Processing ExpensesController#update (for 0.0.0.0 at 2009-07-14 19:12:25) [PUT]
+  Parameters: {"expense"=>{}, "id"=>"953125641"}
+  [4;35;1mExpense Load (0.1ms)[0m   [0mSELECT * FROM `expenses` WHERE (`expenses`.`id` = 953125641) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/expenses/953125641
+Completed in 3ms (DB: 0) | 302 Found [http://test.host/expenses/953125641?]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mExpense Columns (2.3ms)[0m   [0mSHOW FIELDS FROM `expenses`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mExpense Create (0.3ms)[0m   [0mINSERT INTO `expenses` (`category`, `created_at`, `buoni`, `updated_at`, `amount`, `date`, `bancomat`, `description`, `ufficio`) VALUES(NULL, '2009-07-14 17:23:35', NULL, '2009-07-14 17:23:35', NULL, NULL, NULL, NULL, NULL)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (98.9ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mExpense Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `expenses`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mExpense Create (0.3ms)[0m   [0mINSERT INTO `expenses` (`category`, `created_at`, `buoni`, `updated_at`, `amount`, `date`, `bancomat`, `description`, `ufficio`) VALUES(NULL, '2009-07-14 17:25:13', NULL, '2009-07-14 17:25:13', 100.0, NULL, NULL, 'Sample expense', NULL)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (80.3ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mExpense Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `expenses`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mExpense Create (0.3ms)[0m   [0mINSERT INTO `expenses` (`category`, `created_at`, `buoni`, `updated_at`, `amount`, `date`, `bancomat`, `description`, `ufficio`) VALUES(NULL, '2009-07-14 17:25:52', NULL, '2009-07-14 17:25:52', 100.0, NULL, NULL, 'Sample expense', NULL)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (89.5ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mROLLBACK[0m

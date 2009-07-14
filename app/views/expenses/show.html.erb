@@ -1,0 +1,37 @@
+<p>
+  <b>Date:</b>
+  <%=h @expense.date %>
+</p>
+<p>
+  <b>Description:</b>
+  <%=h @expense.description %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%=h @expense.amount %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%=h @expense.category %>
+</p>
+
+<p>
+  <b>Bancomat:</b>
+  <%=h @expense.bancomat %>
+</p>
+
+<p>
+  <b>Ufficio:</b>
+  <%=h @expense.ufficio %>
+</p>
+
+<p>
+  <b>Buoni:</b>
+  <%=h @expense.buoni %>
+</p>
+
+
+<%= link_to 'Edit', edit_expense_path(@expense) %> |
+<%= link_to 'Back', expenses_path %>

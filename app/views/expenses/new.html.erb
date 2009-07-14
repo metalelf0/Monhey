@@ -1,0 +1,39 @@
+<h1>New expense</h1>
+
+<% form_for(@expense) do |f| %>
+  <%= f.error_messages %>
+	
+	<p>
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </p>
+  <p>
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </p>
+  <p>
+    <%= f.label :bancomat %><br />
+    <%= f.check_box :bancomat %>
+  </p>
+  <p>
+    <%= f.label :ufficio %><br />
+    <%= f.check_box :ufficio %>
+  </p>
+  <p>
+    <%= f.label :buoni %><br />
+    <%= f.text_field :buoni %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', expenses_path %>
