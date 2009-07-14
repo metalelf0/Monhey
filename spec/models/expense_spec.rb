@@ -15,11 +15,13 @@ describe Expense do
   it "should not be valid without description" do
   	e = Expense.new()
   	e.should_not be_valid
-  	print e.errors
+  	e.errors_on(:description).should_not be_nil
   end
   
   it "should not be valid with strange amounts" do
-  	e = Expense.new
+  	e = Expense.new(:description => "Sample description")
+  	e.amount = "Gnagno"
+  	e.should_not be_valid
   end
   
 end
