@@ -1,0 +1,3 @@
+#!/bin/sh
+clear
+ruby $1 --format=specdoc --color

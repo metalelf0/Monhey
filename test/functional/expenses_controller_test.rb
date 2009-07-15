@@ -42,4 +42,12 @@ class ExpensesControllerTest < ActionController::TestCase
 
     assert_redirected_to expenses_path
   end
+  
+  test "should get index with params" do
+    params = {:year => 2009, :month => 7}
+    get :index, params
+    assert_response :success
+    assert_not_nil assigns(:expenses)
+  end
+
 end
