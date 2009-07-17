@@ -8,3 +8,15 @@ class Expense < ActiveRecord::Base
 		Expense.find(:all).select { |expense| expense.date.between?(start_date, end_date) }
 	end
 end
+
+class Date
+	
+	def month_after
+		self >> 1
+	end
+	
+	def month_before
+		self << 1
+	end
+
+end
