@@ -33,8 +33,16 @@ describe Expense do
   	e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"))
   	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"))
   	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"))
-  	expenses_of_february = Expense.find_by_year_month(2009, 02)
+  	expenses_of_february = Expense.find_by_year_month(:year => 2009, :month => 02)
   	expenses_of_february.size.should eql(1)
   end
+ 
+	it "should retrieve expenses in a given month passing a date" do
+		e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"))
+  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"))
+  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"))
+  	expenses_of_february = Expense.find_by_year_month(:date => Date.parse("2009/02/01"))
+  	expenses_of_february.size.should eql(1)
+	end
   
 end
