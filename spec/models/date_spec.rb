@@ -24,5 +24,5 @@ describe Date do
 		y.month.should eql(12)
 		y.year.should eql(2009)
 	end
-    
+  
 end

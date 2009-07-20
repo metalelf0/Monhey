@@ -1,4 +1,12 @@
-<h1>Listing expenses</h1>
+<%
+    year = @date.year
+    month = @date.month
+%>
+
+<h1>Listing expenses for <%= Date::MONTHNAMES[month] + " " + year.to_s %></h1>
+
+<%= link_to "Prev month", :action => :index, :month => @date.month_before.month, :year => @date.month_before.year %>
+<%= link_to "Next month", :action => :index, :month => @date.month_after.month, :year => @date.month_after.year %>
 
 <table>
   <tr>

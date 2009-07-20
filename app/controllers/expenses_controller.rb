@@ -1,11 +1,12 @@
 class ExpensesController < ApplicationController
  
   def index
-  	if (not params[:year].nil? and not params[:month].nil?)
-  		@expenses = Expense.find_by_year_month params[:year], params[:month] 
+  	if not (params[:year].nil? or params[:month].nil?)
+  		@date = Date.parse(params[:year]+"/"+params[:month]+"/"+"01")
     else
-    	@expenses = Expense.all
+      @date = Date.today
   	end
+    @expenses = Expense.find_by_year_month(:date => @date)
   end
   
   def show

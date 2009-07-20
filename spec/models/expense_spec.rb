@@ -7,6 +7,11 @@ describe Expense do
     	:description => "Sample expense",
     	:amount => "100.0"
     }
+		
+		e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"))
+  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"))
+  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"))
+		
   end
 
 	after(:each) do
@@ -30,19 +35,21 @@ describe Expense do
   end
   
   it "should retrieve expenses in a given month" do
-  	e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"))
-  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"))
-  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"))
   	expenses_of_february = Expense.find_by_year_month(:year => 2009, :month => 02)
   	expenses_of_february.size.should eql(1)
   end
  
 	it "should retrieve expenses in a given month passing a date" do
-		e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"))
-  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"))
-  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"))
   	expenses_of_february = Expense.find_by_year_month(:date => Date.parse("2009/02/01"))
   	expenses_of_february.size.should eql(1)
 	end
   
+	it "should be able to navigate expenses forward and backward by month" do
+		expenses_of_march = Expense.find_by_year_month(:date => Date.parse("2009/02/01").month_after)
+  	expenses_of_march.size.should eql(1)	
+		expenses_of_january = Expense.find_by_year_month(:date => Date.parse("2009/02/01").month_before)
+  	expenses_of_january.size.should eql(1)
+	end
+  
+	
 end

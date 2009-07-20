@@ -18,12 +18,6 @@ describe ExpensesController do
 		  response.should be_success
 		end
 		
-		it "should show all entries if no param is given" do
-			get :index
-		  response.should be_success
-		  assigns[:expenses].should have(3).expenses
-		end
-		
 		it "should show only the entries for a given month, if params are given" do
 			get :index, :year => 2009, :month => 2
 		  response.should be_success
