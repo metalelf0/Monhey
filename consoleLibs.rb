@@ -3,7 +3,7 @@ require 'rubygems'
 require 'activerecord'
 require 'config/environment.rb'
 
-ENV["RAILS_ENV"] = "test"
+ENV["RAILS_ENV"] = "development"
 INTEGER_RE = /(\d)+/
 
 MODE        = "-m"

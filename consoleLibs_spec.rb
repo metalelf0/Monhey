@@ -24,6 +24,10 @@ describe Object do
   }
   
   before :each do
+    if (ENV["RAILS_ENV"] != "test")
+      puts "Che fai? Non sei in test!"
+      exit -1
+    end
     Expense.all.each do |exp|
       exp.destroy
     end
