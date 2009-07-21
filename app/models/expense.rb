@@ -1,6 +1,9 @@
 class Expense < ActiveRecord::Base
-	validates_presence_of :description
+	validates_presence_of :description, :category
 	validates_numericality_of :amount
+	validates_inclusion_of :category,
+	  :in => ["Altro", "Benza", "Cibo", "Elettronica", "Prelievo bancomat"],
+	  :message => "is not a valid category"  
 	
 	def Expense.find_by_year_month params
 		if not params[:month].nil? and not params[:year].nil?

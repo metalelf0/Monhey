@@ -5,12 +5,16 @@ describe Expense do
     Expense.destroy_all
     @valid_attributes = {
     	:description => "Sample expense",
-    	:amount => "100.0"
+    	:amount => "100.0",
+    	:category => "Altro"
     }
 		
-		e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"))
-  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"))
-  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"))
+		e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"),
+		        :category => "Altro")
+  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"),
+  	        :category => "Altro")
+  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"),
+  	        :category => "Altro")
 		
   end
 

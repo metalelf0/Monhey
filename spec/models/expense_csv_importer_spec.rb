@@ -20,7 +20,6 @@ describe ExpenseCsvImporter do
   it "should parse a line from the csv file" do
     Expense.count.should eql(0)
     csv_line = File.open(fixtures_path).readline
-    puts "Import #{csv_line}..."
     importer = ExpenseCsvImporter.new(fixtures_path)
     importer.import_line csv_line
     Expense.count.should eql(1)
