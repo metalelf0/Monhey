@@ -1,0 +1,47 @@
+<h1 class="title"> Add expenses </h1>
+
+<% form_tag( { :action => :create_many,
+	:controller => :expenses
+	} ) do %>
+
+	<table>
+
+		<tr>
+			<th>Date</th>
+			<th>Amount</th>
+			<th>Buoni</th>
+			<th>Description</th>
+			<th>Category</th>
+			<th>Bancomat</th>
+			<th>Ufficio</th>
+		</tr>
+
+		<% for i in 1..10 do %>
+
+			<tr class="<%= "insert_" + cycle("rowA", "rowB") %>">
+
+				<td><%= date_select("elem_#{i}", 'date', :order => [:day, :month, :year]) %> </td>
+
+				<td><%= text_field_tag("elem_#{i}[amount]", "", :size => 5) %></td>
+
+				<td><%= text_field_tag("elem_#{i}[buoni]", "", :size => 5) %></td>
+
+				<td><%= text_field_tag("elem_#{i}[description]", "", :size => 25) %></td>
+
+				<td><%= select_tag "elem_#{i}[category]", @categories %></td>
+
+				<td><%= check_box_tag "elem_#{i}[bancomat]", "true", false %></td>
+
+				<td><%= check_box_tag "elem_#{i}[ufficio]",  "true", false %></td>
+
+			</tr>
+
+		<%end %>
+
+		<tr class="<%= cycle("rowA", "rowB") %>">
+			<td><%= submit_tag "Save" %></td>
+		</tr>
+
+	</table>
+
+<% end %>
