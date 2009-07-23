@@ -20,7 +20,7 @@
   </tr>
 
 <% @expenses.each do |expense| %>
-  <tr>
+  <tr class="expense-row">
     <td><%=h expense.description %></td>
     <td><%=h expense.amount %></td>
     <td><%=h expense.category %></td>
@@ -33,6 +33,16 @@
     <td><%= link_to 'Destroy', expense, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+	<tr class="totals">
+		<td></td>
+	    <td class="total-amount"><%=h @expenses.inject(0) { |total, e| total + e.amount } %></td>
+	    <td> </td>
+	    <td> </td>
+	    <td> </td>
+	    <td> </td>
+	    <td> </td>		
+	</tr>
+	
 </table>
 
 <div id="form_enter_many">
