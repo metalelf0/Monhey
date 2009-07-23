@@ -9,11 +9,11 @@ describe ExpensesController do
  		before(:each) do
  		  Expense.delete_all 			
  			@e1 = mock_model(Expense, :description => "First", :amount => 0, :date => Date.parse("2009/01/01"), :category => "",
- 			:bancomat => true, :ufficio => true, :buoni => 0)
+ 			:bancomat => true, :ufficio => true, :buoni => 1)
   		@e2 = mock_model(Expense, :description => "Second", :amount => 10, :date => Date.parse("2009/02/01"), :category => "",
- 			:bancomat => true, :ufficio => true, :buoni => 0)
+ 			:bancomat => true, :ufficio => true, :buoni => 2)
   		@e3 = mock_model(Expense,:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"), :category => "",
- 			:bancomat => true, :ufficio => true, :buoni => 0)
+ 			:bancomat => true, :ufficio => true, :buoni => 3)
  			Expense.stub(:categories).and_return(["Altro"])
  			Expense.stub(:all).and_return([@e1, @e2, @e3])
  			Expense.stub(:find_by_year_month).and_return([@e1])
@@ -45,6 +45,8 @@ describe ExpensesController do
       response.should be_success
       response.should have_tag('tr.totals')
       response.should have_tag('td.total-amount', :text => "30")
+      response.should have_tag('td.total-buoni', :text => "6")
+      
     end
  
 	end

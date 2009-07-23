@@ -1,0 +1,7 @@
+tr.expense-row td{
+	background: #EEE;
+	padding: 0.5em;
+}
+tr.totals td{
+	background: #DDD;
+}

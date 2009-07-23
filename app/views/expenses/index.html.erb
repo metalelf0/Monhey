@@ -24,8 +24,8 @@
     <td><%=h expense.description %></td>
     <td><%=h expense.amount %></td>
     <td><%=h expense.category %></td>
-    <td><%=h expense.bancomat %></td>
-    <td><%=h expense.ufficio %></td>
+    <td><%=h expense.bancomat ? 'X' : '' %></td>
+    <td><%=h expense.ufficio  ? 'X' : '' %></td>
     <td><%=h expense.buoni %></td>
     <td><%=h expense.date %></td>
     <td><%= link_to 'Show', expense %></td>
@@ -36,11 +36,11 @@
 	<tr class="totals">
 		<td></td>
 	    <td class="total-amount"><%=h @expenses.inject(0) { |total, e| total + e.amount } %></td>
+	    	    <td> </td>
 	    <td> </td>
 	    <td> </td>
-	    <td> </td>
-	    <td> </td>
-	    <td> </td>		
+	    <td class="total-buoni"><%=h @expenses.inject(0) { |total, e| total + e.buoni } %></td>
+<td> </td>		
 	</tr>
 	
 </table>
