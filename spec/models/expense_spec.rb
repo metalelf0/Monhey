@@ -55,5 +55,13 @@ describe Expense do
   	expenses_of_january.size.should eql(1)
 	end
   
-	
+  it "should calculate correctly the average value for a given month" do
+    # simple case: 0
+    Expense.average_for_month(2009, 1, 0).should eql(0.0)
+    # other case: 30 days-month, 900 euro: 30 euro/day
+    Expense.average_for_month(2009, 11, 900).should eql(30.0)
+    # and now, < 0
+    Expense.average_for_month(2009, 11, -900).should eql(-30.0)
+  end  
+  
 end

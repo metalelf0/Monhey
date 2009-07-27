@@ -8,7 +8,6 @@ class ExpensesController < ApplicationController
   	end
   	@categories = Expense.categories
     @expenses = Expense.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date } 
-    @total = @expenses.inject(0) { |total, e| total + e.amount }
   end
   
   def show
@@ -45,7 +44,7 @@ class ExpensesController < ApplicationController
         @saved = @saved + i.to_s
       end
     end
-    flash[:notice] = @saved.to_s
+    flash[:notice] = @saved.to_s+" expenses correctly saved"
     redirect_to :action => :index
   end
 
@@ -81,13 +80,12 @@ class ExpensesController < ApplicationController
     params["ufficio"] == "true" ? params["ufficio"] = true : params["ufficio"] = false
     return params
   end
-  
+
   def pad_to_two_digits string_of_numbers
     if string_of_numbers.size == 1
       string_of_numbers =  "0" + string_of_numbers
     end
     string_of_numbers
   end
-  
-  
+
 end

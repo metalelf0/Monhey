@@ -1,6 +1,8 @@
 <%
     year = @date.year
     month = @date.month
+	total = @expenses.inject(0) { |total, e| total + e.amount }
+	average = Expense.average_for_month(year, month, total)
 %>
 
 
@@ -16,7 +18,7 @@
 </div>
 
 <div style="float:left;">
-	<%= render :partial => 'layouts/box_statistics', :locals => {:total => @total }%>
+	<%= render :partial => 'layouts/box_statistics', :locals => {:total => total, :average => average }%>
 </div>
 <br/>
 <div style="clear:both;" />

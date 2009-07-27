@@ -28,6 +28,12 @@ class Expense < ActiveRecord::Base
   def Expense.categories
     CATEGORIES
   end
+  
+  def Expense.average_for_month(year, month, total)
+    days_in_month = (Date.new(year.to_i, month.to_i + 1, 1) -1).day
+    daily_exp = total.to_f / days_in_month
+    return daily_exp
+  end
 
 end
 

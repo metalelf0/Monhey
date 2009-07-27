@@ -44,7 +44,7 @@ describe ExpensesController do
       get :index
       response.should be_success
       response.should have_tag('tr.totals')
-      response.should have_tag('td.total-amount', :text => "30")
+      response.should have_tag('td.total-amount', :text => "30,00 &euro;")
       response.should have_tag('td.total-buoni', :text => "6")
       
     end
