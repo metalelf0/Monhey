@@ -8,6 +8,7 @@ class ExpensesController < ApplicationController
   	end
   	@categories = Expense.categories
     @expenses = Expense.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date } 
+    @total = @expenses.inject(0) { |total, e| total + e.amount }
   end
   
   def show

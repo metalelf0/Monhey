@@ -3,12 +3,27 @@
     month = @date.month
 %>
 
-<h1>Listing expenses for <%= Date::MONTHNAMES[month] + " " + year.to_s %></h1>
 
-<%= link_to "Prev month", :action => :index, :month => @date.month_before.month, :year => @date.month_before.year %>
-<%= link_to "Next month", :action => :index, :month => @date.month_after.month, :year => @date.month_after.year %>
+<% expenses_for = "Listing expenses for #{Date::MONTHNAMES[month] + " " + year.to_s}" %>
+
+<%= render :partial => 'layouts/header', :locals => {:title => "Expenses Manager", :subtitle => expenses_for }%>
+
+
+<div id="navigation-links">
+<%= link_to "&lt;&lt; Prev month", :action => :index, :month => @date.month_before.month, :year => @date.month_before.year %>
+&nbsp;&nbsp;
+<%= link_to "Next month &gt;&gt;", :action => :index, :month => @date.month_after.month, :year => @date.month_after.year %>
+</div>
+
+<div style="float:left;">
+	<%= render :partial => 'layouts/box_statistics', :locals => {:total => @total }%>
+</div>
+<br/>
+<div style="clear:both;" />
+<hr/>
 
 <table>
+
   <tr>
     <th>Description</th>
     <th>Amount</th>
@@ -20,23 +35,13 @@
   </tr>
 
 <% @expenses.each do |expense| %>
-  <tr class="expense-row">
-    <td><%=h expense.description %></td>
-    <td><%=h expense.amount %></td>
-    <td><%=h expense.category %></td>
-    <td><%=h expense.bancomat ? 'X' : '' %></td>
-    <td><%=h expense.ufficio  ? 'X' : '' %></td>
-    <td><%=h expense.buoni %></td>
-    <td><%=h expense.date %></td>
-    <td><%= link_to 'Show', expense %></td>
-    <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
-    <td><%= link_to 'Destroy', expense, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+	<%= render :partial => 'expense_row', :locals => {:expense => expense } %>
 <% end %>
+
 	<tr class="totals">
 		<td></td>
-	    <td class="total-amount"><%=h @expenses.inject(0) { |total, e| total + e.amount } %></td>
-	    	    <td> </td>
+	    <td class="total-amount"><%= currency_euro @expenses.inject(0) { |total, e| total + e.amount } %></td>
+	    <td> </td>
 	    <td> </td>
 	    <td> </td>
 	    <td class="total-buoni"><%=h @expenses.inject(0) { |total, e| total + e.buoni } %></td>
@@ -45,10 +50,10 @@
 	
 </table>
 
+<hr/>
+
 <div id="form_enter_many">
 	<%= render :partial => "form_many" %>
 </div>
 
 <br />
-
-<%= link_to 'New expense', new_expense_path %>
