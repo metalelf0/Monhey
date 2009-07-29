@@ -12,9 +12,9 @@ describe Expense do
 		e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"),
 		        :category => "Altro")
   	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"),
-  	        :category => "Altro")
+  	        :category => "Altro", :bancomat => true)
   	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"),
-  	        :category => "Altro")
+  	        :category => "Altro", :bancomat => false)
 		
   end
 
@@ -63,5 +63,9 @@ describe Expense do
     # and now, < 0
     Expense.average_for_month(2009, 11, -900).should eql(-30.0)
   end  
+  
+  it "should calculate exactly the amount of bancomat expenses" do
+    Expense.bancomat(Expense.all).should eql(10.0)
+  end
   
 end

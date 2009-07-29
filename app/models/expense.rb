@@ -35,6 +35,10 @@ class Expense < ActiveRecord::Base
     return daily_exp
   end
 
+  def Expense.bancomat(expenses)
+    expenses.select { |e| e.bancomat }.inject(0) { |total, e| total + e.amount }
+  end
+
 end
 
 class Date

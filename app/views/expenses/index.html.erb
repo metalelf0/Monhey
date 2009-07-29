@@ -3,6 +3,7 @@
     month = @date.month
 	total = @expenses.inject(0) { |total, e| total + e.amount }
 	average = Expense.average_for_month(year, month, total)
+	bancomat = Expense.bancomat(@expenses)
 %>
 
 
@@ -18,7 +19,7 @@
 </div>
 
 <div style="float:left;">
-	<%= render :partial => 'layouts/box_statistics', :locals => {:total => total, :average => average }%>
+	<%= render :partial => 'layouts/box_statistics', :locals => {:total => total, :average => average, :bancomat => bancomat } %>
 </div>
 <br/>
 <div style="clear:both;" />
