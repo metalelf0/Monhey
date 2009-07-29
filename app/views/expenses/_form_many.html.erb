@@ -25,19 +25,19 @@
 
 			<tr class="<%= "insert_" + cycle("rowA", "rowB") %>">
 
-				<td><%= date_select("elem_#{i}", 'date', :order => [:day, :month, :year]) %> </td>
+				<td><%= date_select("elem#{i}", 'date', :order => [:day, :month, :year]) %> </td>
 
-				<td><%= text_field_tag("elem_#{i}[amount]", "", :size => 5) %></td>
+				<td><%= text_field_tag("elem#{i}[amount]", "", :size => 5) %></td>
 
-				<td><%= text_field_tag("elem_#{i}[buoni]", "", :size => 5) %></td>
+				<td><%= text_field_tag("elem#{i}[buoni]", "", :size => 5) %></td>
 
-				<td><%= text_field_tag("elem_#{i}[description]", "", :size => 25) %></td>
+				<td><%= text_field_tag("elem#{i}[description]", "", :size => 25) %></td>
 
-				<td><%= select_tag "elem_#{i}[category]", @categories %></td>
+				<td><%= select_tag "elem#{i}[category]", @categories %></td>
 
-				<td><%= check_box_tag "elem_#{i}[bancomat]", "true", false %></td>
+				<td><%= check_box_tag "elem#{i}[bancomat]", "true", false %></td>
 
-				<td><%= check_box_tag "elem_#{i}[ufficio]",  "true", false %></td>
+				<td><%= check_box_tag "elem#{i}[ufficio]",  "true", false %></td>
 
 			</tr>
 

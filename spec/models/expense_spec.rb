@@ -39,7 +39,7 @@ describe Expense do
   end
   
   it "should retrieve expenses in a given month" do
-  	expenses_of_february = Expense.find_by_year_month(:year => 2009, :month => 02)
+  	expenses_of_february = Expense.find_by_year_month(:year => 2009, :month => 2)
   	expenses_of_february.size.should eql(1)
   end
  

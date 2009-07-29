@@ -2,3 +2,6 @@ syntax: glob
 log/*
 **.orig
 **.DS_Store
+public/stylesheets/index.html
+public/stylesheets/style_old.css
+tmp/*

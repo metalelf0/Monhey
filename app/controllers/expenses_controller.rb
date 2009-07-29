@@ -36,11 +36,12 @@ class ExpensesController < ApplicationController
     @page_title = "Create many movements"
     @saved = ""
     for i in 1..10 do
-      if !(params["elem_" + i.to_s]["amount"].blank? or params["elem_" + i.to_s]["description"].blank?)
+      if !(params["elem" + i.to_s]["amount"].blank? or params["elem" + i.to_s]["description"].blank?)
         expense = Expense.new(@database_name)
-        params["elem_" + i.to_s] = handle_multiedit_params(params["elem_" + i.to_s])       
-        expense.attributes = expense.attributes.merge(params["elem_" + i.to_s])
-        expense.save(params["elem_" + i.to_s])
+        # TODO: "elem" a costante
+        params["elem" + i.to_s] = handle_multiedit_params(params["elem" + i.to_s])       
+        expense.attributes = expense.attributes.merge(params["elem" + i.to_s])
+        expense.save(params["elem" + i.to_s])
         @saved = @saved + i.to_s
       end
     end

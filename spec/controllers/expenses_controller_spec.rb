@@ -1,4 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'webrat'
 
 describe ExpensesController do
 
@@ -46,9 +47,9 @@ describe ExpensesController do
       response.should have_tag('tr.totals')
       response.should have_tag('td.total-amount', :text => "30,00 &euro;")
       response.should have_tag('td.total-buoni', :text => "6")
-      
     end
- 
+    
+    
 	end
 
 end
