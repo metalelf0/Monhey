@@ -64,8 +64,21 @@ describe Expense do
     Expense.average_for_month(2009, 11, -900).should eql(-30.0)
   end  
   
-  it "should calculate exactly the amount of bancomat expenses" do
-    Expense.bancomat(Expense.all).should eql(10.0)
+  it "should calculate correctly the amount of bancomat expenses" do
+    Expense.total_for_bancomat_in(Expense.all).should eql(10.0)
+  end
+  
+  it "should calculate correctly a monthly prevision" do
+    Date.stub!(:today).and_return(Date.parse("2009/01/01"))
+    
+    Expense.prevision_for_current_month(2009, 1, 0).should eql(0.0)
+    Expense.prevision_for_current_month(2009, 1, -10).should eql(-310.0)
+    
+    Expense.prevision_for_current_month(2009, 2, -1000).should eql(0.0)
+    
+    Date.stub!(:today).and_return(Date.parse("2009/01/10"))
+    Expense.prevision_for_current_month(2009, 1, -100).should eql(-310.0)
+    Expense.prevision_for_current_month(2009, 1, 0).should eql(0.0)
   end
   
 end

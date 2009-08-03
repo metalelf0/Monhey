@@ -3,7 +3,7 @@
     month = @date.month
 	total = @expenses.inject(0) { |total, e| total + e.amount }
 	average = Expense.average_for_month(year, month, total)
-	bancomat = Expense.bancomat(@expenses)
+	bancomat = Expense.total_for_bancomat_in(@expenses)
 %>
 
 
