@@ -34,13 +34,19 @@ class Expense < ActiveRecord::Base
     daily_exp = total.to_f / days_in_month
     return daily_exp
   end
+  
+  def Expense.average_for_current_month(total)
+    daily_exp = total.to_f / Date.today.day
+    return daily_exp
+  end
+  
 
   def Expense.total_for_bancomat_in(expenses)
     expenses.select { |e| e.bancomat }.inject(0) { |total, e| total + e.amount }
   end
 
-  def Expense.prevision_for_current_month(year, month, current_total)
-    return 0.0 if Date.today.month != month or Date.today.year != year
+  def Expense.prevision_for_current_month(current_total)
+    year = Date.today.year; month = Date.today.month
     days_in_month = (Date.new(year.to_i, month.to_i + 1, 1) -1).day
     daily_exp = current_total.to_f / Date.today.day
     daily_exp * days_in_month
