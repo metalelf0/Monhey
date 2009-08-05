@@ -2,7 +2,14 @@
     year = @date.year
     month = @date.month
 	total = @expenses.inject(0) { |total, e| total + e.amount }
-	average = Expense.average_for_month(year, month, total)
+	
+	if year == Date.today.year and month == Date.today.month
+		average = Expense.average_for_current_month(total)
+		prevision = Expense.prevision_for_current_month(total)
+	else
+		average = Expense.average_for_month(year, month, total)
+		prevision = total
+	end
 	bancomat = Expense.total_for_bancomat_in(@expenses)
 %>
 
@@ -19,7 +26,7 @@
 </div>
 
 <div style="float:left;">
-	<%= render :partial => 'layouts/box_statistics', :locals => {:total => total, :average => average, :bancomat => bancomat } %>
+	<%= render :partial => 'layouts/box_statistics', :locals => {:total => total, :average => average, :bancomat => bancomat, :prevision => prevision } %>
 </div>
 <br/>
 <div style="clear:both;" />
