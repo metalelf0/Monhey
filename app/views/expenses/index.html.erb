@@ -4,8 +4,8 @@
 	total = Expense.total_for_month year, month
 
 	if year == Date.today.year and month == Date.today.month
-		average = Expense.average_for_current_month(total)
-		prevision = Expense.prevision_for_current_month(total)
+		average = Expense.average_for_current_month
+		prevision = Expense.prevision_for_current_month
 	else
 		average   = Expense.average_for_month(year, month)
 		prevision = total

@@ -1,35 +1,35 @@
 class Expense < ActiveRecord::Base
-	
-	CATEGORIES_ARRAY = ["Altro", "Benza", "Cibo", "Elettronica", "Prelievo bancomat", "Stipendio"]
+
+  CATEGORIES_ARRAY = ["Altro", "Benza", "Cibo", "Elettronica", "Prelievo bancomat", "Stipendio"]
 
   CATEGORIES = ModelHelper.build_categories_option_list_from_array(CATEGORIES_ARRAY)
-  
-	
-	validates_presence_of :description, :category
-	validates_numericality_of :amount
-	validates_inclusion_of :category,
-	  :in => CATEGORIES_ARRAY,
-	  :message => "is not a valid category"  
-	
-	  	
-	def Expense.find_by_year_month params
-		if not params[:month].nil? and not params[:year].nil?
-			month = params[:month].to_i
-			year =  params[:year].to_i
-		elsif not params[:date].nil?
-			month = params[:date].month
-			year =  params[:date].year
-		end
-		start_date = Date.parse("#{year}/#{month}/01")
-		end_date = (start_date >> 1) - 1 # 1 month after, 1 day before XD
-		Expense.find(:all).select { |expense| expense.date.between?(start_date, end_date) }
-	end
+
+
+  validates_presence_of :description, :category
+  validates_numericality_of :amount
+  validates_inclusion_of :category,
+    :in => CATEGORIES_ARRAY,
+    :message => "is not a valid category"  
+
+
+  def Expense.find_by_year_month params
+    if not params[:month].nil? and not params[:year].nil?
+      month = params[:month].to_i
+      year =  params[:year].to_i
+    elsif not params[:date].nil?
+      month = params[:date].month
+      year =  params[:date].year
+    end
+    start_date = Date.parse("#{year}/#{month}/01")
+    end_date = (start_date >> 1) - 1 # 1 month after, 1 day before XD
+    Expense.find(:all).select { |expense| expense.date.between?(start_date, end_date) }
+  end
 
   def Expense.categories
     CATEGORIES
   end
   
-  def Expense.average_for_month(year, month)
+  def Expense.average_for_month year, month
     days_in_month = (Date.new(year.to_i, month.to_i + 1, 1) -1).day
     total = Expense.total_for_month year, month
     daily_exp = total.to_f / days_in_month
@@ -48,19 +48,22 @@ class Expense < ActiveRecord::Base
     Expense.find(:all).select { |expense| expense.date.between?(start_date, end_date)}.inject(0.0) {|sum, exp| sum += exp.amount }
   end
   
-  def Expense.average_for_current_month(total)
+  def Expense.total_for_current_month
+    Expense.total_for_month Date.today.year, Date.today.month
+  end
+  
+  def Expense.average_for_current_month
+    total = Expense.total_for_current_month
     daily_exp = total.to_f / Date.today.day
     return daily_exp
   end
   
-
-  def Expense.total_for_bancomat_in(expenses)
+  def Expense.total_for_bancomat_in expenses
     expenses.select { |e| e.bancomat }.inject(0) { |total, e| total + e.amount }
   end
 
-
-
-  def Expense.prevision_for_current_month(current_total)
+  def Expense.prevision_for_current_month
+    current_total = Expense.total_for_current_month
     year = Date.today.year; month = Date.today.month
     days_in_month = ModelHelper.days_in_month_of year, month
     daily_exp = current_total.to_f / Date.today.day

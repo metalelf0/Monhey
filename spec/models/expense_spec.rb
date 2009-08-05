@@ -58,12 +58,12 @@ describe Expense do
   it "should calculate correctly the average value for a given month" do
     # simple case: 0
     Expense.average_for_month(2009, 1).should eql(0.0)
+    
     # other case: 30 days-month, 900 euro: 30 euro/day
-    Expense.create!(:description => "Nine hundred", :amount => 900, :date => Date.parse("2009/11/01"),
-  	        :category => "Altro", :bancomat => false)
+    Expense.stub!(:total_for_month).with(2009, 11).and_return(900)
     Expense.average_for_month(2009, 11).should eql(30.0)
-    Expense.create!(:description => "Down 18 hundred", :amount => -1800, :date => Date.parse("2009/11/01"),
-  	        :category => "Altro", :bancomat => false)
+    
+    Expense.stub!(:total_for_month).with(2009, 11).and_return(-900)
     Expense.average_for_month(2009, 11).should eql(-30.0)
   end  
   
@@ -75,9 +75,13 @@ describe Expense do
   
   it "should calculate correctly the average value for the current month" do
     Date.stub!(:today).and_return(Date.parse("2009/01/10"))
-    Expense.average_for_current_month(0).should eql(0.0)
-    Expense.average_for_current_month(900).should eql(90.0)
-    Expense.average_for_current_month(-900).should eql(-90.0)
+    Expense.average_for_current_month.should eql(0.0)
+    
+    Expense.stub!(:total_for_current_month).and_return(900)
+    Expense.average_for_current_month.should eql(90.0)
+    
+    Expense.stub!(:total_for_current_month).and_return(-900)
+    Expense.average_for_current_month.should eql(-90.0)
   end  
   
   
@@ -88,12 +92,18 @@ describe Expense do
   it "should calculate correctly a monthly prevision" do
     Date.stub!(:today).and_return(Date.parse("2009/01/01"))
     
-    Expense.prevision_for_current_month(0).should eql(0.0)
-    Expense.prevision_for_current_month(-10).should eql(-310.0)
+    Expense.prevision_for_current_month.should eql(0.0)
+    
+    Expense.stub!(:total_for_current_month).and_return(-10)
+    Expense.prevision_for_current_month.should eql(-310.0)
     
     Date.stub!(:today).and_return(Date.parse("2009/01/10"))
-    Expense.prevision_for_current_month(-100).should eql(-310.0)
-    Expense.prevision_for_current_month(0).should eql(0.0)
+    
+    Expense.stub!(:total_for_current_month).and_return(-100)
+    Expense.prevision_for_current_month.should eql(-310.0)
+    
+    Expense.stub!(:total_for_current_month).and_return(0)
+    Expense.prevision_for_current_month.should eql(0.0)
   end
 
   it "should calculate how much money is left for the current month" do

@@ -1,1 +1,3 @@
 [ ] Aggiornare box statistics
+[ ] Statistics in options_for_select helper
+[ ] installare ack
