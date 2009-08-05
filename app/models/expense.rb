@@ -1,6 +1,6 @@
 class Expense < ActiveRecord::Base
 	
-	CATEGORIES_ARRAY = ["Altro", "Benza", "Cibo", "Elettronica", "Prelievo bancomat"]
+	CATEGORIES_ARRAY = ["Altro", "Benza", "Cibo", "Elettronica", "Prelievo bancomat", "Stipendio"]
 
   CATEGORIES = ModelHelper.build_categories_option_list_from_array(CATEGORIES_ARRAY)
   
@@ -29,10 +29,23 @@ class Expense < ActiveRecord::Base
     CATEGORIES
   end
   
-  def Expense.average_for_month(year, month, total)
+  def Expense.average_for_month(year, month)
     days_in_month = (Date.new(year.to_i, month.to_i + 1, 1) -1).day
+    total = Expense.total_for_month year, month
     daily_exp = total.to_f / days_in_month
     return daily_exp
+  end
+
+  def Expense.in_current_month
+    start_date = Date.parse("#{Date.today.year}/#{Date.today.month}/01")
+    end_date = (start_date >> 1) - 1
+    Expense.find(:all).select { |expense| expense.date.between?(start_date, end_date)}
+  end
+  
+  def Expense.total_for_month year, month
+    start_date = Date.parse("#{year}/#{month}/01")
+    end_date = (start_date >> 1) - 1
+    Expense.find(:all).select { |expense| expense.date.between?(start_date, end_date)}.inject(0.0) {|sum, exp| sum += exp.amount }
   end
   
   def Expense.average_for_current_month(total)
@@ -45,17 +58,29 @@ class Expense < ActiveRecord::Base
     expenses.select { |e| e.bancomat }.inject(0) { |total, e| total + e.amount }
   end
 
+
+
   def Expense.prevision_for_current_month(current_total)
     year = Date.today.year; month = Date.today.month
-    days_in_month = (Date.new(year.to_i, month.to_i + 1, 1) -1).day
+    days_in_month = ModelHelper.days_in_month_of year, month
     daily_exp = current_total.to_f / Date.today.day
     daily_exp * days_in_month
   end
 
+  def Expense.left_for_current_month_with_stipendio(stipendio)
+    total = Expense.in_current_month.inject(0) { |total, expense| expense.category != "Stipendio" ? total += expense.amount : total}    
+    return stipendio + total
+  end
+
+
+  
+
 end
 
+
+
 class Date
-	
+
 	def month_after
 		self >> 1
 	end

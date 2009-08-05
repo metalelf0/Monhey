@@ -7,9 +7,9 @@ require 'spec/rails'
 require 'webrat'
 require 'webrat/rspec-rails'
 
-  Webrat.configure do |config|
-    config.mode = :rails
-  end
+Webrat.configure do |config|
+  config.mode = :rails
+end
 
 
 Spec::Runner.configure do |config|

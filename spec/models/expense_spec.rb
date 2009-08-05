@@ -57,12 +57,21 @@ describe Expense do
   
   it "should calculate correctly the average value for a given month" do
     # simple case: 0
-    Expense.average_for_month(2009, 1, 0).should eql(0.0)
+    Expense.average_for_month(2009, 1).should eql(0.0)
     # other case: 30 days-month, 900 euro: 30 euro/day
-    Expense.average_for_month(2009, 11, 900).should eql(30.0)
-    # and now, < 0
-    Expense.average_for_month(2009, 11, -900).should eql(-30.0)
+    Expense.create!(:description => "Nine hundred", :amount => 900, :date => Date.parse("2009/11/01"),
+  	        :category => "Altro", :bancomat => false)
+    Expense.average_for_month(2009, 11).should eql(30.0)
+    Expense.create!(:description => "Down 18 hundred", :amount => -1800, :date => Date.parse("2009/11/01"),
+  	        :category => "Altro", :bancomat => false)
+    Expense.average_for_month(2009, 11).should eql(-30.0)
   end  
+  
+  it "should calculate correctly the total for a given month" do
+    Expense.total_for_month(2009, 1).should eql(0.0)
+    Expense.total_for_month(2009, 2).should eql(10.0)
+    Expense.total_for_month(2009, 3).should eql(20.0)
+  end
   
   it "should calculate correctly the average value for the current month" do
     Date.stub!(:today).and_return(Date.parse("2009/01/10"))
@@ -85,6 +94,20 @@ describe Expense do
     Date.stub!(:today).and_return(Date.parse("2009/01/10"))
     Expense.prevision_for_current_month(-100).should eql(-310.0)
     Expense.prevision_for_current_month(0).should eql(0.0)
+  end
+
+  it "should calculate how much money is left for the current month" do
+    Date.stub!(:today).and_return(Date.parse("2009/01/01"))
+    Expense.left_for_current_month_with_stipendio(1190).should eql(1190.0)
+  	Expense.create!(:description => "Third", :amount => -400, :date => Date.parse("2009/01/01"),
+  	        :category => "Altro", :bancomat => false)
+    
+    Expense.left_for_current_month_with_stipendio(1200).should eql(800.0)    
+  	
+  	Expense.create!(:description => "Stipendio", :amount => 1200, :date => Date.parse("2009/01/01"),
+  	        :category => "Stipendio", :bancomat => false)
+  
+    Expense.left_for_current_month_with_stipendio(1200).should eql(800.0)   
   end
   
 end

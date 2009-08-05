@@ -1,18 +1,18 @@
 <%
-    year = @date.year
-    month = @date.month
-	total = @expenses.inject(0) { |total, e| total + e.amount }
-	
+	year = @date.year
+	month = @date.month
+	total = Expense.total_for_month year, month
+
 	if year == Date.today.year and month == Date.today.month
 		average = Expense.average_for_current_month(total)
 		prevision = Expense.prevision_for_current_month(total)
 	else
-		average = Expense.average_for_month(year, month, total)
+		average   = Expense.average_for_month(year, month)
 		prevision = total
 	end
+
 	bancomat = Expense.total_for_bancomat_in(@expenses)
 %>
-
 
 <% expenses_for = "Listing expenses for #{Date::MONTHNAMES[month] + " " + year.to_s}" %>
 
@@ -26,7 +26,7 @@
 </div>
 
 <div style="float:left;">
-	<%= render :partial => 'layouts/box_statistics', :locals => {:total => total, :average => average, :bancomat => bancomat, :prevision => prevision } %>
+	<%= render :partial => 'layouts/box_statistics', :locals => {:total => total, :average => average, :bancomat => bancomat } %>
 </div>
 <br/>
 <div style="clear:both;" />
