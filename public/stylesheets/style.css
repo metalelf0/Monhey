@@ -29,6 +29,18 @@ input {
 	color:#999999
 }
 
+select {
+	border-width:1;
+	font-family:arial;
+	font-size:12px;
+	padding:2px;
+	height:30px;
+	border-color:#CCCCCC;
+	border-style:solid;
+	background-color:#F9F9F9;
+	color:#999999
+}
+
 th {
 	background-color: #F9F9F9; 
 	color:#FFBA27;
