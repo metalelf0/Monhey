@@ -1,6 +1,6 @@
 class Expense < ActiveRecord::Base
 
-  CATEGORIES_ARRAY = ["Altro", "Benza", "Cibo", "Elettronica", "Prelievo bancomat", "Stipendio"]
+  CATEGORIES_ARRAY = ["Altro", "Abbigliamento", "Auto", "Benza", "Cibo", "Elettronica", "Prelievo bancomat", "Stipendio"]
 
   CATEGORIES = ModelHelper.build_categories_option_list_from_array(CATEGORIES_ARRAY)
 

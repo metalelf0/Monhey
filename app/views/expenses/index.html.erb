@@ -6,9 +6,11 @@
 	if year == Date.today.year and month == Date.today.month
 		average = Expense.average_for_current_month
 		prevision = Expense.prevision_for_current_month
+		left = Expense.left_for_current_month_with_stipendio 1190
 	else
 		average   = Expense.average_for_month(year, month)
 		prevision = total
+		left = total
 	end
 
 	bancomat = Expense.total_for_bancomat_in(@expenses)
@@ -26,8 +28,7 @@
 </div>
 
 <div style="float:left;">
-	<%= render :partial => 'layouts/box_statistics', :locals => {:total => total, :average => average, :bancomat => bancomat, :prevision =>
- prevision } %>
+	<%= render :partial => 'layouts/box_statistics', :locals => {:total => total, :average => average, :bancomat => bancomat, :prevision => prevision, :left => left } %>
 </div>
 <br/>
 <div style="clear:both;" />
