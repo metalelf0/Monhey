@@ -47,6 +47,16 @@ th {
 	font-size:15px
 }
 
+.title {
+	font-size:28px;
+	color:#FFBA27;
+}
+
+.subtitle {
+	font-size:20px;
+	color:#CCCCCC;
+}
+
 .totals {
 	font-weight: bold;
 }	
