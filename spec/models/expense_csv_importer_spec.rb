@@ -6,7 +6,17 @@ describe ExpenseCsvImporter do
   fixtures_path = RAILS_ROOT + "/spec/fixtures/expenses.csv"
 
   before(:each) do
+    Category.delete_all
     Expense.delete_all
+    
+    Category.create!(:name => "Stipendio")
+  	Category.create!(:name => "Altro") 
+    Category.create!(:name => "Benza")  
+    Category.create!(:name => "Cibo") 
+    Category.create!(:name => "Prelievo bancomat")
+    Category.create!(:name => "Elettronica") 
+ 
+
   end
   
   it "should load a csv file" do

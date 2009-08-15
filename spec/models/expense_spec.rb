@@ -9,13 +9,15 @@ describe Expense do
     	:amount => "100.0",
     	:category => "Altro"
     }
+
+  	Category.create!(:name => "Stipendio")
+  	Category.create!(:name => "Altro") 
 		
 	e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"), :category => "Altro")
   	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"), :category => "Altro", :bancomat => true)
   	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"), :category => "Altro", :bancomat => false)
   	
-  	Category.create!(:name => "Stipendio")
-  	Category.create!(:name => "Altro")  	
+
 		
   end
 
@@ -124,7 +126,7 @@ describe Expense do
   it "should be valid only for existing categories" do
     Category.create!(:name => "Category one")
     Expense.new(:description => "Third", :amount => -400, :date => Date.parse("2009/01/01"),
-  	        :category => "Altro", :bancomat => false).should_not be_valid
+  	        :category => "Non vale questa", :bancomat => false).should_not be_valid
   end
 
 end

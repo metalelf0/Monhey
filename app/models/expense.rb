@@ -2,14 +2,20 @@ class Expense < ActiveRecord::Base
 
   CATEGORIES_ARRAY = ["Altro", "Abbigliamento", "Auto", "Benza", "Cibo", "Elettronica", "Prelievo bancomat", "Stipendio"]
 
-  CATEGORIES = ModelHelper.build_categories_option_list_from_array(CATEGORIES_ARRAY)
+  CATEGORIES	 = ModelHelper.build_categories_option_list_from_array(CATEGORIES_ARRAY)
 
 
   validates_presence_of :description, :category
   validates_numericality_of :amount
-  validates_inclusion_of :category, :in => Category.all.map(&:name),
-    :message => "is not a valid category"  
-
+  validate :category_is_valid, :message => "is not a valid category"  
+   
+  
+  def category_is_valid 
+    unless Category.all.map(&:name).include?(self.category)
+      errors.add   :category, "Invalid category"
+    end
+  end 
+   
 
   def Expense.find_by_year_month params
     if not params[:month].nil? and not params[:year].nil?
