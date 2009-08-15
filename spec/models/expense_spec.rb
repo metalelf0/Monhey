@@ -2,19 +2,20 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Expense do
   before(:each) do
-    Expense.destroy_all
+    Expense.delete_all
+    Category.delete_all
     @valid_attributes = {
     	:description => "Sample expense",
     	:amount => "100.0",
     	:category => "Altro"
     }
 		
-		e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"),
-		        :category => "Altro")
-  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"),
-  	        :category => "Altro", :bancomat => true)
-  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"),
-  	        :category => "Altro", :bancomat => false)
+	e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"), :category => "Altro")
+  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"), :category => "Altro", :bancomat => true)
+  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"), :category => "Altro", :bancomat => false)
+  	
+  	Category.create!(:name => "Stipendio")
+  	Category.create!(:name => "Altro")  	
 		
   end
 
@@ -120,4 +121,10 @@ describe Expense do
     Expense.left_for_current_month_with_stipendio(1200).should eql(800.0)   
   end
   
+  it "should be valid only for existing categories" do
+    Category.create!(:name => "Category one")
+    Expense.new(:description => "Third", :amount => -400, :date => Date.parse("2009/01/01"),
+  	        :category => "Altro", :bancomat => false).should_not be_valid
+  end
+
 end

@@ -7,8 +7,7 @@ class Expense < ActiveRecord::Base
 
   validates_presence_of :description, :category
   validates_numericality_of :amount
-  validates_inclusion_of :category,
-    :in => CATEGORIES_ARRAY,
+  validates_inclusion_of :category, :in => Category.all.map(&:name),
     :message => "is not a valid category"  
 
 
