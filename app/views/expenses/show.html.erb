@@ -14,7 +14,7 @@
 
 <p>
   <b>Category:</b>
-  <%=h @expense.category %>
+  <%=h @expense.category.nil? ? "N/A" : @expense.category.name %>
 </p>
 
 <p>

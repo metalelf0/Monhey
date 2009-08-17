@@ -1,7 +1,7 @@
 <tr class="expense-row">
   <td><%=h expense.description %></td>
   <td class="expense-cell-amount"><%= currency_euro expense.amount %></td>
-  <td><%=h expense.category %></td>
+  <td><%=h expense.category.nil? ? "N/A" : expense.category.name %></td>
   <td class="expense-cell-bancomat"><%=h expense.bancomat ? 'X' : '' %></td>
   <td class="expense-cell-ufficio"><%=h expense.ufficio  ? 'X' : '' %></td>
   <td><%=h expense.buoni %></td>

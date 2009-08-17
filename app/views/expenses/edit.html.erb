@@ -1,3 +1,5 @@
+<% categories = options_for_select(Category.all.map { |category| [category.name, category.id ] }, 0 ) %>
+
 <h1>Editing expense</h1>
 
 <% form_for(@expense) do |f| %>
@@ -16,7 +18,7 @@
   </p>
   <p>
     <%= f.label :category %><br />
-    <%= f.text_field :category %>
+    <%= f.select :category_id, categories %>
   </p>
   <p>
     <%= f.label :bancomat %><br />

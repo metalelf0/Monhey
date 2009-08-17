@@ -1,3 +1,5 @@
+<% categories = options_for_select(Category.all.map { |category| [category.name, category.id ] }, 0 ) %>
+
 <span style="font-size:28px;color:#FFBA27">
 	Add expenses
 </span><br/>
@@ -33,7 +35,7 @@
 
 				<td><%= text_field_tag("elem#{i}[description]", "", :size => 25) %></td>
 
-				<td><%= select_tag "elem#{i}[category]", @categories %></td>
+				<td><%= select_tag "elem#{i}[category_id]", categories %></td>
 
 				<td><%= check_box_tag "elem#{i}[bancomat]", "true", false %></td>
 

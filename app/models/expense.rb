@@ -1,18 +1,16 @@
 class Expense < ActiveRecord::Base
 
-  CATEGORIES_ARRAY = ["Altro", "Abbigliamento", "Auto", "Benza", "Cibo", "Elettronica", "Prelievo bancomat", "Stipendio"]
 
-  CATEGORIES	 = ModelHelper.build_categories_option_list_from_array(CATEGORIES_ARRAY)
-
-
+  belongs_to :category
+  
   validates_presence_of :description, :category
   validates_numericality_of :amount
   validate :category_is_valid, :message => "is not a valid category"  
    
   
   def category_is_valid 
-    unless Category.all.map(&:name).include?(self.category)
-      errors.add   :category, "Invalid category"
+    unless Category.all.include?(self.category)
+      errors.add :category, "Invalid category"
     end
   end 
    
@@ -30,9 +28,6 @@ class Expense < ActiveRecord::Base
     Expense.find(:all).select { |expense| expense.date.between?(start_date, end_date) }
   end
 
-  def Expense.categories
-    CATEGORIES
-  end
   
   def Expense.average_for_month year, month
     days_in_month = (Date.new(year.to_i, month.to_i + 1, 1) -1).day
@@ -76,13 +71,10 @@ class Expense < ActiveRecord::Base
   end
 
   def Expense.left_for_current_month_with_stipendio(stipendio)
-    total = Expense.in_current_month.inject(0) { |total, expense| expense.category != "Stipendio" ? total += expense.amount : total}    
+    total = Expense.in_current_month.inject(0) { |total, expense| (! expense.category.nil? and expense.category.name != "Stipendio") ? total += expense.amount : total}    
     return stipendio + total
   end
-
-
   
-
 end
 
 

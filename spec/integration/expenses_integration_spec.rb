@@ -2,6 +2,13 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe "Creating an entry" do
 
+  before :each do
+    Category.delete_all
+    Category.create(:name => 'Cibo')
+    Category.create(:name => 'Altro')
+    Category.create(:name => 'Elettronica')    
+  end
+
   it "should save an entry through the first insert fields-row" do
     Expense.count.should eql(0)
     visit 'expenses'
@@ -9,7 +16,7 @@ describe "Creating an entry" do
     fill_in "elem1[amount]", :with => -10
     fill_in "elem1[buoni]", :with => 1
     fill_in "elem1[description]", :with => "Spesa di prova"
-    select "Altro", :from => "elem1_category"
+    select "Altro", :from => "elem1_category_id"
 
     click_button "Save"
     Expense.count.should eql(1)
@@ -25,17 +32,17 @@ describe "Creating an entry" do
     fill_in "elem1[amount]", :with => -10
     fill_in "elem1[buoni]", :with => 1
     fill_in "elem1[description]", :with => "Spesa di prova n. 1"
-    select "Altro", :from => "elem1_category"
+    select "Altro", :from => "elem1_category_id"
 
     fill_in "elem2[amount]", :with => -15
     fill_in "elem2[buoni]", :with => 0
     fill_in "elem2[description]", :with => "Spesa di prova n. 2"
-    select "Elettronica", :from => "elem2_category"
+    select "Elettronica", :from => "elem2_category_id"
 
     fill_in "elem3[amount]", :with => -20
     fill_in "elem3[buoni]", :with => 2
     fill_in "elem3[description]", :with => "Spesa di prova n. 3"
-    select "Cibo", :from => "elem3_category"
+    select "Cibo", :from => "elem3_category_id"
 
 
     click_button "Save"

@@ -9,13 +9,17 @@ describe ExpensesController do
  	
  		before(:each) do
  		  Expense.delete_all 			
- 			@e1 = mock_model(Expense, :description => "First", :amount => 0, :date => Date.parse("2009/01/01"), :category => "",
+      Category.delete_all
+ 			@c1 = mock_model(Category, :name => "Altro")
+ 			@e1 = mock_model(Expense, :description => "First", :amount => 0, :date => Date.parse("2009/01/01"), :category => @c1,
  			:bancomat => true, :ufficio => true, :buoni => 1)
-  		@e2 = mock_model(Expense, :description => "Second", :amount => 10, :date => Date.parse("2009/02/01"), :category => "",
+  		@e2 = mock_model(Expense, :description => "Second", :amount => 10, :date => Date.parse("2009/02/01"), :category => @c1,
  			:bancomat => true, :ufficio => true, :buoni => 2)
-  		@e3 = mock_model(Expense,:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"), :category => "",
+  		@e3 = mock_model(Expense,:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"), :category => @c1,
  			:bancomat => true, :ufficio => true, :buoni => 3)
- 			Expense.stub(:categories).and_return(["Altro"])
+
+ 			
+ 			Category.stub(:all).and_return([@c1])
  			Expense.stub(:all).and_return([@e1, @e2, @e3])
  			Expense.stub(:find_by_year_month).and_return([@e1])
  		end
