@@ -128,8 +128,13 @@ describe Expense do
     category = Category.create!(:name => "Category one")
     Expense.new(:description => "Third", :amount => -400, :date => Date.parse("2009/01/01"),
   	        :category => category, :bancomat => false).should be_valid
+  end
   
-  
+  it "should have account" do
+    category = Category.create!(:name => "Category one")
+    account = Account.create!(:name => "Contanti")
+    Expense.new(:description => "Third", :amount => -400, :date => Date.parse("2009/01/01"),
+  	        :category => category, :account => account, :bancomat => false).should be_valid  
   end
 
 end
