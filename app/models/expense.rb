@@ -2,6 +2,7 @@ class Expense < ActiveRecord::Base
 
 
   belongs_to :category
+  belongs_to :account
   
   validates_presence_of :description, :category
   validates_numericality_of :amount
@@ -73,6 +74,15 @@ class Expense < ActiveRecord::Base
   def Expense.left_for_current_month_with_stipendio(stipendio)
     total = Expense.in_current_month.inject(0) { |total, expense| (! expense.category.nil? and expense.category.name != "Stipendio") ? total += expense.amount : total}    
     return stipendio + total
+  end
+  
+  def migrate_and_save
+    if self.bancomat
+      self.account = Account.find_by_name("bancomat")
+    else
+      self.account = Account.find_by_name("contanti")
+    end
+    self.save!
   end
   
 end
