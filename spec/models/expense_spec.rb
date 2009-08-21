@@ -138,30 +138,6 @@ describe Expense do
   	        :category => category, :account => account, :bancomat => false).should be_valid  
   end
 
-  it "should correctly migrate expenses" do
-    category = Category.create!(:name => "Category one")
-    account_contanti = Account.create!(:name => "Contanti")
-    account_bancomat = Account.create!(:name => "Bancomat")
-  
-    expense_contanti = Expense.create!(
-      :description => "Third", 
-      :amount => -400,
-      :date => Date.parse("2009/01/01"),
-  	  :category => category, 
-  	  :bancomat => false)
-    expense_bancomat = Expense.create!(
-      :description => "Third", 
-      :amount => -400,
-      :date => Date.parse("2009/01/01"),
-  	  :category => category,
-  	  :bancomat => true)
-  
-    expense_contanti.migrate_and_save
-    expense_bancomat.migrate_and_save
-    
-    expense_contanti.account.should eql(account_contanti)
-    expense_bancomat.account.should eql(account_bancomat)
-  
-  end
+
 
 end

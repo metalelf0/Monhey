@@ -75,16 +75,7 @@ class Expense < ActiveRecord::Base
     total = Expense.in_current_month.inject(0) { |total, expense| (! expense.category.nil? and expense.category.name != "Stipendio") ? total += expense.amount : total}    
     return stipendio + total
   end
-  
-  def migrate_and_save
-    if self.bancomat
-      self.account = Account.find_by_name("bancomat")
-    else
-      self.account = Account.find_by_name("contanti")
-    end
-    self.save!
-  end
-  
+    
 end
 
 
