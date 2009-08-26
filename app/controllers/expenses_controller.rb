@@ -77,7 +77,6 @@ class ExpensesController < ApplicationController
     params["amount"] = params["amount"].sub("," , ".")
     params["buoni"] = params["buoni"]
     params["description"] = params["description"].capitalize
-    params["bancomat"] == "true" ? params["bancomat"] = true : params["bancomat"] = false
     params["ufficio"] == "true" ? params["ufficio"] = true : params["ufficio"] = false
     return params
   end

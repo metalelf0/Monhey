@@ -1,4 +1,5 @@
 <% categories = options_for_select(Category.all.map { |category| [category.name, category.id ] }, 0 ) %>
+<% accounts = options_for_select(Account.all.map { |account| [account.name, account.id ] }, 0 ) %>
 
 <span style="font-size:28px;color:#FFBA27">
 	Add expenses
@@ -19,7 +20,7 @@
 			<th>Buoni</th>
 			<th>Description</th>
 			<th>Category</th>
-			<th>Bancomat</th>
+			<th>Account</th>
 			<th>Ufficio</th>
 		</tr>
 
@@ -37,7 +38,7 @@
 
 				<td><%= select_tag "elem#{i}[category_id]", categories %></td>
 
-				<td><%= check_box_tag "elem#{i}[bancomat]", "true", false %></td>
+				<td><%= select_tag "elem#{i}[account_id]", accounts %></td>
 
 				<td><%= check_box_tag "elem#{i}[ufficio]",  "true", false %></td>
 

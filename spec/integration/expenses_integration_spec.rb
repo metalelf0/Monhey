@@ -4,6 +4,9 @@ describe "Creating an entry" do
 
   before :each do
     Category.delete_all
+    Account.delete_all
+    Account.create(:name => 'Contanti')
+    Account.create(:name => 'Bancomat')
     Category.create(:name => 'Cibo')
     Category.create(:name => 'Altro')
     Category.create(:name => 'Elettronica')    
@@ -17,6 +20,7 @@ describe "Creating an entry" do
     fill_in "elem1[buoni]", :with => 1
     fill_in "elem1[description]", :with => "Spesa di prova"
     select "Altro", :from => "elem1_category_id"
+    select "Contanti", :from => "elem1_account_id"
 
     click_button "Save"
     Expense.count.should eql(1)

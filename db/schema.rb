@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20090820060452) do
   create_table "expenses", :force => true do |t|
     t.string   "description"
     t.float    "amount"
-    t.boolean  "bancomat"
     t.boolean  "ufficio"
     t.integer  "buoni"
     t.datetime "created_at"

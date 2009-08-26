@@ -11,13 +11,12 @@ describe ExpensesController do
  		  Expense.delete_all 			
       Category.delete_all
  			@c1 = mock_model(Category, :name => "Altro")
- 			@e1 = mock_model(Expense, :description => "First", :amount => 0, :date => Date.parse("2009/01/01"), :category => @c1,
- 			:bancomat => true, :ufficio => true, :buoni => 1)
-  		@e2 = mock_model(Expense, :description => "Second", :amount => 10, :date => Date.parse("2009/02/01"), :category => @c1,
- 			:bancomat => true, :ufficio => true, :buoni => 2)
-  		@e3 = mock_model(Expense,:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"), :category => @c1,
- 			:bancomat => true, :ufficio => true, :buoni => 3)
+ 			@bancomat = mock_model(Account, :name => "Bancomat")
+ 			@e1 = mock_model(Expense, :description => "First", :amount => 0, :date => Date.parse("2009/01/01"), :category => @c1, :account => @bancomat, :ufficio => true, :buoni => 1)
+  		@e2 = mock_model(Expense, :description => "Second", :amount => 10, :date => Date.parse("2009/02/01"), :category => @c1, :account => @bancomat, :ufficio => true, :buoni => 2)
+  		@e3 = mock_model(Expense,:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"), :category => @c1, :account => @bancomat, :ufficio => true, :buoni => 3)
 
+      @bancomat.stub!(:bancomat).and_return true      
  			
  			Category.stub(:all).and_return([@c1])
  			Expense.stub(:all).and_return([@e1, @e2, @e3])

@@ -9,15 +9,18 @@ describe Expense do
     @stipendio = Category.create!(:name => "Stipendio")
   	@altro = Category.create!(:name => "Altro")
     
+    @bancomat = Account.create!(:name => "Bancomat")
+    @contanti = Account.create!(:name => "Contanti")
+    
     @valid_attributes = {
     	:description => "Sample expense",
     	:amount => "100.0",
     	:category => @altro
     }
 		
-	e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"), :category => @altro)
-  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"), :category => @altro, :bancomat => true)
-  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"), :category => @altro, :bancomat => false)
+	e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"), :category => @altro, :account => @contanti)
+  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"), :category => @altro, :account => @bancomat)
+  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"), :category => @altro, :account => @contanti)
   	
 
 		
@@ -128,14 +131,14 @@ describe Expense do
   it "should have category" do
     category = Category.create!(:name => "Category one")
     Expense.new(:description => "Third", :amount => -400, :date => Date.parse("2009/01/01"),
-  	        :category => category, :bancomat => false).should be_valid
+  	        :category => category, :account => Account.bancomat).should be_valid
   end
   
   it "should have account" do
     category = Category.create!(:name => "Category one")
     account = Account.create!(:name => "Contanti")
     Expense.new(:description => "Third", :amount => -400, :date => Date.parse("2009/01/01"),
-  	        :category => category, :account => account, :bancomat => false).should be_valid  
+  	        :category => category, :account => account).should be_valid  
   end
 
 

@@ -42,7 +42,7 @@ class Expense < ActiveRecord::Base
     end_date = (start_date >> 1) - 1
     Expense.find(:all).select { |expense| expense.date.between?(start_date, end_date)}
   end
-  
+    
   def Expense.total_for_month year, month
     start_date = Date.parse("#{year}/#{month}/01")
     end_date = (start_date >> 1) - 1
@@ -60,7 +60,7 @@ class Expense < ActiveRecord::Base
   end
   
   def Expense.total_for_bancomat_in expenses
-    expenses.select { |e| e.bancomat }.inject(0) { |total, e| total + e.amount }
+    expenses.select { |e| e.account.bancomat }.inject(0) { |total, e| total + e.amount }
   end
 
   def Expense.prevision_for_current_month

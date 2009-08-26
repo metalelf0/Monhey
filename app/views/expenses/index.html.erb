@@ -28,6 +28,11 @@
 <%= link_to 'Categories', categories_path %>
 
 
+<% if RAILS_ENV != "production" %>
+  <%= "<BR/><b>WARNING!!! APPLICATION RUNNING IN #{RAILS_ENV.upcase} MODE</b>" %>
+<% end %>
+
+
 </div>
 
 <div style="float:left;">
