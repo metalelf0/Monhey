@@ -7,7 +7,8 @@ class ExpensesController < ApplicationController
       @date = Date.today
   	end
   
-    @expenses = Expense.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date } 
+    @expenses = Expense.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }
+    @hash_for_cloud = Expense.generate_hash_for_categories_cloud(@date.year, @date.month) 
   end
   
   def show

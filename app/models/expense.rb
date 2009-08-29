@@ -9,7 +9,8 @@ class Expense < ActiveRecord::Base
   validate :category_is_valid, :message => "is not a valid category"  
    
   
-  def category_is_valid 
+  def category_is_valid
+  # TODO: bruuutto 
     unless Category.all.include?(self.category)
       errors.add :category, "Invalid category"
     end
@@ -24,9 +25,9 @@ class Expense < ActiveRecord::Base
       month = params[:date].month
       year =  params[:date].year
     end
-    start_date = Date.parse("#{year}/#{month}/01")
-    end_date = (start_date >> 1) - 1 # 1 month after, 1 day before XD
-    Expense.find(:all).select { |expense| expense.date.between?(start_date, end_date) }
+    start_date = Date.new(year, month, 1)
+    end_date = start_date.end_of_month
+    Expense.find(:all, :conditions => ["date >= ? AND date <= ?", start_date, end_date])
   end
 
   
@@ -38,15 +39,25 @@ class Expense < ActiveRecord::Base
   end
 
   def Expense.in_current_month
-    start_date = Date.parse("#{Date.today.year}/#{Date.today.month}/01")
-    end_date = (start_date >> 1) - 1
-    Expense.find(:all).select { |expense| expense.date.between?(start_date, end_date)}
+    start_date = Date.today.beginning_of_month
+    end_date = Date.today.end_of_month
+    Expense.find(:all, :conditions => ["date >= ? AND date <= ?", start_date, end_date])
   end
     
   def Expense.total_for_month year, month
-    start_date = Date.parse("#{year}/#{month}/01")
-    end_date = (start_date >> 1) - 1
-    Expense.find(:all).select { |expense| expense.date.between?(start_date, end_date)}.inject(0.0) {|sum, exp| sum += exp.amount }
+    start_date = Date.new(year, month, 1)
+    end_date = start_date.end_of_month
+    Expense.find(:all, :conditions => ["date >= ? AND date <= ?", start_date, end_date]).inject(0.0) {|sum, exp| sum += exp.amount }
+  end
+
+  
+  def Expense.total_for_month_by_category year, month, category
+    start_date = Date.new(year, month, 1)
+    end_date = start_date.end_of_month
+    # TODO: migliorare, mettere join e far tutto su db
+    Expense.find(
+      :all, 
+      :conditions => ["date  >= ? AND date <= ?", start_date, end_date ]).select{|ex| ex.category.name == category}.inject(0.0) {|sum, exp| sum += exp.amount }
   end
   
   def Expense.total_for_current_month
@@ -60,7 +71,7 @@ class Expense < ActiveRecord::Base
   end
   
   def Expense.total_for_bancomat_in expenses
-    expenses.select { |e| e.account.bancomat }.inject(0) { |total, e| total + e.amount }
+    expenses.select { |e| e.account.bancomat }.inject(0.0) { |total, e| total + e.amount }
   end
 
   def Expense.prevision_for_current_month
@@ -72,22 +83,66 @@ class Expense < ActiveRecord::Base
   end
 
   def Expense.left_for_current_month_with_stipendio(stipendio)
-    total = Expense.in_current_month.inject(0) { |total, expense| (! expense.category.nil? and expense.category.name != "Stipendio") ? total += expense.amount : total}    
+    total = Expense.in_current_month.inject(0.0) do |total, expense| 
+      if (! expense.category.nil? and expense.category.name != "Stipendio")  
+        total += expense.amount 
+      else 
+        total
+      end
+    end    
     return stipendio + total
   end
-    
+  
+  def Expense.amounts_for_categories(year, month)
+    hash = {}
+    Category.all.map(&:name).each do |category|
+      hash[category] = Expense.total_for_month_by_category year, month, category
+    end
+    hash
+  end
+  
+  def Expense.generate_hash_for_categories_cloud(year, month)
+    hash = {}
+    amounts_for_categories = amounts_for_categories(year, month)
+    lowest  = amounts_for_categories.values.sort.first
+    highest = amounts_for_categories.values.sort.last
+    Category.all.map(&:name).each do |category|
+      total = amounts_for_categories[category]
+      hash[category] = {}
+      hash[category][:style] = Expense.font_size_for_tag_cloud(
+        total,
+        lowest,
+        highest)
+      hash[category][:amount] = total
+    end
+    return hash
+  end
+  
+  def Expense.font_size_for_tag_cloud( total, lowest, highest)
+    return nil if total.nil? or highest.nil? or lowest.nil?
+    return "display:none;" if total == 0
+  if highest == 0 and lowest == 0
+    size = 12
+    else
+      size = 8 + 24 * total / highest;
+    end  
+    # display the results
+    size_txt = "font-size:#{ size.round.to_s }px;"
+    return size_txt
+  end
+
 end
 
 
 
 class Date
 
-	def month_after
-		self >> 1
-	end
-	
-	def month_before
-		self << 1
-	end
+  def month_after
+    self >> 1
+  end
+  
+  def month_before
+    self << 1
+  end
 
 end

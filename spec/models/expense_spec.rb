@@ -18,9 +18,9 @@ describe Expense do
     	:category => @altro
     }
 		
-	e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.parse("2009/01/01"), :category => @altro, :account => @contanti)
-  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.parse("2009/02/01"), :category => @altro, :account => @bancomat)
-  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"), :category => @altro, :account => @contanti)
+	  e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.new(2009,1,1), :category => @altro, :account => @contanti)
+  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.new(2009,2,1), :category => @altro, :account => @bancomat)
+  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.new(2009,3,1), :category => @altro, :account => @contanti)
   	
 
 		
@@ -117,15 +117,15 @@ describe Expense do
   it "should calculate how much money is left for the current month" do
     Date.stub!(:today).and_return(Date.parse("2009/01/01"))
     Expense.left_for_current_month_with_stipendio(1190).should eql(1190.0)
-  	#Expense.create!(:description => "Third", :amount => -400, :date => Date.parse("2009/01/01"),
-  	#        :category => @altro, :bancomat => false)
+  	Expense.create!(:description => "Third", :amount => -400, :date => Date.parse("2009/01/01"),
+  	        :category => @altro, :account => @contanti)
     
-    #Expense.left_for_current_month_with_stipendio(1200).should eql(800.0)    
+    Expense.left_for_current_month_with_stipendio(1200).should eql(800.0)    
   	
-  	#Expense.create!(:description => "Stipendio", :amount => 1200, :date => Date.parse("2009/01/01"),
-  	#        :category => @stipendio, :bancomat => false)
+  	Expense.create!(:description => "Stipendio", :amount => 1200, :date => Date.parse("2009/01/01"),
+  	        :category => @stipendio, :account => @contanti)
   
-    #Expense.left_for_current_month_with_stipendio(1200).should eql(800.0)   
+    Expense.left_for_current_month_with_stipendio(1200).should eql(800.0)   
   end
   
   it "should have category" do
@@ -141,6 +141,11 @@ describe Expense do
   	        :category => category, :account => account).should be_valid  
   end
 
-
+  it "should retrieve expenses by category, year and month" do
+    e4 = Expense.create!(:description => "Fourth", :amount => 1000, :date => Date.parse("2009/01/01"), :category => @stipendio, :account => @bancomat)
+    amounts = Expense.amounts_for_categories(2009, 1)
+    puts amounts.inspect
+    amounts["Stipendio"].should eql(1000.0)
+  end
 
 end

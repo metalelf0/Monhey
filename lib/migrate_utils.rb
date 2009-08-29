@@ -2,9 +2,9 @@ class MigrateUtils
 
   def MigrateUtils.migrate_and_save expense
     if expense.bancomat
-      expense.account = Account.find_by_name("bancomat")
+      expense.account = Account.find_by_name("Bancomat")
     else
-      expense.account = Account.find_by_name("contanti")
+      expense.account = Account.find_by_name("Contanti")
     end
     expense.save!
   end
