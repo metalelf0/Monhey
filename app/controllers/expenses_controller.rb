@@ -2,12 +2,16 @@ class ExpensesController < ApplicationController
  
   def index
   	if not (params[:year].nil? or params[:month].nil?)
-  		@date = Date.parse(params[:year]+"/"+params[:month]+"/"+"01")
+  		@date = Date.new(params[:year].to_i, params[:month].to_i, 1)
     else
       @date = Date.today
   	end
-  
-    @expenses = Expense.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }
+    # TODO: order by date in query SQL
+    if params[:category_name].blank?
+      @expenses = Expense.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date } 
+    else
+      @expenses = Expense.find_by_year_month_and_category(@date.year, @date.month, params[:category_name])
+    end
     @hash_for_cloud = Expense.generate_hash_for_categories_cloud(@date.year, @date.month) 
   end
   
@@ -67,11 +71,7 @@ class ExpensesController < ApplicationController
   end
   
   def handle_multiedit_params params
-    params["date"] = Date.parse(
-      params["date(1i)"] + "/" + # year
-      pad_to_two_digits( params["date(2i)"] ) + "/" + # month
-      pad_to_two_digits( params["date(3i)"] ) # day
-    )
+    params["date"] = Date.new(params["date(1i)"].to_i, params["date(2i)"].to_i, params["date(3i)"].to_i )
     params.delete("date(1i)")
     params.delete("date(2i)")
     params.delete("date(3i)")

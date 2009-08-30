@@ -52,14 +52,14 @@ describe Expense do
   end
  
 	it "should retrieve expenses in a given month passing a date" do
-  	expenses_of_february = Expense.find_by_year_month(:date => Date.parse("2009/02/01"))
+  	expenses_of_february = Expense.find_by_year_month(:date => Date.new(2009,2,1))
   	expenses_of_february.size.should eql(1)
 	end
   
 	it "should be able to navigate expenses forward and backward by month" do
-		expenses_of_march = Expense.find_by_year_month(:date => Date.parse("2009/02/01").month_after)
+		expenses_of_march = Expense.find_by_year_month(:date => Date.new(2009,2,1).month_after)
   	expenses_of_march.size.should eql(1)	
-		expenses_of_january = Expense.find_by_year_month(:date => Date.parse("2009/02/01").month_before)
+		expenses_of_january = Expense.find_by_year_month(:date => Date.new(2009,2,1).month_before)
   	expenses_of_january.size.should eql(1)
 	end
   
@@ -82,7 +82,7 @@ describe Expense do
   end
   
   it "should calculate correctly the average value for the current month" do
-    Date.stub!(:today).and_return(Date.parse("2009/01/10"))
+    Date.stub!(:today).and_return(Date.new(2009,1,1))
     Expense.average_for_current_month.should eql(0.0)
     
     Expense.stub!(:total_for_current_month).and_return(900)
@@ -98,14 +98,14 @@ describe Expense do
   end
   
   it "should calculate correctly a monthly prevision" do
-    Date.stub!(:today).and_return(Date.parse("2009/01/01"))
+    Date.stub!(:today).and_return(Date.new(2009,1,1))
     
     Expense.prevision_for_current_month.should eql(0.0)
     
     Expense.stub!(:total_for_current_month).and_return(-10)
     Expense.prevision_for_current_month.should eql(-310.0)
     
-    Date.stub!(:today).and_return(Date.parse("2009/01/10"))
+    Date.stub!(:today).and_return(Date.new(2009,1,1))
     
     Expense.stub!(:total_for_current_month).and_return(-100)
     Expense.prevision_for_current_month.should eql(-310.0)
@@ -115,14 +115,14 @@ describe Expense do
   end
 
   it "should calculate how much money is left for the current month" do
-    Date.stub!(:today).and_return(Date.parse("2009/01/01"))
+    Date.stub!(:today).and_return(Date.new(2009,1,1))
     Expense.left_for_current_month_with_stipendio(1190).should eql(1190.0)
-  	Expense.create!(:description => "Third", :amount => -400, :date => Date.parse("2009/01/01"),
+  	Expense.create!(:description => "Third", :amount => -400, :date => Date.new(2009,1,1),
   	        :category => @altro, :account => @contanti)
     
     Expense.left_for_current_month_with_stipendio(1200).should eql(800.0)    
   	
-  	Expense.create!(:description => "Stipendio", :amount => 1200, :date => Date.parse("2009/01/01"),
+  	Expense.create!(:description => "Stipendio", :amount => 1200, :date => Date.new(2009,1,1),
   	        :category => @stipendio, :account => @contanti)
   
     Expense.left_for_current_month_with_stipendio(1200).should eql(800.0)   
@@ -130,21 +130,20 @@ describe Expense do
   
   it "should have category" do
     category = Category.create!(:name => "Category one")
-    Expense.new(:description => "Third", :amount => -400, :date => Date.parse("2009/01/01"),
+    Expense.new(:description => "Third", :amount => -400, :date => Date.new(2009,1,1),
   	        :category => category, :account => Account.bancomat).should be_valid
   end
   
   it "should have account" do
     category = Category.create!(:name => "Category one")
     account = Account.create!(:name => "Contanti")
-    Expense.new(:description => "Third", :amount => -400, :date => Date.parse("2009/01/01"),
+    Expense.new(:description => "Third", :amount => -400, :date => Date.new(2009,1,1),
   	        :category => category, :account => account).should be_valid  
   end
 
   it "should retrieve expenses by category, year and month" do
-    e4 = Expense.create!(:description => "Fourth", :amount => 1000, :date => Date.parse("2009/01/01"), :category => @stipendio, :account => @bancomat)
+    e4 = Expense.create!(:description => "Fourth", :amount => 1000, :date => Date.new(2009,1,1), :category => @stipendio, :account => @bancomat)
     amounts = Expense.amounts_for_categories(2009, 1)
-    puts amounts.inspect
     amounts["Stipendio"].should eql(1000.0)
   end
 

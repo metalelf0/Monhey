@@ -10,17 +10,42 @@ describe ExpensesController do
  		before(:each) do
  		  Expense.delete_all 			
       Category.delete_all
- 			@c1 = mock_model(Category, :name => "Altro")
+ 			@altro = mock_model(Category, :name => "Altro")
+ 			
  			@bancomat = mock_model(Account, :name => "Bancomat")
- 			@e1 = mock_model(Expense, :description => "First", :amount => 0, :date => Date.parse("2009/01/01"), :category => @c1, :account => @bancomat, :ufficio => true, :buoni => 1)
-  		@e2 = mock_model(Expense, :description => "Second", :amount => 10, :date => Date.parse("2009/02/01"), :category => @c1, :account => @bancomat, :ufficio => true, :buoni => 2)
-  		@e3 = mock_model(Expense,:description => "Third", :amount => 20, :date => Date.parse("2009/03/01"), :category => @c1, :account => @bancomat, :ufficio => true, :buoni => 3)
+ 			
+ 			@first = mock_model(Expense, 
+ 			  :description => "First",
+ 			  :amount => 0,
+ 			  :date => Date.new(2009,1,1),
+ 			  :category => @altro, 
+ 			  :account => @bancomat, 
+ 			  :ufficio => true, 
+ 			  :buoni => 1)
+ 			
+  		@second = mock_model(Expense, 
+  		  :description => "Second", 
+  		  :amount => 10, 
+  		  :date => Date.new(2009,2,1), 
+  		  :category => @altro, 
+  		  :account => @bancomat, 
+  		  :ufficio => true, 
+  		  :buoni => 2)
+  		
+  		@third = mock_model(Expense,
+  		  :description => "Third", 
+  		  :amount => 20, 
+  		  :date => Date.new(2009,3,1), 
+  		  :category => @altro, 
+  		  :account => @bancomat, 
+  		  :ufficio => true, 
+  		  :buoni => 3)
 
       @bancomat.stub!(:bancomat).and_return true      
  			
- 			Category.stub(:all).and_return([@c1])
- 			Expense.stub(:all).and_return([@e1, @e2, @e3])
- 			Expense.stub(:find_by_year_month).and_return([@e1])
+ 			Category.stub(:all).and_return([@altro])
+ 			Expense.stub(:all).and_return([@first, @second, @third])
+ 			Expense.stub(:find_by_year_month).and_return([@first])
  		end
  	
  		it "should receive a success response and show all the entries" do
@@ -29,10 +54,17 @@ describe ExpensesController do
 		  response.should have_tag('tr.expense-row', :count => 1)
 		end
 		
-		it "should show only the entries for a given month, if params are given" do
-			get :index, :year => 2009, :month => 2
+		it "should show only the entries for a given month" do
+			get :index, :year => 2009, :month => 1
 		  response.should be_success
 		  assigns[:expenses].should have(1).expenses
+		end
+ 
+ 		it "should show only the entries for a given month and category" do
+      Expense.stub!(:find_by_year_month_and_category).and_return([])
+			get :index, :year => 2009, :month => 2, :category_name => "A category without expenses"
+		  response.should be_success
+		  assigns[:expenses].should have(0).expenses
 		end
  
     it "should include 10 edit fields" do
@@ -43,7 +75,7 @@ describe ExpensesController do
     end
     
     it "should show a line with the totals" do
-      Expense.stub(:find_by_year_month).and_return([@e1, @e2, @e3])
+      Expense.stub(:find_by_year_month).and_return([@first, @second, @third])
       
       get :index
       response.should be_success

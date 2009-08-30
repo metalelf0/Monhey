@@ -39,9 +39,7 @@ class Expense < ActiveRecord::Base
   end
 
   def Expense.in_current_month
-    start_date = Date.today.beginning_of_month
-    end_date = Date.today.end_of_month
-    Expense.find(:all, :conditions => ["date >= ? AND date <= ?", start_date, end_date])
+    Expense.find_by_year_month(:date => Date.today)
   end
     
   def Expense.total_for_month year, month
@@ -50,14 +48,14 @@ class Expense < ActiveRecord::Base
     Expense.find(:all, :conditions => ["date >= ? AND date <= ?", start_date, end_date]).inject(0.0) {|sum, exp| sum += exp.amount }
   end
 
-  
-  def Expense.total_for_month_by_category year, month, category
+  def Expense.find_by_year_month_and_category year, month, category_name
     start_date = Date.new(year, month, 1)
     end_date = start_date.end_of_month
-    # TODO: migliorare, mettere join e far tutto su db
-    Expense.find(
-      :all, 
-      :conditions => ["date  >= ? AND date <= ?", start_date, end_date ]).select{|ex| ex.category.name == category}.inject(0.0) {|sum, exp| sum += exp.amount }
+    Expense.find(:all, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date >= ? AND date <= ? AND cat.name = ?", start_date, end_date, category_name])    
+  end
+  
+  def Expense.total_for_month_by_category year, month, category_name
+    Expense.find_by_year_month_and_category(year, month, category_name).inject(0.0) {|sum, exp| sum += exp.amount }
   end
   
   def Expense.total_for_current_month

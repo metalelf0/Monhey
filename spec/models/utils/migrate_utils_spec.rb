@@ -16,13 +16,13 @@ describe MigrateUtils do
 #    expense_contanti = Expense.create!(
 #      :description => "Third", 
 #      :amount => -400,
-#      :date => Date.parse("2009/01/01"),
+#      :date => Date.new(2009,1,1),
 #  	  :category => category, 
 #  	  :bancomat => false)
 #    expense_bancomat = Expense.create!(
 #      :description => "Third", 
 #      :amount => -400,
-#      :date => Date.parse("2009/01/01"),
+#      :date => Date.new(2009,1,1),
 #  	  :category => category,
 #  	  :bancomat => true)
 #  

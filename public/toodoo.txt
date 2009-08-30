@@ -1,3 +1,4 @@
-[ ] Aggiornare box statistics
-[ ] Statistics in options_for_select helper
-[ ] installare ack
+[X] cercare tutti i Date.parse() e sostituirli con Date.new quando necessario
+[X] mettere la tag cloud sopra la box
+[X] aggiungere il tag all alla tag cloud
+[.] aggiungere il nome della category corrente quando filtro

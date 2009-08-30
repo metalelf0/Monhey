@@ -10,7 +10,7 @@ describe Date do
 	end
 	
 	it "should retrieve the first day of the next month correctly" do
-		d = Date.parse "2009/12/01"
+		d = Date.new 2009,12,1
 		y = d.month_after
 		y.day.should eql(1)
 		y.month.should eql(1)
@@ -18,7 +18,7 @@ describe Date do
 	end
 
 	it "should retrieve the first day of the previous month correctly" do
-		d = Date.parse "2010/01/01"
+		d = Date.new 2010,1,1
 		y = d.month_before
 		y.day.should eql(1)
 		y.month.should eql(12)
