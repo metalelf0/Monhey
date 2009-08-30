@@ -85,6 +85,7 @@ describe Expense do
     Date.stub!(:today).and_return(Date.new(2009,1,1))
     Expense.average_for_current_month.should eql(0.0)
     
+    Date.stub!(:today).and_return(Date.new(2009,1,10))
     Expense.stub!(:total_for_current_month).and_return(900)
     Expense.average_for_current_month.should eql(90.0)
     
@@ -105,9 +106,9 @@ describe Expense do
     Expense.stub!(:total_for_current_month).and_return(-10)
     Expense.prevision_for_current_month.should eql(-310.0)
     
-    Date.stub!(:today).and_return(Date.new(2009,1,1))
-    
-    Expense.stub!(:total_for_current_month).and_return(-100)
+    # One day left: prevision = current total + daily average
+    Date.stub!(:today).and_return(Date.new(2009,1,30))  
+    Expense.stub!(:total_for_current_month).and_return(-300)
     Expense.prevision_for_current_month.should eql(-310.0)
     
     Expense.stub!(:total_for_current_month).and_return(0)

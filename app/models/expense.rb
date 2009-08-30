@@ -118,7 +118,7 @@ class Expense < ActiveRecord::Base
   
   def Expense.font_size_for_tag_cloud( total, lowest, highest)
     return nil if total.nil? or highest.nil? or lowest.nil?
-    return "display:none;" if total == 0
+    return "display:none;" if (total == 0 || highest == 0)
   if highest == 0 and lowest == 0
     size = 12
     else

@@ -1,6 +1,6 @@
 <% categories = options_for_select(Category.all.map { |category| [category.name, category.id ] }, 0 ) %>
 <% accounts = options_for_select(Account.all.map { |account| [account.name, account.id ] }, 0 ) %>
-
+<% date = Date.today %>
 <span style="font-size:28px;color:#FFBA27">
 	Add expenses
 </span><br/>
@@ -28,7 +28,7 @@
 
 			<tr class="<%= "insert_" + cycle("rowA", "rowB") %>">
 
-				<td><%= date_select("elem#{i}", 'date', :order => [:day, :month, :year]) %> </td>
+				<td><%= unobtrusive_date_text_picker_tag("elem#{i}[date]", date) %> </td>
 
 				<td><%= text_field_tag("elem#{i}[amount]", "", :size => 5) %></td>
 

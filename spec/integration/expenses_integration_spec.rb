@@ -3,6 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe "Creating an entry" do
 
   before :each do
+    Expense.delete_all
     Category.delete_all
     Account.delete_all
     Account.create(:name => 'Contanti')
@@ -16,11 +17,11 @@ describe "Creating an entry" do
     Expense.count.should eql(0)
     visit 'expenses'
 
-    fill_in "elem1[amount]", :with => -10
-    fill_in "elem1[buoni]", :with => 1
+    fill_in "elem1[amount]", :with => "-10"
+    fill_in "elem1[buoni]", :with => "1"
     fill_in "elem1[description]", :with => "Spesa di prova"
+
     select "Altro", :from => "elem1_category_id"
-    select "Contanti", :from => "elem1_account_id"
 
     click_button "Save"
     Expense.count.should eql(1)

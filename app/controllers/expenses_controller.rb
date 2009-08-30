@@ -71,10 +71,6 @@ class ExpensesController < ApplicationController
   end
   
   def handle_multiedit_params params
-    params["date"] = Date.new(params["date(1i)"].to_i, params["date(2i)"].to_i, params["date(3i)"].to_i )
-    params.delete("date(1i)")
-    params.delete("date(2i)")
-    params.delete("date(3i)")
     params["amount"] = params["amount"].sub("," , ".")
     params["buoni"] = params["buoni"]
     params["description"] = params["description"].capitalize
