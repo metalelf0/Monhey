@@ -57,9 +57,9 @@ describe Expense do
 	end
   
 	it "should be able to navigate expenses forward and backward by month" do
-		expenses_of_march = Expense.find_by_year_month(:date => Date.new(2009,2,1).month_after)
+		expenses_of_march = Expense.find_by_year_month(:date => (Date.new(2009,2,1) >> 1))
   	expenses_of_march.size.should eql(1)	
-		expenses_of_january = Expense.find_by_year_month(:date => Date.new(2009,2,1).month_before)
+		expenses_of_january = Expense.find_by_year_month(:date => (Date.new(2009,2,1) << 1))
   	expenses_of_january.size.should eql(1)
 	end
   

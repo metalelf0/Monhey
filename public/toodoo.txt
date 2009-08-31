@@ -3,3 +3,4 @@
 [X] aggiungere il tag all alla tag cloud
 [.] aggiungere il nome della category corrente quando filtro
 [ ] togliere i metodi inutili month_after e month_before su Date
+[ ] migliorare il csv importer per importare tutti i dati e fare csv exporter (someday)

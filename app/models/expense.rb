@@ -5,17 +5,7 @@ class Expense < ActiveRecord::Base
   belongs_to :account
   
   validates_presence_of :description, :category
-  validates_numericality_of :amount
-  validate :category_is_valid, :message => "is not a valid category"  
-   
-  
-  def category_is_valid
-  # TODO: bruuutto 
-    unless Category.all.include?(self.category)
-      errors.add :category, "Invalid category"
-    end
-  end 
-   
+  validates_numericality_of :amount   
 
   def Expense.find_by_year_month params
     if not params[:month].nil? and not params[:year].nil?
@@ -32,7 +22,7 @@ class Expense < ActiveRecord::Base
 
   
   def Expense.average_for_month year, month
-    days_in_month = (Date.new(year.to_i, month.to_i + 1, 1) -1).day
+    days_in_month = Date.new(year.to_i, month.to_i, 1).end_of_month.day
     total = Expense.total_for_month year, month
     daily_exp = total.to_f / days_in_month
     return daily_exp
@@ -104,8 +94,8 @@ class Expense < ActiveRecord::Base
     amounts_for_categories = amounts_for_categories(year, month)
     lowest  = amounts_for_categories.values.sort.first
     highest = amounts_for_categories.values.sort.last
-    Category.all.map(&:name).each do |category|
-      total = amounts_for_categories[category]
+    
+    amounts_for_categories.each_pair do |category, total|
       hash[category] = {}
       hash[category][:style] = Expense.font_size_for_tag_cloud(
         total,
@@ -127,20 +117,6 @@ class Expense < ActiveRecord::Base
     # display the results
     size_txt = "font-size:#{ size.round.to_s }px;"
     return size_txt
-  end
-
-end
-
-
-
-class Date
-
-  def month_after
-    self >> 1
-  end
-  
-  def month_before
-    self << 1
   end
 
 end
