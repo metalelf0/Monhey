@@ -95,7 +95,8 @@ describe Expense do
   
   
   it "should calculate correctly the amount of bancomat expenses" do
-    Expense.total_for_bancomat_in(Expense.all).should eql(10.0)
+    Expense.total_for_bancomat_in_month(2009, 2).should eql(10.0)
+    Expense.total_for_bancomat_in_month(2009, 3).should eql(0.0)
   end
   
   it "should calculate correctly a monthly prevision" do

@@ -1,3 +1,5 @@
+include ExpensesHelper
+
 class Expense < ActiveRecord::Base
 
 
@@ -15,8 +17,7 @@ class Expense < ActiveRecord::Base
       month = params[:date].month
       year =  params[:date].year
     end
-    start_date = Date.new(year, month, 1)
-    end_date = start_date.end_of_month
+    start_date, end_date = start_and_end_of_month(year, month)
     Expense.find(:all, :conditions => ["date >= ? AND date <= ?", start_date, end_date])
   end
 
@@ -33,19 +34,18 @@ class Expense < ActiveRecord::Base
   end
     
   def Expense.total_for_month year, month
-    start_date = Date.new(year, month, 1)
-    end_date = start_date.end_of_month
-    Expense.find(:all, :conditions => ["date >= ? AND date <= ?", start_date, end_date]).inject(0.0) {|sum, exp| sum += exp.amount }
+    start_date, end_date = start_and_end_of_month(year, month)
+    Expense.sum(:amount, :conditions => ["date >= ? AND date <= ?", start_date, end_date])
   end
 
   def Expense.find_by_year_month_and_category year, month, category_name
-    start_date = Date.new(year, month, 1)
-    end_date = start_date.end_of_month
+    start_date, end_date = start_and_end_of_month(year, month)
     Expense.find(:all, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date >= ? AND date <= ? AND cat.name = ?", start_date, end_date, category_name])    
   end
   
   def Expense.total_for_month_by_category year, month, category_name
-    Expense.find_by_year_month_and_category(year, month, category_name).inject(0.0) {|sum, exp| sum += exp.amount }
+    start_date, end_date = start_and_end_of_month(year, month)
+    Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date >= ? AND date <= ? AND cat.name = ?", start_date, end_date, category_name])
   end
   
   def Expense.total_for_current_month
@@ -58,8 +58,9 @@ class Expense < ActiveRecord::Base
     return daily_exp
   end
   
-  def Expense.total_for_bancomat_in expenses
-    expenses.select { |e| e.account.bancomat }.inject(0.0) { |total, e| total + e.amount }
+  def Expense.total_for_bancomat_in_month year, month
+    start_date, end_date = start_and_end_of_month(year, month)
+    return Expense.sum(:amount, :joins => "INNER JOIN accounts as acc ON account_id = acc.id", :conditions => ["date >= ? AND date <= ? AND acc.name = 'Bancomat'", start_date, end_date])
   end
 
   def Expense.prevision_for_current_month
@@ -71,14 +72,8 @@ class Expense < ActiveRecord::Base
   end
 
   def Expense.left_for_current_month_with_stipendio(stipendio)
-    total = Expense.in_current_month.inject(0.0) do |total, expense| 
-      if (! expense.category.nil? and expense.category.name != "Stipendio")  
-        total += expense.amount 
-      else 
-        total
-      end
-    end    
-    return stipendio + total
+    start_date, end_date = start_and_end_of_month(Date.today.year, Date.today.month)
+    return stipendio + Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date >= ? AND date <= ? AND cat.name != 'Stipendio'", start_date, end_date])
   end
   
   def Expense.amounts_for_categories(year, month)

@@ -13,7 +13,7 @@
 		left = total
 	end
 
-	bancomat = Expense.total_for_bancomat_in(@expenses)
+	bancomat = Expense.total_for_bancomat_in_month(year, month)
 %>
 
 <% expenses_for = "Listing expenses for #{Date::MONTHNAMES[month] + " " + year.to_s}" %>
