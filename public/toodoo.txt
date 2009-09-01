@@ -4,3 +4,4 @@
 [.] aggiungere il nome della category corrente quando filtro
 [X] togliere i metodi inutili month_after e month_before su Date
 [ ] migliorare il csv importer per importare tutti i dati e fare csv exporter (someday)
+[ ] passare sempre un date anziché year e month?

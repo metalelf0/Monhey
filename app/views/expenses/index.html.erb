@@ -1,22 +1,23 @@
 <%
-	year = @date.year
-	month = @date.month
-	total = Expense.total_for_month year, month
 
-	if year == Date.today.year and month == Date.today.month
+	total = Expense.total_for_month @date
+
+	#TODO: perché non mettere tutti i controlli sul current all'interno dei metodi?
+
+	if @date == Date.today
 		average = Expense.average_for_current_month
 		prevision = Expense.prevision_for_current_month
 		left = Expense.left_for_current_month_with_stipendio 1190
 	else
-		average   = Expense.average_for_month(year, month)
+		average   = Expense.average_for_month(@date)
 		prevision = total
 		left = total
 	end
 
-	bancomat = Expense.total_for_bancomat_in_month(year, month)
+	bancomat = Expense.total_for_bancomat_in_month(@date)
 %>
 
-<% expenses_for = "Listing expenses for #{Date::MONTHNAMES[month] + " " + year.to_s}" %>
+<% expenses_for = "Listing expenses for #{Date::MONTHNAMES[@date.month] + " " + @date.year.to_s}" %>
 
 <%= render :partial => 'layouts/header', :locals => {:title => "Expenses Manager", :subtitle => expenses_for }%>
 

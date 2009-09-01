@@ -47,14 +47,9 @@ describe Expense do
   end
   
   it "should retrieve expenses in a given month" do
-  	expenses_of_february = Expense.find_by_year_month(:year => 2009, :month => 2)
+  	expenses_of_february = Expense.find_by_year_month(:date => Date.new(2009, 2, 1))
   	expenses_of_february.size.should eql(1)
   end
- 
-	it "should retrieve expenses in a given month passing a date" do
-  	expenses_of_february = Expense.find_by_year_month(:date => Date.new(2009,2,1))
-  	expenses_of_february.size.should eql(1)
-	end
   
 	it "should be able to navigate expenses forward and backward by month" do
 		expenses_of_march = Expense.find_by_year_month(:date => (Date.new(2009,2,1) >> 1))
@@ -65,20 +60,20 @@ describe Expense do
   
   it "should calculate correctly the average value for a given month" do
     # simple case: 0
-    Expense.average_for_month(2009, 1).should eql(0.0)
+    Expense.average_for_month(Date.new(2009, 1, 1)).should eql(0.0)
     
     # other case: 30 days-month, 900 euro: 30 euro/day
-    Expense.stub!(:total_for_month).with(2009, 11).and_return(900)
-    Expense.average_for_month(2009, 11).should eql(30.0)
+    Expense.stub!(:total_for_month).with(Date.new(2009, 11, 1)).and_return(900)
+    Expense.average_for_month(Date.new(2009, 11, 1)).should eql(30.0)
     
-    Expense.stub!(:total_for_month).with(2009, 11).and_return(-900)
-    Expense.average_for_month(2009, 11).should eql(-30.0)
+    Expense.stub!(:total_for_month).with(Date.new(2009, 11, 1)).and_return(-900)
+    Expense.average_for_month(Date.new(2009, 11, 1)).should eql(-30.0)
   end  
   
   it "should calculate correctly the total for a given month" do
-    Expense.total_for_month(2009, 1).should eql(0.0)
-    Expense.total_for_month(2009, 2).should eql(10.0)
-    Expense.total_for_month(2009, 3).should eql(20.0)
+    Expense.total_for_month(Date.new(2009, 1, 1)).should eql(0.0)
+    Expense.total_for_month(Date.new(2009, 2, 1)).should eql(10.0)
+    Expense.total_for_month(Date.new(2009, 3, 1)).should eql(20.0)
   end
   
   it "should calculate correctly the average value for the current month" do
@@ -95,8 +90,8 @@ describe Expense do
   
   
   it "should calculate correctly the amount of bancomat expenses" do
-    Expense.total_for_bancomat_in_month(2009, 2).should eql(10.0)
-    Expense.total_for_bancomat_in_month(2009, 3).should eql(0.0)
+    Expense.total_for_bancomat_in_month(Date.new(2009, 2, 1)).should eql(10.0)
+    Expense.total_for_bancomat_in_month(Date.new(2009, 3, 1)).should eql(0.0)
   end
   
   it "should calculate correctly a monthly prevision" do
@@ -145,7 +140,7 @@ describe Expense do
 
   it "should retrieve expenses by category, year and month" do
     e4 = Expense.create!(:description => "Fourth", :amount => 1000, :date => Date.new(2009,1,1), :category => @stipendio, :account => @bancomat)
-    amounts = Expense.amounts_for_categories(2009, 1)
+    amounts = Expense.amounts_for_categories(Date.new(2009, 1, 1))
     amounts["Stipendio"].should eql(1000.0)
   end
 

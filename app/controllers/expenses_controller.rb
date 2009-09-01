@@ -10,9 +10,9 @@ class ExpensesController < ApplicationController
     if params[:category_name].blank?
       @expenses = Expense.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date } 
     else
-      @expenses = Expense.find_by_year_month_and_category(@date.year, @date.month, params[:category_name])
+      @expenses = Expense.find_by_year_month_and_category(@date, params[:category_name])
     end
-    @hash_for_cloud = Expense.generate_hash_for_categories_cloud(@date.year, @date.month) 
+    @hash_for_cloud = Expense.generate_hash_for_categories_cloud(@date) 
   end
   
   def show
