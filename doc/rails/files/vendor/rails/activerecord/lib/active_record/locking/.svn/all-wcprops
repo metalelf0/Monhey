@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/locking
+END
+pessimistic_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/locking/pessimistic_rb.html
+END
+optimistic_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/locking/optimistic_rb.html
+END

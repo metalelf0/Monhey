@@ -1,0 +1,251 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord
+END
+Errors.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Errors.html
+END
+ReadOnlyRecord.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ReadOnlyRecord.html
+END
+Serialization.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Serialization.html
+END
+Validations.html
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Validations.html
+END
+NamedScope.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/NamedScope.html
+END
+MultiparameterAssignmentErrors.html
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/MultiparameterAssignmentErrors.html
+END
+RecordNotSaved.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/RecordNotSaved.html
+END
+Rollback.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Rollback.html
+END
+MigrationProxy.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/MigrationProxy.html
+END
+RecordNotFound.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/RecordNotFound.html
+END
+Timestamp.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Timestamp.html
+END
+SerializationTypeMismatch.html
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/SerializationTypeMismatch.html
+END
+Transactions.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Transactions.html
+END
+TestFixtures.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/TestFixtures.html
+END
+AdapterNotSpecified.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/AdapterNotSpecified.html
+END
+Callbacks.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Callbacks.html
+END
+ConnectionTimeoutError.html
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionTimeoutError.html
+END
+ConfigurationError.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConfigurationError.html
+END
+AutosaveAssociation.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/AutosaveAssociation.html
+END
+ActiveRecordError.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ActiveRecordError.html
+END
+RecordInvalid.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/RecordInvalid.html
+END
+DangerousAttributeError.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/DangerousAttributeError.html
+END
+Locking.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Locking.html
+END
+Observer.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Observer.html
+END
+ConnectionNotEstablished.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionNotEstablished.html
+END
+QueryCache.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/QueryCache.html
+END
+DynamicFinderMatch.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/DynamicFinderMatch.html
+END
+Migration.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Migration.html
+END
+Dirty.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Dirty.html
+END
+DynamicScopeMatch.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/DynamicScopeMatch.html
+END
+UnknownAttributeError.html
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/UnknownAttributeError.html
+END
+AdapterNotFound.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/AdapterNotFound.html
+END
+PreparedStatementInvalid.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/PreparedStatementInvalid.html
+END
+Schema.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Schema.html
+END
+SessionStore.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/SessionStore.html
+END
+AssociationTypeMismatch.html
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/AssociationTypeMismatch.html
+END
+AttributeAssignmentError.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/AttributeAssignmentError.html
+END
+MissingAttributeError.html
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/MissingAttributeError.html
+END
+StaleObjectError.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/StaleObjectError.html
+END
+Base.html
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/Base.html
+END
+StatementInvalid.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/StatementInvalid.html
+END

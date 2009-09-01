@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/I18n
+END
+ArgumentError.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/I18n/ArgumentError.html
+END
+InvalidPluralizationData.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/I18n/InvalidPluralizationData.html
+END
+ReservedInterpolationKey.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/I18n/ReservedInterpolationKey.html
+END
+UnknownFileType.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/I18n/UnknownFileType.html
+END
+MissingTranslationData.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/I18n/MissingTranslationData.html
+END
+MissingInterpolationArgument.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/I18n/MissingInterpolationArgument.html
+END
+InvalidLocale.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/I18n/InvalidLocale.html
+END
+Backend.html
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/I18n/Backend.html
+END

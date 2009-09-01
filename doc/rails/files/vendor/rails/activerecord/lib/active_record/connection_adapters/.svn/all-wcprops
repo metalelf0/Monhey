@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters
+END
+sqlite_adapter_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/sqlite_adapter_rb.html
+END
+abstract_adapter_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract_adapter_rb.html
+END
+postgresql_adapter_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter_rb.html
+END
+sqlite3_adapter_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/sqlite3_adapter_rb.html
+END
+mysql_adapter_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter_rb.html
+END

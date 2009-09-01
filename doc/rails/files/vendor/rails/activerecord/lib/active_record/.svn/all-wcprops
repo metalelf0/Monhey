@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record
+END
+migration_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/migration_rb.html
+END
+dynamic_scope_match_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/dynamic_scope_match_rb.html
+END
+reflection_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/reflection_rb.html
+END
+dirty_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/dirty_rb.html
+END
+associations_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/associations_rb.html
+END
+session_store_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/session_store_rb.html
+END
+schema_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/schema_rb.html
+END
+timestamp_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/timestamp_rb.html
+END
+i18n_interpolation_deprecation_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/i18n_interpolation_deprecation_rb.html
+END
+transactions_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/transactions_rb.html
+END
+fixtures_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/fixtures_rb.html
+END
+batches_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/batches_rb.html
+END
+base_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/base_rb.html
+END
+aggregations_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/aggregations_rb.html
+END
+test_case_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/test_case_rb.html
+END
+schema_dumper_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/schema_dumper_rb.html
+END
+named_scope_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/named_scope_rb.html
+END
+serialization_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/serialization_rb.html
+END
+validations_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/validations_rb.html
+END
+callbacks_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/callbacks_rb.html
+END
+calculations_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/calculations_rb.html
+END
+association_preload_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/association_preload_rb.html
+END
+autosave_association_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/autosave_association_rb.html
+END
+version_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/version_rb.html
+END
+attribute_methods_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/attribute_methods_rb.html
+END
+observer_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/observer_rb.html
+END
+dynamic_finder_match_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/dynamic_finder_match_rb.html
+END
+nested_attributes_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/nested_attributes_rb.html
+END
+query_cache_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/query_cache_rb.html
+END

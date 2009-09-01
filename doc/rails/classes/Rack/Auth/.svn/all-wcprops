@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/Rack/Auth
+END
+AbstractRequest.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/Rack/Auth/AbstractRequest.html
+END
+OpenID.html
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/Rack/Auth/OpenID.html
+END
+Digest.html
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/Rack/Auth/Digest.html
+END
+OpenIDAuth.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/Rack/Auth/OpenIDAuth.html
+END
+AbstractHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/Rack/Auth/AbstractHandler.html
+END
+Basic.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/Rack/Auth/Basic.html
+END

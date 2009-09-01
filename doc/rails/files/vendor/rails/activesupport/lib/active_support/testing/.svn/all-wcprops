@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/testing
+END
+assertions_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/testing/assertions_rb.html
+END
+deprecation_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/testing/deprecation_rb.html
+END
+performance_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/testing/performance_rb.html
+END
+declarative_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/testing/declarative_rb.html
+END
+default_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/testing/default_rb.html
+END
+setup_and_teardown_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/testing/setup_and_teardown_rb.html
+END

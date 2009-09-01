@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters
+END
+DatabaseStatements.html
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/DatabaseStatements.html
+END
+ConnectionManagement.html
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/ConnectionManagement.html
+END
+Column.html
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/Column.html
+END
+ConnectionHandler.html
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/ConnectionHandler.html
+END
+TableDefinition.html
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/TableDefinition.html
+END
+SQLiteAdapter.html
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/SQLiteAdapter.html
+END
+AbstractAdapter.html
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/AbstractAdapter.html
+END
+PostgreSQLAdapter.html
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/PostgreSQLAdapter.html
+END
+Quoting.html
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/Quoting.html
+END
+MysqlAdapter.html
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/MysqlAdapter.html
+END
+Table.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/Table.html
+END
+SchemaStatements.html
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html
+END
+ConnectionPool.html
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/ConnectionPool.html
+END
+QueryCache.html
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveRecord/ConnectionAdapters/QueryCache.html
+END

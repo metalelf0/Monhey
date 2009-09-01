@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract
+END
+database_statements_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/database_statements_rb.html
+END
+schema_definitions_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/schema_definitions_rb.html
+END
+connection_specification_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification_rb.html
+END
+quoting_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/quoting_rb.html
+END
+schema_statements_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/schema_statements_rb.html
+END
+connection_pool_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_pool_rb.html
+END
+query_cache_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache_rb.html
+END

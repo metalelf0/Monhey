@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource
+END
+Errors.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/Errors.html
+END
+Validations.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/Validations.html
+END
+ForbiddenAccess.html
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/ForbiddenAccess.html
+END
+ServerError.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/ServerError.html
+END
+Request.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/Request.html
+END
+ClientError.html
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/ClientError.html
+END
+HttpMock.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/HttpMock.html
+END
+Response.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/Response.html
+END
+CustomMethods.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/CustomMethods.html
+END
+Connection.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/Connection.html
+END
+BadRequest.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/BadRequest.html
+END
+TimeoutError.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/TimeoutError.html
+END
+UnauthorizedAccess.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/UnauthorizedAccess.html
+END
+ResourceNotFound.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/ResourceNotFound.html
+END
+InvalidRequestError.html
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/InvalidRequestError.html
+END
+ResourceConflict.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/ResourceConflict.html
+END
+Base.html
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/Base.html
+END
+Formats.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveResource/Formats.html
+END

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/cache
+END
+file_store_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/cache/file_store_rb.html
+END
+mem_cache_store_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/cache/mem_cache_store_rb.html
+END
+compressed_mem_cache_store_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/cache/compressed_mem_cache_store_rb.html
+END
+drb_store_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/cache/drb_store_rb.html
+END
+synchronized_memory_store_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/cache/synchronized_memory_store_rb.html
+END
+memory_store_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/cache/memory_store_rb.html
+END

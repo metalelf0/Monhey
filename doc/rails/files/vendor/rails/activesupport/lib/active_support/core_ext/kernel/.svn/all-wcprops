@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/core_ext/kernel
+END
+reporting_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/core_ext/kernel/reporting_rb.html
+END
+agnostics_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/core_ext/kernel/agnostics_rb.html
+END
+requires_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/core_ext/kernel/requires_rb.html
+END
+daemonizing_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/core_ext/kernel/daemonizing_rb.html
+END
+debugger_rb.html
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/files/vendor/rails/activesupport/lib/active_support/core_ext/kernel/debugger_rb.html
+END

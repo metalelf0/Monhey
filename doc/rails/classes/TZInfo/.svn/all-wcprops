@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/TZInfo
+END
+TimezonePeriod.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/TZInfo/TimezonePeriod.html
+END
+PeriodNotFound.html
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/TZInfo/PeriodNotFound.html
+END
+InvalidTimezoneIdentifier.html
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/TZInfo/InvalidTimezoneIdentifier.html
+END
+NoOffsetsDefined.html
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/TZInfo/NoOffsetsDefined.html
+END
+AmbiguousTime.html
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/TZInfo/AmbiguousTime.html
+END
+Timezone.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/TZInfo/Timezone.html
+END
+UnknownTimezone.html
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/TZInfo/UnknownTimezone.html
+END
+Definitions.html
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/TZInfo/Definitions.html
+END

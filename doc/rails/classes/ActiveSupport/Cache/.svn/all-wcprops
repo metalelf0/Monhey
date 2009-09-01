@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveSupport/Cache
+END
+FileStore.html
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveSupport/Cache/FileStore.html
+END
+Store.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveSupport/Cache/Store.html
+END
+MemCacheStore.html
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveSupport/Cache/MemCacheStore.html
+END
+Strategy.html
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveSupport/Cache/Strategy.html
+END
+CompressedMemCacheStore.html
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveSupport/Cache/CompressedMemCacheStore.html
+END
+MemoryStore.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveSupport/Cache/MemoryStore.html
+END
+SynchronizedMemoryStore.html
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/!svn/ver/21754/dev/episrl/epishop/doc/rails/classes/ActiveSupport/Cache/SynchronizedMemoryStore.html
+END
