@@ -16,62 +16,34 @@ class Expense < ActiveRecord::Base
       date = params[:date]
     end
     start_date, end_date = start_and_end_of_month(date)
-    Expense.find(:all, :conditions => ["date >= ? AND date <= ?", start_date, end_date])
+    Expense.find(:all, :conditions => ["date BETWEEN ? AND ?", start_date, end_date])
   end
 
-  
   def Expense.average_for_month date
     days_in_month = date.end_of_month.day
     total = Expense.total_for_month date
     daily_exp = total.to_f / days_in_month
     return daily_exp
   end
-
-  def Expense.in_current_month
-    Expense.find_by_year_month(:date => Date.today)
-  end
     
   def Expense.total_for_month date
     start_date, end_date = start_and_end_of_month(date)
-    Expense.sum(:amount, :conditions => ["date >= ? AND date <= ?", start_date, end_date])
+    Expense.sum(:amount, :conditions => ["date BETWEEN ? AND ?", start_date, end_date])
   end
 
   def Expense.find_by_year_month_and_category date, category_name
     start_date, end_date = start_and_end_of_month(date)
-    Expense.find(:all, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date >= ? AND date <= ? AND cat.name = ?", start_date, end_date, category_name])    
+    Expense.find(:all, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date BETWEEN ? AND ? AND cat.name = ?", start_date, end_date, category_name])    
   end
   
   def Expense.total_for_month_by_category date, category_name
     start_date, end_date = start_and_end_of_month(date)
-    Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date >= ? AND date <= ? AND cat.name = ?", start_date, end_date, category_name])
-  end
-  
-  def Expense.total_for_current_month
-    Expense.total_for_month Date.today
-  end
-  
-  def Expense.average_for_current_month
-    total = Expense.total_for_current_month
-    daily_exp = total.to_f / Date.today.day
-    return daily_exp
+    Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date BETWEEN ? AND ? AND cat.name = ?", start_date, end_date, category_name])
   end
   
   def Expense.total_for_bancomat_in_month date
     start_date, end_date = start_and_end_of_month(date)
-    return Expense.sum(:amount, :joins => "INNER JOIN accounts as acc ON account_id = acc.id", :conditions => ["date >= ? AND date <= ? AND acc.name = 'Bancomat'", start_date, end_date])
-  end
-
-  def Expense.prevision_for_current_month
-    current_total = Expense.total_for_current_month
-    year = Date.today.year; month = Date.today.month
-    days_in_month = ModelHelper.days_in_month_of year, month
-    daily_exp = current_total.to_f / Date.today.day
-    daily_exp * days_in_month
-  end
-
-  def Expense.left_for_current_month_with_stipendio(stipendio)
-    start_date, end_date = start_and_end_of_month(Date.today)
-    return stipendio + Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date >= ? AND date <= ? AND cat.name != 'Stipendio'", start_date, end_date])
+    return Expense.sum(:amount, :joins => "INNER JOIN accounts as acc ON account_id = acc.id", :conditions => ["date BETWEEN ? AND ? AND acc.name = 'Bancomat'", start_date, end_date])
   end
   
   def Expense.amounts_for_categories(date)
@@ -110,6 +82,54 @@ class Expense < ActiveRecord::Base
     # display the results
     size_txt = "font-size:#{ size.round.to_s }px;"
     return size_txt
+  end
+
+  # ACCESSORS FOR CURRENT MONTH
+  
+  def Expense.in_current_month
+    Expense.find_by_year_month(:date => Date.today)
+  end
+  
+  def Expense.left_for_current_month_with_stipendio(stipendio)
+    start_date, end_date = start_and_end_of_month(Date.today)
+    return stipendio + Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date BETWEEN ? AND ? AND cat.name != 'Stipendio'", start_date, end_date])
+  end
+  
+  def Expense.prevision_for_current_month
+    current_total = Expense.total_for_current_month
+    year = Date.today.year; month = Date.today.month
+    days_in_month = ModelHelper.days_in_month_of year, month
+    daily_exp = current_total.to_f / Date.today.day
+    daily_exp * days_in_month
+  end
+  
+  def Expense.total_for_current_month
+    Expense.total_for_month Date.today
+  end
+
+  def Expense.average_for_current_month
+    total = Expense.total_for_current_month
+    daily_exp = total.to_f / Date.today.day
+    return daily_exp
+  end
+
+  def Expense.generate_google_chart(date)
+    category_amounts = Expense.amounts_for_categories(date)
+    base_url = "http://chart.apis.google.com/chart?cht=p&chd=t:"
+    categories = ""
+    category_amounts.each_pair do |category, amount|
+      if amount < 0
+        base_url += amount.to_f.round.abs.to_s+","
+        categories += category+"|"
+      end
+    end
+    # remove last "|"
+    categories = categories[0..-2]
+    base_url = base_url[0..-2]+"&chs=350x150&chl="+categories+"&chco=FF0000"
+    return base_url
+
+    # "http://chart.apis.google.com/chart?cht=p&chd=t:129,47,144,31&chs=250x100&chl=Altro|Benza|Cibo|Elettronica&chco=FF0000"
+
   end
 
 end

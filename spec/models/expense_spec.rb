@@ -143,5 +143,18 @@ describe Expense do
     amounts = Expense.amounts_for_categories(Date.new(2009, 1, 1))
     amounts["Stipendio"].should eql(1000.0)
   end
+  
+  it "should generate a correct google chart with only negative values" do
+    Expense.stub!(:amounts_for_categories).and_return(
+    {"Cibo" => -100,
+      "Benza" => -15,
+      "Elettronica" => 200
+    })
+    
+    expected_url = "http://chart.apis.google.com/chart?cht=p&chd=t:15,100&chs=350x150&chl=Benza|Cibo&chco=FF0000"
+    
+    
+    assert_equal expected_url, Expense.generate_google_chart(Date.new(2009, 1, 1))
+      end
 
 end
