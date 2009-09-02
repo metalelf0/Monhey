@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090820060452) do
+ActiveRecord::Schema.define(:version => 20090902171055) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(:version => 20090820060452) do
     t.date     "date"
     t.integer  "category_id"
     t.integer  "account_id"
+  end
+
+  create_table "movements", :force => true do |t|
+    t.integer  "from_account_id"
+    t.integer  "to_account_id"
+    t.date     "date"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

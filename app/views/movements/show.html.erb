@@ -1,0 +1,23 @@
+<p>
+  <b>From account:</b>
+  <%=h @movement.from_account_id %>
+</p>
+
+<p>
+  <b>To account:</b>
+  <%=h @movement.to_account_id %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%=h @movement.date %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%=h @movement.amount %>
+</p>
+
+
+<%= link_to 'Edit', edit_movement_path(@movement) %> |
+<%= link_to 'Back', movements_path %>

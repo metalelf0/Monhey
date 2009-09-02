@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  from_account_id: 1
+  to_account_id: 1
+  date: 2009-09-02
+  amount: 1
+
+two:
+  from_account_id: 1
+  to_account_id: 1
+  date: 2009-09-02
+  amount: 1

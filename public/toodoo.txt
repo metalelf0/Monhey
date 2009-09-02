@@ -4,4 +4,7 @@
 [.] aggiungere il nome della category corrente quando filtro
 [X] togliere i metodi inutili month_after e month_before su Date
 [ ] migliorare il csv importer per importare tutti i dati e fare csv exporter (someday)
-[ ] passare sempre un date anziché year e month?
+[X] passare sempre un date anziché year e month
+[ ] applicare stylesheet scaffold.css anche a accounts
+[ ] aggiungere links ad accounts da expenses e categories
+[ ] mandare mail a orione con multiple references: movements_in, movements_out

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :movements
+
   map.resources :accounts
 
   map.resources :categories
