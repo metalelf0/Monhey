@@ -8,3 +8,4 @@
 [X] applicare stylesheet anche a accounts e movements
 [X] aggiungere links ad accounts da expenses e categories
 [X] mandare mail a orione con multiple references: movements_in, movements_out
+[ ] perché non mettere tutti i controlli sul current all'interno dei metodi?

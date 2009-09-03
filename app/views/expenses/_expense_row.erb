@@ -2,7 +2,7 @@
   <td><%=h expense.description %></td>
   <td class="expense-cell-amount"><%= currency_euro expense.amount %></td>
   <td><%=h expense.category.nil? ? "N/A" : expense.category.name %></td>
-  <td class="expense-cell-bancomat"><%=h expense.account.bancomat ? 'X' : '' %></td>
+  <td class="expense-cell-bancomat"><%=h expense.account.is_bancomat? ? 'X' : '' %></td>
   <td class="expense-cell-ufficio"><%=h expense.ufficio  ? 'X' : '' %></td>
   <td><%=h expense.buoni %></td>
   <td><%=h expense.date %></td>

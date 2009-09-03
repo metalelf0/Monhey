@@ -41,7 +41,7 @@ describe ExpensesController do
   		  :ufficio => true, 
   		  :buoni => 3)
 
-      @bancomat.stub!(:bancomat).and_return true      
+      @bancomat.stub!(:is_bancomat?).and_return true      
  			
  			Category.stub(:all).and_return([@altro])
  			Expense.stub(:all).and_return([@first, @second, @third])
