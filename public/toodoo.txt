@@ -1,10 +1,10 @@
 [X] cercare tutti i Date.parse() e sostituirli con Date.new quando necessario
 [X] mettere la tag cloud sopra la box
 [X] aggiungere il tag all alla tag cloud
-[.] aggiungere il nome della category corrente quando filtro
+[.] aggiungere il nome della category corrente quando filtro da tag cloud
 [X] togliere i metodi inutili month_after e month_before su Date
 [ ] migliorare il csv importer per importare tutti i dati e fare csv exporter (someday)
 [X] passare sempre un date anziché year e month
-[ ] applicare stylesheet scaffold.css anche a accounts
-[ ] aggiungere links ad accounts da expenses e categories
-[ ] mandare mail a orione con multiple references: movements_in, movements_out
+[X] applicare stylesheet anche a accounts e movements
+[X] aggiungere links ad accounts da expenses e categories
+[X] mandare mail a orione con multiple references: movements_in, movements_out

@@ -27,6 +27,7 @@
 &nbsp;&nbsp;
 <%= link_to "Next month &gt;&gt;", :action => :index, :month => (@date >> 1).month, :year => (@date >> 1).year %> | 
 <%= link_to 'Categories', categories_path %>
+| <%= link_to 'Accounts', accounts_path %> 
 
 
 <% if RAILS_ENV != "production" %>

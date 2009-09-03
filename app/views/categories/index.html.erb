@@ -1,5 +1,5 @@
-<span class="title">Listing categories</span>
-
+<%= render :partial => 'layouts/header', :locals => {:title => "Categories", :subtitle => "Listing 'em" }%>
+<hr/>
 <table>
   <tr>
     <th>Name</th>
@@ -18,3 +18,4 @@
 <br />
 
 <%= link_to 'New category', new_category_path %> | <%= link_to 'Expenses', expenses_path %>
+| <%= link_to 'Accounts', accounts_path %> 
