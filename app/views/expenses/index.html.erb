@@ -4,13 +4,12 @@
 
 	#TODO: perché non mettere tutti i controlli sul current all'interno dei metodi?
 
+	average = Expense.average_for_month @date
+	prevision = Expense.prevision_for_month @date
+	
 	if @date == Date.today
-		average = Expense.average_for_current_month
-		prevision = Expense.prevision_for_current_month
 		left = Expense.left_for_current_month_with_stipendio 1190
 	else
-		average   = Expense.average_for_month(@date)
-		prevision = total
 		left = total
 	end
 

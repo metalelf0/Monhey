@@ -20,10 +20,9 @@ class Expense < ActiveRecord::Base
   end
 
   def Expense.average_for_month date
-    days_in_month = date.end_of_month.day
+    days_passed = (date.is_in_current_month ? Date.today.day : date.end_of_month.day)
     total = Expense.total_for_month date
-    daily_exp = total.to_f / days_in_month
-    return daily_exp
+    total.to_f / days_passed
   end
     
   def Expense.total_for_month date
@@ -95,22 +94,12 @@ class Expense < ActiveRecord::Base
     return stipendio + Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date BETWEEN ? AND ? AND cat.name != 'Stipendio'", start_date, end_date])
   end
   
-  def Expense.prevision_for_current_month
-    current_total = Expense.total_for_current_month
-    year = Date.today.year; month = Date.today.month
-    days_in_month = ModelHelper.days_in_month_of year, month
-    daily_exp = current_total.to_f / Date.today.day
-    daily_exp * days_in_month
-  end
-  
-  def Expense.total_for_current_month
-    Expense.total_for_month Date.today
-  end
-
-  def Expense.average_for_current_month
-    total = Expense.total_for_current_month
-    daily_exp = total.to_f / Date.today.day
-    return daily_exp
+  def Expense.prevision_for_month date
+    if date.is_in_current_month 
+      return Expense.average_for_month(date) * date.end_of_month.day
+    else
+      return Expense.total_for_month(date)
+    end
   end
 
   def Expense.generate_google_chart(date)
@@ -132,4 +121,12 @@ class Expense < ActiveRecord::Base
 
   end
 
+end
+
+class Date
+  
+  def is_in_current_month
+    return self.year == Date.today.year && self.month == Date.today.month
+  end
+  
 end

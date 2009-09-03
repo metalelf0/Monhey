@@ -76,16 +76,27 @@ describe Expense do
     Expense.total_for_month(Date.new(2009, 3, 1)).should eql(20.0)
   end
   
+  it "should get the same value for total for month with two dates in the same month" do
+    Expense.total_for_month(Date.new(2009, 2, 1)).should eql(10.0)
+    Expense.total_for_month(Date.new(2009, 2, 28)).should eql(10.0)
+  
+    Date.stub!(:today).and_return(Date.new(2009, 2, 15))
+  
+    Expense.total_for_month(Date.today).should eql(10.0)
+    Expense.total_for_month(Date.new(2009, 2, 1)).should eql(10.0)
+    Expense.total_for_month(Date.new(2009, 2, 28)).should eql(10.0)  
+  end
+  
   it "should calculate correctly the average value for the current month" do
     Date.stub!(:today).and_return(Date.new(2009,1,1))
-    Expense.average_for_current_month.should eql(0.0)
+    Expense.average_for_month(Date.new(2009,1,1)).should eql(0.0)
     
     Date.stub!(:today).and_return(Date.new(2009,1,10))
-    Expense.stub!(:total_for_current_month).and_return(900)
-    Expense.average_for_current_month.should eql(90.0)
+    Expense.stub!(:total_for_month).and_return(900)
+    Expense.average_for_month(Date.new(2009,1,1)).should eql(90.0)
     
-    Expense.stub!(:total_for_current_month).and_return(-900)
-    Expense.average_for_current_month.should eql(-90.0)
+    Expense.stub!(:total_for_month).and_return(-900)
+    Expense.average_for_month(Date.new(2009,1,1)).should eql(-90.0)
   end  
   
   
@@ -97,18 +108,18 @@ describe Expense do
   it "should calculate correctly a monthly prevision" do
     Date.stub!(:today).and_return(Date.new(2009,1,1))
     
-    Expense.prevision_for_current_month.should eql(0.0)
+    Expense.prevision_for_month(Date.today).should eql(0.0)
     
-    Expense.stub!(:total_for_current_month).and_return(-10)
-    Expense.prevision_for_current_month.should eql(-310.0)
+    Expense.stub!(:total_for_month).and_return(-10)
+    Expense.prevision_for_month(Date.today).should eql(-310.0)
     
     # One day left: prevision = current total + daily average
     Date.stub!(:today).and_return(Date.new(2009,1,30))  
-    Expense.stub!(:total_for_current_month).and_return(-300)
-    Expense.prevision_for_current_month.should eql(-310.0)
+    Expense.stub!(:total_for_month).and_return(-300)
+    Expense.prevision_for_month(Date.today).should eql(-310.0)
     
-    Expense.stub!(:total_for_current_month).and_return(0)
-    Expense.prevision_for_current_month.should eql(0.0)
+    Expense.stub!(:total_for_month).and_return(0)
+    Expense.prevision_for_month(Date.today).should eql(0.0)
   end
 
   it "should calculate how much money is left for the current month" do
