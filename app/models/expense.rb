@@ -89,9 +89,13 @@ class Expense < ActiveRecord::Base
     Expense.find_by_year_month(:date => Date.today)
   end
   
-  def Expense.left_for_current_month_with_stipendio(stipendio)
-    start_date, end_date = start_and_end_of_month(Date.today)
-    return stipendio + Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date BETWEEN ? AND ? AND cat.name != 'Stipendio'", start_date, end_date])
+  def Expense.left_for_month_with_stipendio(date, stipendio)
+    if (date.is_in_current_month)
+      start_date, end_date = start_and_end_of_month(Date.today)
+      return stipendio + Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date BETWEEN ? AND ? AND cat.name != 'Stipendio'", start_date, end_date])
+    else
+      return Expense.total_for_month(date)
+    end
   end
   
   def Expense.prevision_for_month date
@@ -101,6 +105,10 @@ class Expense < ActiveRecord::Base
       return Expense.total_for_month(date)
     end
   end
+
+
+  # "http://chart.apis.google.com/chart?cht=p&chd=t:129,47,144,31&chs=250x100&chl=Altro|Benza|Cibo|Elettronica&chco=FF0000"
+
 
   def Expense.generate_google_chart(date)
     category_amounts = Expense.amounts_for_categories(date)
@@ -116,9 +124,6 @@ class Expense < ActiveRecord::Base
     categories = categories[0..-2]
     base_url = base_url[0..-2]+"&chs=350x150&chl="+categories+"&chco=FF0000"
     return base_url
-
-    # "http://chart.apis.google.com/chart?cht=p&chd=t:129,47,144,31&chs=250x100&chl=Altro|Benza|Cibo|Elettronica&chco=FF0000"
-
   end
 
 end
@@ -126,7 +131,7 @@ end
 class Date
   
   def is_in_current_month
-    return self.year == Date.today.year && self.month == Date.today.month
+    return ((self.year == Date.today.year) && (self.month == Date.today.month))
   end
   
 end

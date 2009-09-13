@@ -6,13 +6,7 @@
 
 	average = Expense.average_for_month @date
 	prevision = Expense.prevision_for_month @date
-	
-	if @date == Date.today
-		left = Expense.left_for_current_month_with_stipendio 1190
-	else
-		left = total
-	end
-
+	left = Expense.left_for_month_with_stipendio @date, 1190
 	bancomat = Expense.total_for_bancomat_in_month(@date)
 %>
 

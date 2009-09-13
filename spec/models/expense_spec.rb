@@ -124,16 +124,16 @@ describe Expense do
 
   it "should calculate how much money is left for the current month" do
     Date.stub!(:today).and_return(Date.new(2009,1,1))
-    Expense.left_for_current_month_with_stipendio(1190).should eql(1190.0)
+    Expense.left_for_month_with_stipendio(Date.today, 1190).should eql(1190.0)
   	Expense.create!(:description => "Third", :amount => -400, :date => Date.new(2009,1,1),
   	        :category => @altro, :account => @contanti)
     
-    Expense.left_for_current_month_with_stipendio(1200).should eql(800.0)    
+    Expense.left_for_month_with_stipendio(Date.today, 1200).should eql(800.0)    
   	
   	Expense.create!(:description => "Stipendio", :amount => 1200, :date => Date.new(2009,1,1),
   	        :category => @stipendio, :account => @contanti)
   
-    Expense.left_for_current_month_with_stipendio(1200).should eql(800.0)   
+    Expense.left_for_month_with_stipendio(Date.today, 1200).should eql(800.0)   
   end
   
   it "should have category" do
