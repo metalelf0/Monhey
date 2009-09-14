@@ -26,10 +26,6 @@ describe Expense do
 		
   end
 
-	after(:each) do
-		
-	end
-
   it "should create a new instance given valid attributes" do
     Expense.create!(@valid_attributes)
   end
@@ -155,6 +151,17 @@ describe Expense do
     amounts["Stipendio"].should eql(1000.0)
   end
   
+  it "should get the right per-day amount" do
+    date = Date.new(2009,1,30)
+    one = mock(:amount => 10.0, :date => date)
+    Expense.should_receive(:find_all_by_date).with(date).and_return( [one] )
+    Expense.total_for_day(date).should eql(10.0)
+    
+    two = mock(:amount => -5.0, :date => date)
+    Expense.should_receive(:find_all_by_date).with(date).and_return( [one, two] )
+    Expense.total_for_day(date).should eql(5.0)
+  end
+  
   it "should generate a correct google chart with only negative values" do
     Expense.stub!(:amounts_for_categories).and_return(
     {"Cibo" => -100,
@@ -163,9 +170,49 @@ describe Expense do
     })
     
     expected_url = "http://chart.apis.google.com/chart?cht=p&chd=t:15,100&chs=350x150&chl=Benza|Cibo&chco=FF0000"
+    Expense.generate_google_chart(Date.new(2009, 1, 1)).should eql(expected_url)
+  end
+  
+  it "should get a correct daily expenses string for an expense-empty month" do
+    Date.stub!(:today).and_return(Date.new(2009, 11, 30)) # thirty days month...
+    expected_string = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" # ...thirty zeros
+    Expense.amounts_by_date_for_month(Date.today).should eql(expected_string)
+  end
+  
+  it "should get a correct daily expenses string for a month with expenses" do
+    Date.stub!(:today).and_return(Date.new(2009, 11, 30))
+    first = Date.new(2009, 11, 1)
+    last = Date.new(2009, 11, 30)
+    Expense.stub!(:total_for_day).and_return(0)
+    Expense.should_receive(:total_for_day).with(first).and_return(10)
+    Expense.should_receive(:total_for_day).with(last).and_return(5)
     
+    expected_string = "10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5"
+    Expense.amounts_by_date_for_month(Date.today).should eql(expected_string)
+  end
+  
+  it "should invert expense amounts on the daily expenses chart" do
+    Date.stub!(:today).and_return(Date.new(2009, 11, 30))
+    first = Date.new(2009, 11, 1)
+    last = Date.new(2009, 11, 30)
+    Expense.stub!(:total_for_day).and_return(0)
+    Expense.should_receive(:total_for_day).with(first).and_return(-10.0)
+    Expense.should_receive(:total_for_day).with(last).and_return(-5.0)
+    actual_url = Expense.generate_daily_chart_for(Date.today)
+    expected_string = "10.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.0"
+    expected_url = "http://chart.apis.google.com/chart?cht=lc&chd=t:"+expected_string+"&chs=350x150"
+    actual_url.should eql(expected_url)
     
-    assert_equal expected_url, Expense.generate_google_chart(Date.new(2009, 1, 1))
-      end
+  end
+
+  it "should generate a correct google chart for daily expenses" do
+    Expense.stub!(:amounts_by_date_for_month).and_return(
+      "0,0,12.0,34.0,0"
+    )
+    
+    actual_url = Expense.generate_daily_chart_for(Date.today)
+    expected_url = "http://chart.apis.google.com/chart?cht=lc&chd=t:0,0,12.0,34.0,0&chs=350x150"
+    actual_url.should eql(expected_url)
+  end
 
 end

@@ -83,6 +83,20 @@ class Expense < ActiveRecord::Base
     return size_txt
   end
 
+  def Expense.amounts_by_date_for_month(date, invert=false)
+    start_date, end_date = start_and_end_of_month(date)
+    inverter = (invert == :invert ? -1 : 1)
+    daily_expenses = ""
+    start_date.upto(end_date) do |date|
+      daily_expenses += (inverter * Expense.total_for_day(date)).to_s + ","
+    end
+    return daily_expenses[0..-2]
+  end
+  
+  def Expense.total_for_day(date)
+    Expense.find_all_by_date(date).sum {|exp| exp.amount }
+  end
+
   # ACCESSORS FOR CURRENT MONTH
   
   def Expense.in_current_month
@@ -107,6 +121,8 @@ class Expense < ActiveRecord::Base
   end
 
 
+ # GOOGLE CHART METHODS #
+
   # "http://chart.apis.google.com/chart?cht=p&chd=t:129,47,144,31&chs=250x100&chl=Altro|Benza|Cibo|Elettronica&chco=FF0000"
 
 
@@ -124,6 +140,11 @@ class Expense < ActiveRecord::Base
     categories = categories[0..-2]
     base_url = base_url[0..-2]+"&chs=350x150&chl="+categories+"&chco=FF0000"
     return base_url
+  end
+  
+  def Expense.generate_daily_chart_for(date)
+    amounts = Expense.amounts_by_date_for_month(date, :invert)
+    return "http://chart.apis.google.com/chart?cht=lc&chd=t:" + amounts + "&chs=350x150"  
   end
 
 end
