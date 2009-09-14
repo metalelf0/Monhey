@@ -144,7 +144,7 @@ class Expense < ActiveRecord::Base
   
   def Expense.generate_daily_chart_for(date)
     amounts = Expense.amounts_by_date_for_month(date, :invert)
-    return "http://chart.apis.google.com/chart?cht=lc&chd=t:" + amounts + "&chs=350x150"  
+    return "http://chart.apis.google.com/chart?cht=lc&chxt=x,y&chg=0,25&chd=t:" + amounts + "&chxl=0:|" +labels_for(date) + "|1:|0|250|500|750|1000&chs=500x150&chds=0,1000"  
   end
 
 end

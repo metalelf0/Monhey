@@ -8,4 +8,13 @@ describe ExpensesHelper do
     end_date.should eql(Date.new(2009, 2, 28))
   end
 
+  it "should get the labels for a month" do
+    Date.stub!(:today).and_return(Date.new(2009, 11, 1))
+    labels = labels_for(Date.today)
+    labels.split("|").should have(30).labels
+    labels.split("|").first.should eql("1")
+    labels.split("|").last.should eql("30")
+    
+  end
+
 end

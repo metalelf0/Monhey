@@ -36,6 +36,10 @@
 <div style="float:left;">
 	<%= render :partial => 'layouts/box_statistics', :locals => {:total => total, :average => average, :bancomat => bancomat, :prevision => prevision, :left => left } %>
 </div>
+<div style="float:right;">
+	<%= render :partial => 'layouts/box', :locals => {:title => "Chart", :content => "<img src=\"#{Expense.generate_daily_chart_for(@date)}\" />" } %>
+</div>
+
 <br/>
 <div style="clear:both;" />
 <hr/>
