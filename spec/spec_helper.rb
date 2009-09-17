@@ -4,12 +4,14 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
 require 'spec/autorun'
 require 'spec/rails'
-require 'webrat'
-require 'webrat/rspec-rails'
 
-Webrat.configure do |config|
-  config.mode = :rails
-end
+# commented out because of webrat installation fail
+# require 'webrat'
+# require 'webrat/rspec-rails'
+# 
+# Webrat.configure do |config|
+#   config.mode = :rails
+# end
 
 
 Spec::Runner.configure do |config|

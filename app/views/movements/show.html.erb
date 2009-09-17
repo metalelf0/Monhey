@@ -1,11 +1,11 @@
 <p>
   <b>From account:</b>
-  <%=h @movement.from_account_id %>
+  <%=h Account.find(@movement.from_account_id).name %>
 </p>
 
 <p>
   <b>To account:</b>
-  <%=h @movement.to_account_id %>
+  <%=h Account.find(@movement.to_account_id).name %>
 </p>
 
 <p>

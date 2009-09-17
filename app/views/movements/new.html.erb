@@ -5,11 +5,11 @@
 
   <p>
     <%= f.label :from_account_id %><br />
-    <%= f.text_field :from_account_id %>
+    <%= select :movement, :from_account_id, options_for_select(Account.all.map { |a| [a.name, a.id] }, @movement.from_account_id) %>
   </p>
   <p>
     <%= f.label :to_account_id %><br />
-    <%= f.text_field :to_account_id %>
+    <%= select :movement, :to_account_id, options_for_select(Account.all.map { |a| [a.name, a.id] }, @movement.to_account_id)  %>
   </p>
   <p>
     <%= f.label :date %><br />

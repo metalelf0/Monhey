@@ -10,8 +10,8 @@
 
 <% @movements.each do |movement| %>
   <tr>
-    <td><%=h movement.from_account_id %></td>
-    <td><%=h movement.to_account_id %></td>
+    <td><%=h Account.find(movement.from_account_id).name %></td>
+    <td><%=h Account.find(movement.to_account_id).name %></td>
     <td><%=h movement.date %></td>
     <td><%=h movement.amount %></td>
     <td><%= link_to 'Show', movement %></td>
