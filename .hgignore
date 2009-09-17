@@ -6,3 +6,4 @@ public/stylesheets/index.html
 public/stylesheets/style_old.css
 tmp/*
 **~
+config/database.yml

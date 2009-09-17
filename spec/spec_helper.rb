@@ -6,12 +6,12 @@ require 'spec/autorun'
 require 'spec/rails'
 
 # commented out because of webrat installation fail
-# require 'webrat'
-# require 'webrat/rspec-rails'
-# 
-# Webrat.configure do |config|
-#   config.mode = :rails
-# end
+require 'webrat'
+require 'webrat/rspec-rails'
+
+Webrat.configure do |config|
+  config.mode = :rails
+end
 
 
 Spec::Runner.configure do |config|
