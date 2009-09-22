@@ -170,7 +170,7 @@ describe Expense do
     })
     
     expected_url = "http://chart.apis.google.com/chart?cht=p&chd=t:15,100&chs=350x150&chl=Benza|Cibo&chco=FF0000"
-    Expense.generate_google_chart(Date.new(2009, 1, 1)).should eql(expected_url)
+    Expense.generate_expenses_pie_chart(Date.new(2009, 1, 1)).should eql(expected_url)
   end
   
   it "should get a correct daily expenses string for an expense-empty month" do
@@ -203,5 +203,25 @@ describe Expense do
     expected_url = "http://chart.apis.google.com/chart?cht=lc&chxt=x,y&chg=0,25&chd=t:" + expected_string + "&chxl=0:|" + labels_for(Date.today) + "|1:|0|250|500|750|1000&chs=500x150&chds=0,1000"
     actual_url.should eql(expected_url)
   end
+
+  it "should calculate the right font size in tag cloud" do
+    total, lowest, highest = 0, 0, 0
+    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("display:none;")
+  
+    total, lowest, highest = 0, -10, 10
+    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("display:none;")
+  
+    total, lowest, highest = -10, -10, 10
+    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:12px;")
+  
+    total, lowest, highest = 10, -10, 10
+    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
+  end
+  
+  it "should generate correctly the hash for categories cloud"
+  #   amounts = { "Cibo" => -10, "Altro" => -20}
+  #   Expense.stub!(:amounts_for_categories).and_return amounts
+  #   puts Expense.generate_hash_for_categories_cloud(Date.today).inspect
+  # end
 
 end

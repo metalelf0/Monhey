@@ -70,15 +70,16 @@ class Expense < ActiveRecord::Base
     return hash
   end
   
-  def Expense.font_size_for_tag_cloud( total, lowest, highest)
+  
+  # generates values in range 12 - 32
+  def Expense.font_size_for_tag_cloud(total, lowest, highest)
     return nil if total.nil? or highest.nil? or lowest.nil?
     return "display:none;" if (total == 0 || highest == 0)
-  if highest == 0 and lowest == 0
-    size = 12
-    else
-      size = 8 + 24 * total / highest;
-    end  
-    # display the results
+    spread = highest - lowest
+    spread_2 = 32 - 12
+    c = spread_2 / spread
+    size = ((total - lowest) * c) + 12 
+    
     size_txt = "font-size:#{ size.round.to_s }px;"
     return size_txt
   end
@@ -126,7 +127,7 @@ class Expense < ActiveRecord::Base
   # "http://chart.apis.google.com/chart?cht=p&chd=t:129,47,144,31&chs=250x100&chl=Altro|Benza|Cibo|Elettronica&chco=FF0000"
 
 
-  def Expense.generate_google_chart(date)
+  def Expense.generate_expenses_pie_chart(date)
     category_amounts = Expense.amounts_for_categories(date)
     base_url = "http://chart.apis.google.com/chart?cht=p&chd=t:"
     categories = ""

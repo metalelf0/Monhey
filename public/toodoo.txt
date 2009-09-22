@@ -9,5 +9,6 @@
 [X] aggiungere links ad accounts da expenses e categories
 [X] mandare mail a orione con multiple references: movements_in, movements_out
 [ ] perché non mettere tutti i controlli sul current all'interno dei metodi?
-[ ] cambiare Expense.generate_google_chart in Expense.generate_google_pie_chart
+[X] cambiare Expense.generate_google_chart in Expense.generate_expenses_pie_chart
 [ ] configurare minimo e massimo per google chart daily
+[ ] invertire correttamente i risultati di Expense.font_size_for_tag_cloud
