@@ -1,3 +1,9 @@
+<script type="text/javascript">
+	$(function() {
+		$(".datepicker").datepicker();
+	});
+	</script>
+
 <% categories = options_for_select(Category.all.map { |category| [category.name, category.id ] }, 0 ) %>
 <% accounts = options_for_select(Account.all.map { |account| [account.name, account.id ] }, 0 ) %>
 <% date = Date.today %>
@@ -28,7 +34,7 @@
 
 			<tr class="<%= "insert_" + cycle("rowA", "rowB") %>">
 
-				<td><%= unobtrusive_date_text_picker_tag("elem#{i}[date]", date) %> </td>
+				<td><%= text_field_tag("elem#{i}[date]", date, :class => "datepicker") %> </td>
 
 				<td><%= text_field_tag("elem#{i}[amount]", "", :size => 5) %></td>
 
