@@ -220,25 +220,12 @@ a {
     <dd class="spec passed"><span class="passed_spec_name">should get a correct daily expenses string for an expense-empty month</span></dd>
     <script type="text/javascript">moveProgressBar('47.5');</script>
     <dd class="spec passed"><span class="passed_spec_name">should get a correct daily expenses string for a month with expenses</span></dd>
-    <script type="text/javascript">makeRed('rspec-header');</script>
-    <script type="text/javascript">makeRed('example_group_1');</script>
     <script type="text/javascript">moveProgressBar('50.0');</script>
-    <dd class="spec failed">
-      <span class="failed_spec_name">should invert expense amounts on the daily expenses chart</span>
-      <div class="failure" id="failure_1">
-        <div class="message"><pre>undefined local variable or method `expected_urlcted_string' for #&lt;Spec::Rails::Example::ModelExampleGroup::Subclass_1:0x102ec8b48&gt;</pre></div>
-        <div class="backtrace"><pre>./spec/models/expense_spec.rb:203:</pre></div>
-    <pre class="ruby"><code><span class="linenum">201</span>    <span class="ident">actual_url</span> <span class="punct">=</span> <span class="constant">Expense</span><span class="punct">.</span><span class="ident">generate_daily_chart_for</span><span class="punct">(</span><span class="constant">Date</span><span class="punct">.</span><span class="ident">today</span><span class="punct">)</span>
-<span class="linenum">202</span>    <span class="ident">expected_string</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string">10.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.0</span><span class="punct">&quot;</span>
-<span class="offending"><span class="linenum">203</span>    <span class="ident">expected_url</span> <span class="punct">=</span> <span class="punct">&quot;</span><span class="string">http://chart.apis.google.com/chart?cht=lc&amp;chxt=x,y&amp;chg=0,25&amp;chd=t:</span><span class="punct">&quot;</span> <span class="punct">+</span> <span class="ident">expected_urlcted_string</span> <span class="punct">+</span> <span class="punct">&quot;</span><span class="string">&amp;chxl=0:|</span><span class="punct">&quot;</span> <span class="punct">+</span> <span class="ident">labels_for</span><span class="punct">(</span><span class="constant">Date</span><span class="punct">.</span><span class="ident">today</span><span class="punct">)</span> <span class="punct">+</span> <span class="punct">&quot;</span><span class="string">|1:|0|250|500|750|1000&amp;chs=500x150&amp;chds=0,1000</span><span class="punct">&quot;</span></span>
-<span class="linenum">204</span>    <span class="ident">actual_url</span><span class="punct">.</span><span class="ident">should</span> <span class="ident">eql</span><span class="punct">(</span><span class="ident">expected_url</span><span class="punct">)</span>
-<span class="linenum">205</span>  <span class="keyword">end</span></code></pre>
-      </div>
-    </dd>
+    <dd class="spec passed"><span class="passed_spec_name">should invert expense amounts on the daily expenses chart</span></dd>
     <script type="text/javascript">moveProgressBar('52.5');</script>
     <dd class="spec passed"><span class="passed_spec_name">should calculate the right font size in tag cloud</span></dd>
     <script type="text/javascript">moveProgressBar('55.0');</script>
-    <dd class="spec not_implemented"><span class="not_implemented_spec_name">should generate correctly the hash for categories cloud (PENDING: Not Yet Implemented)</span></dd>
+    <dd class="spec passed"><span class="passed_spec_name">should generate correctly the hash for categories cloud</span></dd>
   </dl>
 </div>
 <div class="example_group">
@@ -317,8 +304,8 @@ a {
     <dd class="spec passed"><span class="passed_spec_name">should show a line with the totals</span></dd>
   </dl>
 </div>
-<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>3.885122 seconds</strong>";</script>
-<script type="text/javascript">document.getElementById('totals').innerHTML = "40 examples, 1 failure, 1 pending";</script>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>3.391656 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "40 examples, 0 failures";</script>
 </div>
 </div>
 </body>

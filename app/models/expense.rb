@@ -78,7 +78,7 @@ class Expense < ActiveRecord::Base
     spread = highest - lowest
     spread_2 = 32 - 12
     c = spread_2 / spread
-    size = ((total - lowest) * c) + 12 
+    size = 32 - ((total - lowest) * c) 
     
     size_txt = "font-size:#{ size.round.to_s }px;"
     return size_txt

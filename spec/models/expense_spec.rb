@@ -211,17 +211,23 @@ describe Expense do
     total, lowest, highest = 0, -10, 10
     Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("display:none;")
   
-    total, lowest, highest = -10, -10, 10
-    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:12px;")
-  
+    # total == lowest means highest expense!
     total, lowest, highest = 10, -10, 10
+    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:12px;")
+
+    # total == highest means lowest expense!  
+    total, lowest, highest = -10, -10, 10
     Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
   end
   
-  it "should generate correctly the hash for categories cloud"
-  #   amounts = { "Cibo" => -10, "Altro" => -20}
-  #   Expense.stub!(:amounts_for_categories).and_return amounts
-  #   puts Expense.generate_hash_for_categories_cloud(Date.today).inspect
-  # end
+  it "should generate correctly the hash for categories cloud" do
+    amounts = { "Cibo" => -10, "Altro" => -20}
+    Expense.stub!(:amounts_for_categories).and_return amounts
+    hash = Expense.generate_hash_for_categories_cloud(Date.today)
+    hash["Altro"][:style].should eql("font-size:32px;")
+    hash["Altro"][:amount].should eql(-20)
+    hash["Cibo"][:style].should  eql("font-size:12px;")
+    hash["Cibo"][:amount].should  eql(-10)
+  end
 
 end

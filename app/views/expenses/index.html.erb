@@ -37,12 +37,14 @@
 <div style="float:left;">
 	<%= render :partial => 'layouts/box_statistics', :locals => {:total => total, :average => average, :bancomat => bancomat, :prevision => prevision, :left => left } %>
 </div>
-<div style="float:right;">
+<div style="float:left;">
 	<%= render :partial => 'layouts/box', :locals => {:title => "Chart", :content => "<img src=\"#{Expense.generate_daily_chart_for(@date)}\" />" } %>
 </div>
-
-<br/>
+<div style="float:left;">
+	<%= render :partial => 'layouts/box', :locals => {:title => "Pie Chart", :content => "<img src=\"#{Expense.generate_expenses_pie_chart(@date)}\" />" } %>
+</div>
 <div style="clear:both;" />
+
 <hr/>
 
 <table>
