@@ -74,7 +74,7 @@ class Expense < ActiveRecord::Base
   # generates values in range 12 - 32
   def Expense.font_size_for_tag_cloud(total, lowest, highest)
     return nil if total.nil? or highest.nil? or lowest.nil?
-    return "display:none;" if (total == 0 || highest == 0)
+    return "display:none;" if (total == 0)
     spread = highest - lowest
     spread_2 = 32 - 12
     c = spread_2 / spread
