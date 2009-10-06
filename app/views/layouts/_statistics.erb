@@ -1,8 +1,8 @@
 <div align="justify">
-<p>	Total for this month:&nbsp; <%= currency_euro(total) %> (Bancomat: <%= currency_euro(bancomat) %>) <br/>
-	Daily average:&nbsp; <%= currency_euro(average) %> <br/>
+<p>
+	Total for this month:&nbsp; <span class="totals"><%= currency_euro(total) %></span> (Bancomat: <%= currency_euro(bancomat) %>) <br/>
+	Daily average:&nbsp; <span class="totals"><%= currency_euro(average) %></span> <br/>
 	Prevision for this month:&nbsp; <%= currency_euro(prevision) %> <br/>
 	Left for this month with stipendio: &nbsp; <%= currency_euro(left) %> <br/>
 </p>
-</div>  
-				
+</div>
