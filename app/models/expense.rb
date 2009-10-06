@@ -1,6 +1,9 @@
 include ExpensesHelper
 
 class Expense < ActiveRecord::Base
+  
+  MAX_CLOUD_SIZE = 32
+  MIN_CLOUD_SIZE = 12
 
 
   belongs_to :category
@@ -73,10 +76,11 @@ class Expense < ActiveRecord::Base
   
   # generates values in range 12 - 32
   def Expense.font_size_for_tag_cloud(total, lowest, highest)
+    return "font-size:#{ MAX_CLOUD_SIZE.to_s }px;" if ((total != 0) && (total == lowest) && (lowest == highest))
     return nil if total.nil? or highest.nil? or lowest.nil?
     return "display:none;" if (total == 0)
     spread = highest - lowest
-    spread_2 = 32 - 12
+    spread_2 = MAX_CLOUD_SIZE - MIN_CLOUD_SIZE
     c = spread_2 / spread
     size = 32 - ((total - lowest) * c) 
     

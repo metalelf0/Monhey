@@ -222,6 +222,11 @@ describe Expense do
     # don't panic if highest is zero
     total, lowest, highest = -10, -10, 0
     Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
+    
+    #don't panic if they're all the same
+    total, lowest, highest = -10, -10, -10
+    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
+    
   end
   
   it "should generate correctly the hash for categories cloud" do
