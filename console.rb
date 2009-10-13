@@ -18,24 +18,24 @@ if ('i' == arguments[MODE])
     puts "Devi specificare almeno amount (-a) e description (-d)"
     exit(-1)
   end
-  exp= buildAndSaveExpenseFromParams arguments
+  exp= build_and_save_expense_from_params arguments
 elsif 'c' == arguments[MODE]
   pp Expense.categories_array
 elsif 'h' == arguments[MODE]
   printHelp
 elsif 'l' == arguments[MODE] or 'r' == arguments[MODE]
-  printEntriesTable arguments
+  print_entries_table arguments
 elsif "I" == arguments[MODE]
     puts "Entering interactive mode: "
-    readArgumentsInteractively arguments 
-    buildAndSaveExpenseFromParams arguments
+    read_arguments_interactively arguments 
+    build_and_save_expense_from_params arguments
     exit
 elsif "d" == arguments[MODE]
-    printEntriesTable Expense.all
+    print_entries_table Expense.all
     puts "Enter index of expense to delete: > "
     index = gets
-    deleteExpense index
+    delete_expense index
 else
-  puts "Wrong mode specified (call with -h for help)"
+  puts "Wrong mode specified (call with -m h for help)"
   exit(-1)
 end
