@@ -22,6 +22,13 @@ class String
     spaces = tSize - self.size
     return self + " "*spaces
   end
+  
+  def starts_with_any_of strings
+    strings.each do |str|
+      return true if self.start_with?(str) 
+    end
+    return false
+  end
 end
 
 def printHelp
@@ -69,12 +76,12 @@ def read_arguments_interactively arguments
       arguments[DESCRIPTION] = ask_in_line "description"
     end
     
-    arguments[AMOUNT] = ask_in_line "amount"
+    arguments[AMOUNT]   = ask_in_line "amount"
     arguments[CATEGORY] = ask_in_line "category"
-    arguments[DATE] = ask_in_line "date"
-    arguments[BUONI] = ask_in_line "buoni"
-    ask_for arguments[BANCOMAT], "Bancomat"
-    ask_for arguments[UFFICIO], "Ufficio"
+    arguments[DATE]     = ask_in_line "date"
+    arguments[BUONI]    = ask_in_line "buoni"
+    arguments[BANCOMAT] = ask_for "Bancomat"
+    arguments[UFFICIO]  = ask_for  "Ufficio"
     end
 
 def build_expense_from_params arguments
@@ -83,11 +90,11 @@ def build_expense_from_params arguments
     "description" => arguments[DESCRIPTION],
     "amount"      => arguments[AMOUNT],
     "category"    => Category.find_or_create_by_name(arguments[CATEGORY]),
-    "account"    => ((["S", "s", "true"].include? arguments[BANCOMAT]) ?
+    "account"    => ((["S", "s"].include? arguments[BANCOMAT]) ?
       Account.find_or_create_by_name("Bancomat") :
       Account.find_or_create_by_name("Contanti")),
-    "ufficio"     => ((["S", "s", "true"].include? arguments[UFFICIO])  ? true : false),
-    "date"        => ((arguments[DATE].nil? or arguments[DATE].blank?)? Date.today : Date.parse(arguments[DATE]) ),
+    "ufficio"     => ((["S", "s"].include? arguments[UFFICIO])  ? true : false),
+    "date"        => arguments[DATE].blank? ? Date.today : Date.parse(arguments[DATE]),
     "buoni"       => arguments[BUONI].to_i
   )
   return exp
@@ -123,12 +130,13 @@ def expenses_from_to startYear, startMonth, endYear, endMonth
     return Expense.all
 end
 
-def ask_for value, label
+def ask_for label
   value = ""
-  while value.nil? or value.blank? or !["S", "N", "s", "n"].include? value[0..0]
+  while value.blank? or !value.starts_with_any_of ["S", "N", "s", "n"]
     print "#{label.capitalize}? (S/N)".pad_to(20) + " > "
     value = readline[0..-2]      
   end
+  return value
 end
 
 def ask_in_line label
