@@ -2,6 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Expense do
   before(:each) do
+    Date.stub!(:today).and_return(Date.new(2009, 1, 1))
     Expense.delete_all
     Category.delete_all
     Account.delete_all
@@ -54,18 +55,6 @@ describe Expense do
   	expenses_of_january.size.should eql(1)
 	end
   
-  it "should calculate correctly the average value for a given month" do
-    # simple case: 0
-    Expense.average_for_month(Date.new(2009, 1, 1)).should eql(0.0)
-    
-    # other case: 30 days-month, 900 euro: 30 euro/day
-    Expense.stub!(:total_for_month).with(Date.new(2009, 11, 1)).and_return(900)
-    Expense.average_for_month(Date.new(2009, 11, 1)).should eql(30.0)
-    
-    Expense.stub!(:total_for_month).with(Date.new(2009, 11, 1)).and_return(-900)
-    Expense.average_for_month(Date.new(2009, 11, 1)).should eql(-30.0)
-  end  
-  
   it "should calculate correctly the total for a given month" do
     Expense.total_for_month(Date.new(2009, 1, 1)).should eql(0.0)
     Expense.total_for_month(Date.new(2009, 2, 1)).should eql(10.0)
@@ -95,6 +84,17 @@ describe Expense do
     Expense.average_for_month(Date.new(2009,1,1)).should eql(-90.0)
   end  
   
+  it "should calculate correctly the average value for a given month" do
+    # simple case: 0
+    Expense.average_for_month(Date.new(2009, 1, 1)).should eql(0.0)
+    
+    # other case: 30 days-month, 900 euro: 30 euro/day
+    Expense.stub!(:total_for_month).with(Date.new(2009, 11, 1)).and_return(900)
+    Expense.average_for_month(Date.new(2009, 11, 1)).should eql(30.0)
+    
+    Expense.stub!(:total_for_month).with(Date.new(2009, 11, 1)).and_return(-900)
+    Expense.average_for_month(Date.new(2009, 11, 1)).should eql(-30.0)
+  end
   
   it "should calculate correctly the amount of bancomat expenses" do
     Expense.total_for_bancomat_in_month(Date.new(2009, 2, 1)).should eql(10.0)
