@@ -1,154 +1,80 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Expense do
-  before(:each) do
-    Date.stub!(:today).and_return(Date.new(2009, 1, 1))
-    Expense.delete_all
-    Category.delete_all
-    Account.delete_all
-    
-    @stipendio = Category.create!(:name => "Stipendio")
-  	@altro = Category.create!(:name => "Altro")
-    
-    @bancomat = Account.create!(:name => "Bancomat")
-    @contanti = Account.create!(:name => "Contanti")
-    
-    @valid_attributes = {
-    	:description => "Sample expense",
-    	:amount => "100.0",
-    	:category => @altro
-    }
-		
-	  e1 = Expense.create!(:description => "First", :amount => 0, :date => Date.new(2009,1,1), :category => @altro, :account => @contanti)
-  	e2 = Expense.create!(:description => "Second", :amount => 10, :date => Date.new(2009,2,1), :category => @altro, :account => @bancomat)
-  	e3 = Expense.create!(:description => "Third", :amount => 20, :date => Date.new(2009,3,1), :category => @altro, :account => @contanti)
-  	
 
-		
-  end
-
-  it "should create a new instance given valid attributes" do
-    Expense.create!(@valid_attributes)
-  end
-  
-  it "should not be valid without description" do
-  	e = Expense.new()
-  	e.should_not be_valid
-  	e.errors_on(:description).should_not be_nil
-  end
-  
-  it "should not be valid with non numerical amounts" do
-  	e = Expense.new(:description => "Sample description")
-  	e.amount = "Gnagno"
-  	e.should_not be_valid
-  end
-  
   it "should retrieve expenses in a given month" do
+    Expense.should_receive(:find).and_return([@e1])
   	expenses_of_february = Expense.find_by_year_month(:date => Date.new(2009, 2, 1))
   	expenses_of_february.size.should eql(1)
   end
   
-	it "should be able to navigate expenses forward and backward by month" do
-		expenses_of_march = Expense.find_by_year_month(:date => (Date.new(2009,2,1) >> 1))
-  	expenses_of_march.size.should eql(1)	
-		expenses_of_january = Expense.find_by_year_month(:date => (Date.new(2009,2,1) << 1))
-  	expenses_of_january.size.should eql(1)
-	end
-  
-  it "should calculate correctly the total for a given month" do
-    Expense.total_for_month(Date.new(2009, 1, 1)).should eql(0.0)
-    Expense.total_for_month(Date.new(2009, 2, 1)).should eql(10.0)
-    Expense.total_for_month(Date.new(2009, 3, 1)).should eql(20.0)
-  end
-  
-  it "should get the same value for total for month with two dates in the same month" do
-    Expense.total_for_month(Date.new(2009, 2, 1)).should eql(10.0)
-    Expense.total_for_month(Date.new(2009, 2, 28)).should eql(10.0)
-  
-    Date.stub!(:today).and_return(Date.new(2009, 2, 15))
-  
-    Expense.total_for_month(Date.today).should eql(10.0)
-    Expense.total_for_month(Date.new(2009, 2, 1)).should eql(10.0)
-    Expense.total_for_month(Date.new(2009, 2, 28)).should eql(10.0)  
-  end
-  
   it "should calculate correctly the average value for the current month" do
-    Date.stub!(:today).and_return(Date.new(2009,1,1))
-    Expense.average_for_month(Date.new(2009,1,1)).should eql(0.0)
-    
-    Date.stub!(:today).and_return(Date.new(2009,1,10))
-    Expense.stub!(:total_for_month).and_return(900)
-    Expense.average_for_month(Date.new(2009,1,1)).should eql(90.0)
-    
-    Expense.stub!(:total_for_month).and_return(-900)
-    Expense.average_for_month(Date.new(2009,1,1)).should eql(-90.0)
-  end  
-  
-  it "should calculate correctly the average value for a given month" do
-    # simple case: 0
-    Expense.average_for_month(Date.new(2009, 1, 1)).should eql(0.0)
-    
-    # other case: 30 days-month, 900 euro: 30 euro/day
-    Expense.stub!(:total_for_month).with(Date.new(2009, 11, 1)).and_return(900)
-    Expense.average_for_month(Date.new(2009, 11, 1)).should eql(30.0)
-    
-    Expense.stub!(:total_for_month).with(Date.new(2009, 11, 1)).and_return(-900)
-    Expense.average_for_month(Date.new(2009, 11, 1)).should eql(-30.0)
+    date = mock("date")
+    today = mock("today")
+    date.should_receive(:is_in_current_month).and_return(true)
+    Date.should_receive(:today).and_return(today)
+    today.should_receive(:day).and_return(10)
+    Expense.should_receive(:total_for_month).with(date).and_return(100.0)
+    Expense.average_for_month(date).should eql(10.0)
   end
   
-  it "should calculate correctly the amount of bancomat expenses" do
-    Expense.total_for_bancomat_in_month(Date.new(2009, 2, 1)).should eql(10.0)
-    Expense.total_for_bancomat_in_month(Date.new(2009, 3, 1)).should eql(0.0)
+  it "should calculate correctly the average value for the another month" do
+    date = mock("date")
+    some_day = mock("today")
+    date.should_receive(:is_in_current_month).and_return(false)
+    date.should_receive(:end_of_month).and_return(some_day)
+    some_day.should_receive(:day).and_return(31)
+    Expense.should_receive(:total_for_month).with(date).and_return(310.0)
+    Expense.average_for_month(date).should eql(10.0)
   end
-  
-  it "should calculate correctly a monthly prevision" do
-    Date.stub!(:today).and_return(Date.new(2009,1,1))
     
-    Expense.prevision_for_month(Date.today).should eql(0.0)
-    
-    Expense.stub!(:total_for_month).and_return(-10)
-    Expense.prevision_for_month(Date.today).should eql(-310.0)
-    
-    # One day left: prevision = current total + daily average
-    Date.stub!(:today).and_return(Date.new(2009,1,30))  
-    Expense.stub!(:total_for_month).and_return(-300)
-    Expense.prevision_for_month(Date.today).should eql(-310.0)
-    
-    Expense.stub!(:total_for_month).and_return(0)
-    Expense.prevision_for_month(Date.today).should eql(0.0)
+  it "should calculate correctly a monthly prevision - current month" do
+    date = mock("date")
+    some_day = mock("some_day")
+    date.should_receive(:is_in_current_month).and_return(true)
+    Expense.should_receive(:average_for_month).with(date).and_return(10.0)
+    date.should_receive(:end_of_month).and_return(some_day)
+    some_day.should_receive(:day).and_return(31)
+    Expense.prevision_for_month(date).should eql(310.0)
+  end
+
+  it "should calculate correctly a monthly prevision - another month" do
+    date = mock("date")
+    date.should_receive(:is_in_current_month).and_return(false)
+    Expense.should_receive(:total_for_month).with(date).and_return(100.0)
+    Expense.prevision_for_month(date).should eql(100.0)
   end
 
   it "should calculate how much money is left for the current month" do
-    Date.stub!(:today).and_return(Date.new(2009,1,1))
-    Expense.left_for_month_with_stipendio(Date.today, 1190).should eql(1190.0)
-  	Expense.create!(:description => "Third", :amount => -400, :date => Date.new(2009,1,1),
-  	        :category => @altro, :account => @contanti)
-    
-    Expense.left_for_month_with_stipendio(Date.today, 1200).should eql(800.0)    
-  	
-  	Expense.create!(:description => "Stipendio", :amount => 1200, :date => Date.new(2009,1,1),
-  	        :category => @stipendio, :account => @contanti)
-  
-    Expense.left_for_month_with_stipendio(Date.today, 1200).should eql(800.0)   
+    date = mock("date")
+    date.should_receive(:is_in_current_month).and_return(true)
+    Expense.should_receive(:sum).and_return(150.0)
+    Expense.left_for_month_with_stipendio(date, 100).should eql(250.0)   
   end
   
-  it "should have category" do
-    category = Category.create!(:name => "Category one")
-    Expense.new(:description => "Third", :amount => -400, :date => Date.new(2009,1,1),
-  	        :category => category, :account => Account.bancomat).should be_valid
-  end
-  
-  it "should have account" do
-    category = Category.create!(:name => "Category one")
-    account = Account.create!(:name => "Contanti")
-    Expense.new(:description => "Third", :amount => -400, :date => Date.new(2009,1,1),
-  	        :category => category, :account => account).should be_valid  
+  it "should calculate how much money is left for a future month - eql stipendio" do
+    date = mock("date")
+    date.should_receive(:is_in_current_month).and_return(false)
+    date.should_receive(">").with(Date.today).and_return(true)
+    Expense.left_for_month_with_stipendio(date, 100).should eql(100.0) 
   end
 
+  it "should calculate how much money is left for an old month" do
+    date = mock("date")
+    date.should_receive(:is_in_current_month).and_return(false)
+    date.should_receive(">").with(Date.today).and_return(false)
+    Expense.should_receive(:total_for_month).with(date).and_return(100.0)
+    Expense.left_for_month_with_stipendio(date, 1000).should eql(900.0) 
+  end
+  
   it "should retrieve expenses by category, year and month" do
-    e4 = Expense.create!(:description => "Fourth", :amount => 1000, :date => Date.new(2009,1,1), :category => @stipendio, :account => @bancomat)
-    amounts = Expense.amounts_for_categories(Date.new(2009, 1, 1))
-    amounts["Stipendio"].should eql(1000.0)
+    date = mock("date")
+    category = Category.new(:name => "category")
+    Category.should_receive(:all).and_return([category])
+
+    Expense.should_receive(:total_for_month_by_category).with(date, category.name).and_return 1000.0
+    amounts = Expense.amounts_for_categories(date)
+    amounts["category"].should eql(1000.0)
   end
   
   it "should get the right per-day amount" do

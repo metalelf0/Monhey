@@ -4,12 +4,8 @@ require 'webrat'
 describe ExpensesController do
 
 	describe "index action" do
- 	  
- 	  integrate_views
  	
- 		before(:each) do
- 		  Expense.delete_all 			
-      Category.delete_all
+ 		before(:all) do
  			@altro = mock_model(Category, :name => "Altro")
  			
  			@bancomat = mock_model(Account, :name => "Bancomat")
@@ -51,13 +47,13 @@ describe ExpensesController do
  		it "should receive a success response and show all the entries" do
 		  get :index
 		  response.should be_success
-		  response.should have_tag('tr.expense-row', :count => 1)
+      assigns[:expenses].should eql [@first]
 		end
 		
 		it "should show only the entries for a given month" do
 			get :index, :year => 2009, :month => 1
 		  response.should be_success
-		  assigns[:expenses].should have(1).expenses
+		  assigns[:expenses].should eql [@first]
 		end
  
  		it "should show only the entries for a given month and category" do
@@ -66,25 +62,7 @@ describe ExpensesController do
 		  response.should be_success
 		  assigns[:expenses].should have(0).expenses
 		end
- 
-    it "should include 10 edit fields" do
-      get :index
-      response.should be_success
-      response.should have_tag('tr.insert_rowA', :count => 5)
-      response.should have_tag('tr.insert_rowB', :count => 5)      
-    end
-    
-    it "should show a line with the totals" do
-      Expense.stub(:find_by_year_month).and_return([@first, @second, @third])
-      
-      get :index
-      response.should be_success
-      response.should have_tag('tr.totals')
-      response.should have_tag('td.total-amount', :text => "30,00 &euro;")
-      response.should have_tag('td.total-buoni', :text => "6")
-    end
-    
-    
+  
 	end
 
 end

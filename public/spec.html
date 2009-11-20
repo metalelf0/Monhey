@@ -181,131 +181,106 @@ a {
 <div class="results">
 <div class="example_group">
   <dl>
-  <dt id="example_group_1">Expense</dt>
-    <script type="text/javascript">moveProgressBar('2.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should create a new instance given valid attributes</span></dd>
-    <script type="text/javascript">moveProgressBar('5.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should not be valid without description</span></dd>
-    <script type="text/javascript">moveProgressBar('7.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should not be valid with non numerical amounts</span></dd>
+  <dt id="example_group_1">ExpensesController index action</dt>
+    <script type="text/javascript">moveProgressBar('3.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should receive a success response and show all the entries</span></dd>
+    <script type="text/javascript">moveProgressBar('6.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should show only the entries for a given month</span></dd>
     <script type="text/javascript">moveProgressBar('10.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should show only the entries for a given month and category</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_2">Expense</dt>
+    <script type="text/javascript">moveProgressBar('13.3');</script>
     <dd class="spec passed"><span class="passed_spec_name">should retrieve expenses in a given month</span></dd>
-    <script type="text/javascript">moveProgressBar('12.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should be able to navigate expenses forward and backward by month</span></dd>
-    <script type="text/javascript">moveProgressBar('15.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should calculate correctly the total for a given month</span></dd>
-    <script type="text/javascript">moveProgressBar('17.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should get the same value for total for month with two dates in the same month</span></dd>
-    <script type="text/javascript">moveProgressBar('20.0');</script>
+    <script type="text/javascript">moveProgressBar('16.6');</script>
     <dd class="spec passed"><span class="passed_spec_name">should calculate correctly the average value for the current month</span></dd>
-    <script type="text/javascript">moveProgressBar('22.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should calculate correctly the average value for a given month</span></dd>
-    <script type="text/javascript">moveProgressBar('25.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should calculate correctly the amount of bancomat expenses</span></dd>
-    <script type="text/javascript">moveProgressBar('27.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should calculate correctly a monthly prevision</span></dd>
+    <script type="text/javascript">moveProgressBar('20.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should calculate correctly the average value for the another month</span></dd>
+    <script type="text/javascript">moveProgressBar('23.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should calculate correctly a monthly prevision - current month</span></dd>
+    <script type="text/javascript">moveProgressBar('26.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should calculate correctly a monthly prevision - another month</span></dd>
     <script type="text/javascript">moveProgressBar('30.0');</script>
     <dd class="spec passed"><span class="passed_spec_name">should calculate how much money is left for the current month</span></dd>
-    <script type="text/javascript">moveProgressBar('32.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should have category</span></dd>
-    <script type="text/javascript">moveProgressBar('35.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should have account</span></dd>
-    <script type="text/javascript">moveProgressBar('37.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should retrieve expenses by category, year and month</span></dd>
+    <script type="text/javascript">moveProgressBar('33.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should calculate how much money is left for a future month - eql stipendio</span></dd>
+    <script type="text/javascript">moveProgressBar('36.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should calculate how much money is left for an old month</span></dd>
     <script type="text/javascript">moveProgressBar('40.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should retrieve expenses by category, year and month</span></dd>
+    <script type="text/javascript">moveProgressBar('43.3');</script>
     <dd class="spec passed"><span class="passed_spec_name">should get the right per-day amount</span></dd>
-    <script type="text/javascript">moveProgressBar('42.5');</script>
+    <script type="text/javascript">moveProgressBar('46.6');</script>
     <dd class="spec passed"><span class="passed_spec_name">should generate a correct google chart with only negative values</span></dd>
-    <script type="text/javascript">moveProgressBar('45.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should get a correct daily expenses string for an expense-empty month</span></dd>
-    <script type="text/javascript">moveProgressBar('47.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should get a correct daily expenses string for a month with expenses</span></dd>
     <script type="text/javascript">moveProgressBar('50.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should get a correct daily expenses string for an expense-empty month</span></dd>
+    <script type="text/javascript">moveProgressBar('53.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should get a correct daily expenses string for a month with expenses</span></dd>
+    <script type="text/javascript">moveProgressBar('56.6');</script>
     <dd class="spec passed"><span class="passed_spec_name">should invert expense amounts on the daily expenses chart</span></dd>
-    <script type="text/javascript">moveProgressBar('52.5');</script>
+    <script type="text/javascript">moveProgressBar('60.0');</script>
     <dd class="spec passed"><span class="passed_spec_name">should calculate the right font size in tag cloud</span></dd>
-    <script type="text/javascript">moveProgressBar('55.0');</script>
+    <script type="text/javascript">moveProgressBar('63.3');</script>
     <dd class="spec passed"><span class="passed_spec_name">should generate correctly the hash for categories cloud</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_2">Movement</dt>
-    <script type="text/javascript">moveProgressBar('57.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should have accounts</span></dd>
-    <script type="text/javascript">moveProgressBar('60.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should be from an account to a different one</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_3">MovementsController</dt>
-    <script type="text/javascript">moveProgressBar('62.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should show two select inputs for accounts</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_4">MovementsHelper</dt>
-    <script type="text/javascript">moveProgressBar('65.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should be included in the object returned by #helper</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_5">ExpensesHelper</dt>
-    <script type="text/javascript">moveProgressBar('67.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should retrieve correctly start date and end date for a month</span></dd>
-    <script type="text/javascript">moveProgressBar('70.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should get the labels for a month</span></dd>
-  </dl>
-</div>
-<div class="example_group">
-  <dl>
-  <dt id="example_group_6">Account</dt>
-    <script type="text/javascript">moveProgressBar('72.5');</script>
+  <dt id="example_group_3">Account</dt>
+    <script type="text/javascript">moveProgressBar('66.6');</script>
     <dd class="spec passed"><span class="passed_spec_name">should retrieve the right Bancomat and Contanti accounts</span></dd>
-    <script type="text/javascript">moveProgressBar('75.0');</script>
+    <script type="text/javascript">moveProgressBar('70.0');</script>
     <dd class="spec passed"><span class="passed_spec_name">should use is_bancomat and is_contanti methods correctly</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_7">ExpenseCsvImporter</dt>
-    <script type="text/javascript">moveProgressBar('77.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should load a csv file</span></dd>
-    <script type="text/javascript">moveProgressBar('80.0');</script>
+  <dt id="example_group_4">ExpenseCsvImporter</dt>
+    <script type="text/javascript">moveProgressBar('73.3');</script>
     <dd class="spec passed"><span class="passed_spec_name">should parse a line from the csv file</span></dd>
-    <script type="text/javascript">moveProgressBar('82.5');</script>
+    <script type="text/javascript">moveProgressBar('76.6');</script>
     <dd class="spec passed"><span class="passed_spec_name">should parse all the lines from the csv file</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_8">Creating an entry</dt>
-    <script type="text/javascript">moveProgressBar('85.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should save an entry through the first insert fields-row</span></dd>
-    <script type="text/javascript">moveProgressBar('87.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should save more than one entry through edit fields-rows</span></dd>
+  <dt id="example_group_5">Movement</dt>
+    <script type="text/javascript">moveProgressBar('80.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should have accounts</span></dd>
+    <script type="text/javascript">moveProgressBar('83.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should be from an account to a different one</span></dd>
   </dl>
 </div>
 <div class="example_group">
   <dl>
-  <dt id="example_group_9">ExpensesController index action</dt>
-    <script type="text/javascript">moveProgressBar('90.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should receive a success response and show all the entries</span></dd>
-    <script type="text/javascript">moveProgressBar('92.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should show only the entries for a given month</span></dd>
-    <script type="text/javascript">moveProgressBar('95.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should show only the entries for a given month and category</span></dd>
-    <script type="text/javascript">moveProgressBar('97.5');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should include 10 edit fields</span></dd>
-    <script type="text/javascript">moveProgressBar('100.0');</script>
-    <dd class="spec passed"><span class="passed_spec_name">should show a line with the totals</span></dd>
+  <dt id="example_group_6">MovementsHelper</dt>
+    <script type="text/javascript">moveProgressBar('86.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should be included in the object returned by #helper</span></dd>
   </dl>
 </div>
-<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>2.710547 seconds</strong>";</script>
-<script type="text/javascript">document.getElementById('totals').innerHTML = "40 examples, 0 failures";</script>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_7">ExpensesHelper</dt>
+    <script type="text/javascript">moveProgressBar('90.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should retrieve correctly start date and end date for a month</span></dd>
+    <script type="text/javascript">moveProgressBar('93.3');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should get the labels for a month</span></dd>
+  </dl>
+</div>
+<div class="example_group">
+  <dl>
+  <dt id="example_group_8">Creating an entry</dt>
+    <script type="text/javascript">moveProgressBar('96.6');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should save an entry through the first insert fields-row</span></dd>
+    <script type="text/javascript">moveProgressBar('100.0');</script>
+    <dd class="spec passed"><span class="passed_spec_name">should save more than one entry through edit fields-rows</span></dd>
+  </dl>
+</div>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>1.073271 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "30 examples, 0 failures";</script>
 </div>
 </div>
 </body>

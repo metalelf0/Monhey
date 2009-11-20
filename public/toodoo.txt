@@ -8,7 +8,10 @@
 [X] applicare stylesheet anche a accounts e movements
 [X] aggiungere links ad accounts da expenses e categories
 [X] mandare mail a orione con multiple references: movements_in, movements_out
-[ ] perché non mettere tutti i controlli sul current all'interno dei metodi?
+[X] perché non mettere tutti i controlli sul current all'interno dei metodi?
 [X] cambiare Expense.generate_google_chart in Expense.generate_expenses_pie_chart
 [ ] configurare minimo e massimo per google chart daily
-[ ] invertire correttamente i risultati di Expense.font_size_for_tag_cloud
+[X] invertire correttamente i risultati di Expense.font_size_for_tag_cloud
+[ ] rimuovere orrenda flag inverter
+[ ] unificare find_by_year_month e find_by_year_month_and_category
+[ ] order by date in query sql in expenses_controller index

@@ -6,7 +6,6 @@ class ExpensesController < ApplicationController
     else
       @date = Date.today
   	end
-    # TODO: order by date in query SQL
     if params[:category_name].blank?
       @expenses = Expense.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date } 
     else

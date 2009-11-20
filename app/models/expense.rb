@@ -49,7 +49,7 @@ class Expense < ActiveRecord::Base
   end
   
   def Expense.amounts_for_categories(date)
-    hash = {}
+    hash = Hash.new
     Category.all.map(&:name).each do |category|
       hash[category] = Expense.total_for_month_by_category date, category
     end
@@ -102,26 +102,29 @@ class Expense < ActiveRecord::Base
     Expense.find_all_by_date(date).sum {|exp| exp.amount }
   end
 
-  # ACCESSORS FOR CURRENT MONTH
+  def Expense.prevision_for_month date
+    if date.is_in_current_month 
+      return Expense.average_for_month(date) * date.end_of_month.day
+    else
+      return Expense.total_for_month(date)
+    end
+  end
   
   def Expense.in_current_month
     Expense.find_by_year_month(:date => Date.today)
   end
   
   def Expense.left_for_month_with_stipendio(date, stipendio)
+    today = Date.today
     if (date.is_in_current_month)
-      start_date, end_date = start_and_end_of_month(Date.today)
+      start_date, end_date = start_and_end_of_month(today)
       return stipendio + Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date BETWEEN ? AND ? AND cat.name != 'Stipendio'", start_date, end_date])
     else
-      return Expense.total_for_month(date)
-    end
-  end
-  
-  def Expense.prevision_for_month date
-    if date.is_in_current_month 
-      return Expense.average_for_month(date) * date.end_of_month.day
-    else
-      return Expense.total_for_month(date)
+      if date > today
+        return stipendio.to_f
+      else
+        return stipendio - Expense.total_for_month(date)
+      end
     end
   end
 
