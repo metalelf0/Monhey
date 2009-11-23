@@ -123,7 +123,7 @@ class Expense < ActiveRecord::Base
       if date > today
         return stipendio.to_f
       else
-        return stipendio - Expense.total_for_month(date)
+        return stipendio + Expense.total_for_month(date)
       end
     end
   end

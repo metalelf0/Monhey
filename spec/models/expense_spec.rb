@@ -48,8 +48,8 @@ describe Expense do
   it "should calculate how much money is left for the current month" do
     date = mock("date")
     date.should_receive(:is_in_current_month).and_return(true)
-    Expense.should_receive(:sum).and_return(150.0)
-    Expense.left_for_month_with_stipendio(date, 100).should eql(250.0)   
+    Expense.should_receive(:sum).and_return(-150.0)
+    Expense.left_for_month_with_stipendio(date, 100).should eql(-50.0)   
   end
   
   it "should calculate how much money is left for a future month - eql stipendio" do
@@ -63,7 +63,7 @@ describe Expense do
     date = mock("date")
     date.should_receive(:is_in_current_month).and_return(false)
     date.should_receive(">").with(Date.today).and_return(false)
-    Expense.should_receive(:total_for_month).with(date).and_return(100.0)
+    Expense.should_receive(:total_for_month).with(date).and_return(-100.0)
     Expense.left_for_month_with_stipendio(date, 1000).should eql(900.0) 
   end
   
