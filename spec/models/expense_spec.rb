@@ -14,8 +14,8 @@ describe Expense do
     date.should_receive(:is_in_current_month).and_return(true)
     Date.should_receive(:today).and_return(today)
     today.should_receive(:day).and_return(10)
-    Expense.should_receive(:total_for_month).with(date).and_return(100.0)
-    Expense.average_for_month(date).should eql(10.0)
+    Expense.should_receive(:total_for_month).with(date).and_return(-100.0)
+    Expense.average_for_month(date).should eql(-10.0)
   end
   
   it "should calculate correctly the average value for the another month" do
@@ -24,25 +24,25 @@ describe Expense do
     date.should_receive(:is_in_current_month).and_return(false)
     date.should_receive(:end_of_month).and_return(some_day)
     some_day.should_receive(:day).and_return(31)
-    Expense.should_receive(:total_for_month).with(date).and_return(310.0)
-    Expense.average_for_month(date).should eql(10.0)
+    Expense.should_receive(:total_for_month).with(date).and_return(-310.0)
+    Expense.average_for_month(date).should eql(-10.0)
   end
     
   it "should calculate correctly a monthly prevision - current month" do
     date = mock("date")
     some_day = mock("some_day")
     date.should_receive(:is_in_current_month).and_return(true)
-    Expense.should_receive(:average_for_month).with(date).and_return(10.0)
+    Expense.should_receive(:average_for_month).with(date).and_return(-10.0)
     date.should_receive(:end_of_month).and_return(some_day)
     some_day.should_receive(:day).and_return(31)
-    Expense.prevision_for_month(date).should eql(310.0)
+    Expense.prevision_for_month(date).should eql(-310.0)
   end
 
   it "should calculate correctly a monthly prevision - another month" do
     date = mock("date")
     date.should_receive(:is_in_current_month).and_return(false)
-    Expense.should_receive(:total_for_month).with(date).and_return(100.0)
-    Expense.prevision_for_month(date).should eql(100.0)
+    Expense.should_receive(:total_for_month).with(date).and_return(-100.0)
+    Expense.prevision_for_month(date).should eql(-100.0)
   end
 
   it "should calculate how much money is left for the current month" do
@@ -72,27 +72,27 @@ describe Expense do
     category = Category.new(:name => "category")
     Category.should_receive(:all).and_return([category])
 
-    Expense.should_receive(:total_for_month_by_category).with(date, category.name).and_return 1000.0
+    Expense.should_receive(:total_for_month_by_category).with(date, category.name).and_return -1000.0
     amounts = Expense.amounts_for_categories(date)
-    amounts["category"].should eql(1000.0)
+    amounts["category"].should eql(-1000.0)
   end
   
   it "should get the right per-day amount" do
     date = Date.new(2009,1,30)
-    one = mock(:amount => 10.0, :date => date)
+    one = mock(:amount => -10.0, :date => date)
     Expense.should_receive(:find_all_by_date).with(date).and_return( [one] )
-    Expense.total_for_day(date).should eql(10.0)
+    Expense.total_for_day(date).should eql(-10.0)
     
     two = mock(:amount => -5.0, :date => date)
     Expense.should_receive(:find_all_by_date).with(date).and_return( [one, two] )
-    Expense.total_for_day(date).should eql(5.0)
+    Expense.total_for_day(date).should eql(-15.0)
   end
   
   it "should generate a correct google chart with only negative values" do
     Expense.stub!(:amounts_for_categories).and_return(
     {"Cibo" => -100,
       "Benza" => -15,
-      "Elettronica" => 200
+      "Mance" => 200
     })
     
     expected_url = "http://chart.apis.google.com/chart?cht=p&chd=t:15,100&chs=350x150&chl=Benza|Cibo&chco=FF0000"
@@ -113,7 +113,7 @@ describe Expense do
     Expense.should_receive(:total_for_day).with(first).and_return(10)
     Expense.should_receive(:total_for_day).with(last).and_return(5)
     
-    expected_string = "10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5"
+    expected_string = "-10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5"
     Expense.amounts_by_date_for_month(Date.today).should eql(expected_string)
   end
   

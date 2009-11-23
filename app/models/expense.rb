@@ -88,12 +88,11 @@ class Expense < ActiveRecord::Base
     return size_txt
   end
 
-  def Expense.amounts_by_date_for_month(date, invert=false)
+  def Expense.amounts_by_date_for_month(date)
     start_date, end_date = start_and_end_of_month(date)
-    inverter = (invert == :invert ? -1 : 1)
     daily_expenses = ""
     start_date.upto(end_date) do |date|
-      daily_expenses += (inverter * Expense.total_for_day(date)).to_s + ","
+      daily_expenses += (-1 * Expense.total_for_day(date)).to_s + ","
     end
     return daily_expenses[0..-2]
   end
@@ -151,7 +150,7 @@ class Expense < ActiveRecord::Base
   end
   
   def Expense.generate_daily_chart_for(date)
-    amounts = Expense.amounts_by_date_for_month(date, :invert)
+    amounts = Expense.amounts_by_date_for_month(date)
     return "http://chart.apis.google.com/chart?cht=lc&chxt=x,y&chg=0,25&chd=t:" + amounts + "&chxl=0:|" +labels_for(date) + "|1:|0|250|500|750|1000&chs=500x150&chds=0,1000"  
   end
 

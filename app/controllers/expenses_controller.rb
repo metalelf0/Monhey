@@ -1,12 +1,8 @@
 class ExpensesController < ApplicationController
  
   def index
-  	if not (params[:year].nil? or params[:month].nil?)
-  		@date = Date.new(params[:year].to_i, params[:month].to_i, 1)
-    else
-      @date = Date.today
-  	end
-    if params[:category_name].blank?
+  	@date = build_date_from_params(params)
+  	if params[:category_name].blank?
       @expenses = Expense.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date } 
     else
       @expenses = Expense.find_by_year_month_and_category(@date, params[:category_name])
@@ -82,6 +78,16 @@ class ExpensesController < ApplicationController
       string_of_numbers =  "0" + string_of_numbers
     end
     string_of_numbers
+  end
+
+  private
+  
+  def build_date_from_params params
+    if not (params[:year].nil? or params[:month].nil?)
+  		@date = Date.new(params[:year].to_i, params[:month].to_i, 1)
+    else
+      @date = Date.today
+  	end
   end
 
 end

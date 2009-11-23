@@ -5,7 +5,7 @@ describe ExpensesController do
 
 	describe "index action" do
  	
- 		before(:all) do
+ 		before(:each) do
  			@altro = mock_model(Category, :name => "Altro")
  			
  			@bancomat = mock_model(Account, :name => "Bancomat")
