@@ -13,7 +13,14 @@ Given /^I have expenses with description (.+) in category (.+) and in account (.
   end
 end
 
-
 Given /^I have an account named (.+)$/ do |account_name|
   Account.create!(:name => account_name)
+end
+
+Given /^I have no expenses$/ do
+  Expense.delete_all
+end
+
+Then /^I should have ([0-9]+) expense$/ do |count|
+  Expense.count.should eql(count.to_i)
 end
