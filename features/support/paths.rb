@@ -12,6 +12,9 @@ module NavigationHelpers
       '/'
     when /the list of expenses/
       expenses_path
+      
+    when /the list of categories/
+      categories_path
     # Add more mappings here.
     # Here is a more fancy example:
     #

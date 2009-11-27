@@ -4,9 +4,7 @@ Feature: Manage Expenses
 	I want to be able to insert and retrieve expenses from the DB
 	
 	Scenario: Expenses list
-		Given I have a category named Stuff
-			And I have an account named Bancomat
-			And I have expenses with description Pizza, Pallone in category Stuff and in account Bancomat
+		Given I have expenses with description Pizza, Pallone
 		When I go to the list of expenses
 		Then I should see "Pizza"
 			And I should see "Pallone"
@@ -23,4 +21,7 @@ Feature: Manage Expenses
 		Then I should see "1 expenses correctly saved" 
 			And I should have 1 expense
 			
-			
+	Scenario: List of categories
+		Given I have a category with title "My Category"
+		When I go to the list of categories
+		Then I should see "My Category"
