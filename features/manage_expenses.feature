@@ -20,8 +20,3 @@ Feature: Manage Expenses
 			And I press "Save"
 		Then I should see "1 expenses correctly saved" 
 			And I should have 1 expense
-			
-	Scenario: List of categories
-		Given I have a category with title "My Category"
-		When I go to the list of categories
-		Then I should see "My Category"

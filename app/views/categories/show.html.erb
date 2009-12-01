@@ -3,6 +3,20 @@
   <%=h @category.name %>
 </p>
 
+<h3>This year progress:</h3>
+
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr>
+		<% 1.upto(12) do |month| %>
+			<th><%= month %></th>
+		<% end %>
+	</tr>
+	<tr>
+		<% 1.upto(12) do |month| %>
+			<td><%= Expense.total_for_month_by_category (Date.new(Date.today.year, month, 1), @category.name ) %></td>
+		<% end %>
+	</tr>
+</table>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

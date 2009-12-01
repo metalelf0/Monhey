@@ -1,13 +1,16 @@
-Given /^I have a category named (.+)$/ do |category_name|
-  Category.create!(:name => category_name)
-end
-
 Given /^I have expenses with description (.+)$/ do |descriptions|
   descriptions.split(", ").each do |description|
     Factory(:expense,
             :description => description,
             :date => Date.today
 )
+  end
+end
+
+Given /^I have the following expenses$/ do |table|
+  Expense.delete_all
+  table.hashes.each do |hash|
+    Factory(:expense, :date => hash[:date], :amount => hash[:amount], :category => Category.find_or_create_by_name(hash[:category_name]))
   end
 end
 
