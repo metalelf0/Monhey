@@ -8,8 +8,6 @@ Feature: Manage Categories
 		When I go to the list of categories
 		Then I should see "My Category"
 	
-	
-	@focus
 	Scenario: Category info
 		Given I have a category named "My category"
 		  And I have the following expenses

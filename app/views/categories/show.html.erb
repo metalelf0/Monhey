@@ -13,7 +13,7 @@
 	</tr>
 	<tr>
 		<% 1.upto(12) do |month| %>
-			<td><%= Expense.total_for_month_by_category (Date.new(Date.today.year, month, 1), @category.name ) %></td>
+			<td><%= @totals[month - 1] %></td>
 		<% end %>
 	</tr>
 </table>

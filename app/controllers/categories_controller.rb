@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @totals = @category.totals_for_year Date.today.year
   end
 
   def new

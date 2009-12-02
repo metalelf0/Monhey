@@ -9,9 +9,10 @@ Feature: Manage Expenses
 		Then I should see "Pizza"
 			And I should see "Pallone"
 			
+	@focus		
 	Scenario: Create valid expense
-		Given I have a category named Stuff
-			And I have an account named Account
+		Given I have a category named "Stuff"
+			And I have an account named "Account"
 			And I have no expenses
 		When I go to the list of expenses
 			And I fill in "elem1_amount" with "10"
