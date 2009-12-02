@@ -10,11 +10,10 @@ describe ExpensesHelper do
 
   it "should get the labels for a month" do
     Date.stub!(:today).and_return(Date.new(2009, 11, 1))
-    labels = labels_for(Date.today)
+    labels = daily_labels_for_month_of(Date.today)
     labels.split("|").should have(30).labels
     labels.split("|").first.should eql("1")
     labels.split("|").last.should eql("30")
-    
   end
 
 end

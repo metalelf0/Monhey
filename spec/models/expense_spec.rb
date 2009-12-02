@@ -126,7 +126,7 @@ describe Expense do
     Expense.should_receive(:total_for_day).with(last).and_return(-5.0)
     actual_url = Expense.generate_daily_chart_for(Date.today)
     expected_string = "10.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.0"
-    expected_url = "http://chart.apis.google.com/chart?cht=lc&chxt=x,y&chg=0,25&chd=t:" + expected_string + "&chxl=0:|" + labels_for(Date.today) + "|1:|0|250|500|750|1000&chs=500x150&chds=0,1000"
+    expected_url = "http://chart.apis.google.com/chart?cht=lc&chxt=x,y&chg=0,25&chd=t:" + expected_string + "&chxl=0:|" + daily_labels_for_month_of(Date.today) + "|1:|0|250|500|750|1000&chs=500x150&chds=0,1000"
     actual_url.should eql(expected_url)
   end
 
