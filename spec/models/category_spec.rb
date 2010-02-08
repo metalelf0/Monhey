@@ -9,7 +9,7 @@ describe Category do
   end
   
   it "should get a correct monthly total string for a given year" do
-Expense.should_receive(:total_for_month_by_category).exactly(12).times.and_return(-10.0)
+    Expense.should_receive(:total_for_month_by_category).exactly(12).times.and_return(-10.0)
     
     cat = Factory.build(:category)    
     expected_labels = ([-10.0] * 12).join(',')

@@ -12,10 +12,10 @@ Feature: Manage Categories
 		Given I have a category named "My category"
 		  And I have the following expenses
 		 | date      | amount | category_name |
-		 | 2009-1-1  | -10    | My category   |
-		 | 2009-2-1  | -10    | My category   |
-		 | 2009-5-1  | -15    | My category   |
-		 | 2009-10-1 | -35    | My category   |
+		 | 2010-1-1  | -10    | My category   |
+		 | 2010-2-1  | -10    | My category   |
+		 | 2010-5-1  | -15    | My category   |
+		 | 2010-10-1 | -35    | My category   |
 		When I visit detail page for category "My category"
 		Then I should see "-35"
 	

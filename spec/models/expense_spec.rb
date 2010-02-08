@@ -3,10 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe Expense do
 
   it "should retrieve expenses in a given month" do
-    Expense.should_receive(:find).and_return([@e1])
-  	expenses_of_february = Expense.find_by_year_month(:date => Date.new(2009, 2, 1))
-  	expenses_of_february.size.should eql(1)
-  end
+        Expense.should_receive(:find).and_return([@e1])
+        expenses_of_february = Expense.find_by_year_month(:date => Date.new(2009, 2, 1))
+        expenses_of_february.size.should eql(1)
+      end
   
   it "should calculate correctly the average value for the current month" do
     date = mock("date")
@@ -37,14 +37,14 @@ describe Expense do
     some_day.should_receive(:day).and_return(31)
     Expense.prevision_for_month(date).should eql(-310.0)
   end
-
+  
   it "should calculate correctly a monthly prevision - another month" do
     date = mock("date")
     date.should_receive(:is_in_current_month).and_return(false)
     Expense.should_receive(:total_for_month).with(date).and_return(-100.0)
     Expense.prevision_for_month(date).should eql(-100.0)
   end
-
+  
   it "should calculate how much money is left for the current month" do
     date = mock("date")
     date.should_receive(:is_in_current_month).and_return(true)
@@ -58,7 +58,7 @@ describe Expense do
     date.should_receive(">").with(Date.today).and_return(true)
     Expense.left_for_month_with_stipendio(date, 100).should eql(100.0) 
   end
-
+  
   it "should calculate how much money is left for an old month" do
     date = mock("date")
     date.should_receive(:is_in_current_month).and_return(false)
@@ -71,7 +71,7 @@ describe Expense do
     date = mock("date")
     category = Category.new(:name => "category")
     Category.should_receive(:all).and_return([category])
-
+  
     Expense.should_receive(:total_for_month_by_category).with(date, category.name).and_return -1000.0
     amounts = Expense.amounts_for_categories(date)
     amounts["category"].should eql(-1000.0)
@@ -101,6 +101,9 @@ describe Expense do
   
   it "should get a correct daily expenses string for an expense-empty month" do
     Date.stub!(:today).and_return(Date.new(2009, 11, 30)) # thirty days month...
+    1.upto(30) do |i|
+      Expense.should_receive(:total_for_day).with(Date.new(2009, 11, i)).and_return(0)
+    end
     expected_string = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" # ...thirty zeros
     Expense.amounts_by_date_for_month(Date.today).should eql(expected_string)
   end
@@ -129,7 +132,7 @@ describe Expense do
     expected_url = "http://chart.apis.google.com/chart?cht=lc&chxt=x,y&chg=0,25&chd=t:" + expected_string + "&chxl=0:|" + daily_labels_for_month_of(Date.today) + "|1:|0|250|500|750|1000&chs=500x150&chds=0,1000"
     actual_url.should eql(expected_url)
   end
-
+  
   it "should calculate the right font size in tag cloud" do
     total, lowest, highest = 0, 0, 0
     Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("display:none;")
@@ -140,7 +143,7 @@ describe Expense do
     # total == lowest means highest expense!
     total, lowest, highest = 10, -10, 10
     Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:12px;")
-
+  
     # total == highest means lowest expense!  
     total, lowest, highest = -10, -10, 10
     Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
