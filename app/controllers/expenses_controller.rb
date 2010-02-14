@@ -36,7 +36,7 @@ class ExpensesController < ApplicationController
     @page_title = "Create many movements"
     @saved = ""
     for i in 1..10 do
-      if !(params["elem" + i.to_s]["amount"].blank? or params["elem" + i.to_s]["description"].blank?)
+      if !(params["elem" + i.to_s]["amount"].blank? || params["elem" + i.to_s]["description"].blank?)
         expense = Expense.new(@database_name)
         # TODO: "elem" a costante
         params["elem" + i.to_s] = handle_multiedit_params(params["elem" + i.to_s])       
@@ -67,17 +67,9 @@ class ExpensesController < ApplicationController
   
   def handle_multiedit_params params
     params["amount"] = params["amount"].sub("," , ".")
-    params["buoni"] = params["buoni"]
     params["description"] = params["description"].capitalize
     params["ufficio"] == "true" ? params["ufficio"] = true : params["ufficio"] = false
     return params
-  end
-
-  def pad_to_two_digits string_of_numbers
-    if string_of_numbers.size == 1
-      string_of_numbers =  "0" + string_of_numbers
-    end
-    string_of_numbers
   end
 
   private

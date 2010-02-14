@@ -7,3 +7,4 @@ public/stylesheets/style_old.css
 tmp/*
 **~
 config/database.yml
+coverage

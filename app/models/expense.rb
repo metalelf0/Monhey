@@ -13,11 +13,7 @@ class Expense < ActiveRecord::Base
   validates_numericality_of :amount   
 
   def Expense.find_by_year_month params
-    if not params[:month].nil? and not params[:year].nil?
-      date = Date.new( params[:year].to_i, params[:month].to_i, 1)
-    elsif not params[:date].nil?
-      date = params[:date]
-    end
+    date = params[:date]
     start_date, end_date = start_and_end_of_month(date)
     Expense.find(:all, :conditions => ["date BETWEEN ? AND ?", start_date, end_date])
   end
