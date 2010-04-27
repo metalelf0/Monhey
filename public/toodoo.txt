@@ -3,7 +3,8 @@
 [X] aggiungere il tag all alla tag cloud
 [.] aggiungere il nome della category corrente quando filtro da tag cloud
 [X] togliere i metodi inutili month_after e month_before su Date
-[ ] migliorare il csv importer per importare tutti i dati e fare csv exporter (someday)
+[X] migliorare il csv importer per importare tutti i dati 
+[ ] fare csv exporter
 [X] passare sempre un date anziché year e month
 [X] applicare stylesheet anche a accounts e movements
 [X] aggiungere links ad accounts da expenses e categories
