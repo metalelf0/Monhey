@@ -5,19 +5,19 @@ class ExpenseCsvImporter
 
   attr_accessor :path
 
-  def initialize path
+  def initialize path, mode=:standard
     @path = path
+    
   end
 
-  def import_line line
-    attributes = FasterCSV::parse(line)[0]
-    Expense.create(:date => attributes[0], :amount => attributes[1],
-      :description => attributes[2], :category => Category.find_or_create_by_name(attributes[3]))
+  def import_row parsed_row
+    Expense.create(:date => parsed_row[0], :amount => parsed_row[1],
+      :description => parsed_row[2], :category => Category.find_or_create_by_name(parsed_row[3]))
   end
   
   def import
-    File.read(@path).each do |line|
-      import_line line
+    FasterCSV.foreach(@path) do |parsed_row|
+      import_row parsed_row
     end
   end
 

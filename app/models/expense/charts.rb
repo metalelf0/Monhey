@@ -1,8 +1,10 @@
 class Expense
   module Charts
+   
+   MAX_CLOUD_SIZE = 32
+   MIN_CLOUD_SIZE = 12
     
-    # generates values in range 12 - 32
-    def Expense.font_size_for_tag_cloud(total, lowest, highest)
+   def Expense.font_size_for_tag_cloud(total, lowest, highest)
       return "font-size:#{ MAX_CLOUD_SIZE.to_s }px;" if ((total != 0) && (total == lowest) && (lowest == highest))
       return nil if total.nil? or highest.nil? or lowest.nil?
       return "display:none;" if (total == 0)

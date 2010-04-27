@@ -4,10 +4,6 @@ class Expense < ActiveRecord::Base
 
   include Expense::Finders
   include Expense::Charts
-  
-  MAX_CLOUD_SIZE = 32
-  MIN_CLOUD_SIZE = 12
-
 
   belongs_to :category
   belongs_to :account
