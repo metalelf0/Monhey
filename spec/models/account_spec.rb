@@ -13,7 +13,7 @@ describe Account do
   it "should use is_bancomat and is_contanti methods correctly" do
     bancomat = Account.new(:name => "Bancomat")
     contanti = Account.new(:name => "Contanti")
-
+  
     bancomat.is_contanti?.should be_false
     bancomat.is_bancomat?.should be_true
     

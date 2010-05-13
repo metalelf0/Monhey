@@ -88,3 +88,15 @@ tr.totals td.total-amount {
 img {
 	border: 0;
 }
+
+.left {
+  float:left;
+}
+
+.right {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}

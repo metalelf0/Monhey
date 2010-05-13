@@ -4,7 +4,7 @@ describe Movement do
 
   it "should have accounts" do
     from_account = mock_model(Account, :name => "from")
-    to_account = mock_model(Account, :name => "to")
+    to_account   = mock_model(Account, :name => "to")
     Movement.new.should_not be_valid
     Movement.new(:from_account => from_account, :to_account => to_account).should be_valid
   end

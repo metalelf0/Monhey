@@ -25,9 +25,10 @@ describe "Creating an entry" do
 
     click_button "Save"
     Expense.count.should eql(1)
-    Expense.first.description.should eql("Spesa di prova") 
-    Expense.first.amount.should eql(-10.0)
-    Expense.first.date.should eql(Date.today)
+    expense = Expense.first
+    expense.description.should eql("Spesa di prova") 
+    expense.amount.should eql(-10.0)
+    expense.date.should eql(Date.today)
   end
 
   it "should save more than one entry through edit fields-rows" do

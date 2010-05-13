@@ -1,0 +1,41 @@
+- categories = options_for_select(Category.all.map { |category| [category.name, category.id ] }, 0 )
+
+%h1 New expense
+
+%div{:style=>"width:400px;"}
+
+  - form_for(@expense) do |f|
+    %div
+      = f.error_messages
+  
+    %div
+      %div.left=  f.label :date
+      %div.right= f.date_select :date
+      %div.clear
+
+    %div
+      %div.left=  f.label :description
+      %div.right= f.text_field :description
+      %div.clear
+
+    %div
+      %div.left=  f.label :amount
+      %div.right= f.text_field :amount
+      %div.clear
+  
+    %div
+      %div.left=  f.label :category
+      %div.right= f.select :category_id, categories
+      %div.clear
+  
+    %div
+      %div.left=  f.label :buoni
+      %div.right= f.text_field :buoni
+      %div.clear
+
+    %div
+      %div.right= f.submit 'Create'
+
+
+= link_to 'Back', expenses_path
+ 

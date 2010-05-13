@@ -1,8 +1,0 @@
-<div id="tag_cloud">
-<%= link_to_unless_current "No filter", :action => :index, :date => @date %>&nbsp;&nbsp;
-<% Category.all.map(&:name).each do |category_name| %>
-	 
-<%=	link_to_unless_current content_tag('span', category_name, :title => @hash_for_cloud[category_name][:amount], :style => @hash_for_cloud[category_name][:style]), :action => :index, :date => @date, :category_name => category_name -%>
-	
-<% end %>
-</div>
