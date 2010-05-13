@@ -9,32 +9,32 @@
       = f.error_messages
   
     %div
-      %div.left=  f.label :date
-      %div.right= f.date_select :date
-      %div.clear
+      .left=  f.label :date
+      .right= f.date_select :date
+      .clear
 
     %div
-      %div.left=  f.label :description
-      %div.right= f.text_field :description
-      %div.clear
+      .left=  f.label :description
+      .right= f.text_field :description
+      .clear
 
     %div
-      %div.left=  f.label :amount
-      %div.right= f.text_field :amount
-      %div.clear
+      .left=  f.label :amount
+      .right= f.text_field :amount
+      .clear
   
     %div
-      %div.left=  f.label :category
-      %div.right= f.select :category_id, categories
-      %div.clear
+      .left=  f.label :category
+      .right= f.select :category_id, categories
+      .clear
   
     %div
-      %div.left=  f.label :buoni
-      %div.right= f.text_field :buoni
-      %div.clear
+      .left=  f.label :buoni
+      .right= f.text_field :buoni
+      .clear
 
     %div
-      %div.right= f.submit 'Create'
+      .right= f.submit 'Create'
 
 
 = link_to 'Back', expenses_path

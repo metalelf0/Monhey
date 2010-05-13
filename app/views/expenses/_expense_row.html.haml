@@ -1,0 +1,20 @@
+%tr.expense-row
+  %td
+    = h expense.description
+  %td.expense-cell-amount
+    = currency_euro expense.amount
+  %td
+    =h expense.category.nil? ? "N/A" : expense.category.name
+  %td.expense-cell-bancomat
+    =h expense.account.is_bancomat? ? 'X' : ''
+  %td.expense-cell-ufficio
+    =h expense.ufficio  ? 'X' : ''
+  %td
+    =h expense.buoni
+  %td
+    =h expense.date
+  %td
+    = link_to image_tag('page_edit.png'), edit_expense_path(expense)
+  %td
+    = link_to image_tag("delete.png"), expense, :confirm => 'Are you sure?', :method => :delete
+
