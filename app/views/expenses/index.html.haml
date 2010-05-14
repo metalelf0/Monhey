@@ -1,0 +1,87 @@
+:javascript
+  $(function() {
+    $("#tabs").tabs();
+  });
+
+- total = Expense.total_for_month @date
+- average = Expense.average_for_month @date
+- prevision = Expense.prevision_for_month @date
+- left = Expense.left_for_month_with_stipendio @date, 1190
+- bancomat = Expense.total_for_bancomat_in_month(@date)
+  
+- expenses_for = "Listing expenses for #{Date::MONTHNAMES[@date.month] + " " + @date.year.to_s}"
+
+= render :partial => 'layouts/header', :locals => {:title => "Expenses Manager", :subtitle => expenses_for }
+
+#navigation-links
+  = link_to "&lt;&lt; Prev month", :action => :index, :month => (@date << 1).month, :year => (@date << 1).year
+  &nbsp; &nbsp;
+  = link_to "Next month &gt;&gt;", :action => :index, :month => (@date >> 1).month, :year => (@date >> 1).year
+  | 
+  = link_to 'Categories', categories_path
+  | 
+  = link_to 'Accounts', accounts_path
+  |
+  = link_to 'Movements', movements_path
+
+  - if RAILS_ENV != "production"
+    = "<BR/><b>WARNING!!! APPLICATION RUNNING IN #{RAILS_ENV.upcase} MODE</b>"
+
+
+
+= render :partial => 'tag_cloud'
+
+#tabs
+  %ul
+    %li 
+      %a(href="#tabs-1") Statistics
+    %li 
+      %a(href="#tabs-2") Daily chart
+    %li 
+      %a(href="#tabs-3") Categories chart
+
+  #tabs-1
+    = render :partial => 'layouts/statistics', :locals => {:total => total, :average => average, :bancomat => bancomat, :prevision => prevision, :left => left }
+  #tabs-2
+    %img{:src => Expense.generate_daily_chart_for(@date) }
+  #tabs-3
+    %img{:src => Expense.generate_expenses_pie_chart(@date) }
+
+
+
+%table
+
+  %tr
+    %th Description
+    %th Amount
+    %th Category
+    %th Bancomat
+    %th Ufficio
+    %th Buoni
+    %th Date
+
+
+  - @expenses.each do |expense|
+    = render :partial => 'expense_row', :locals => {:expense => expense }
+
+
+  %tr.totals
+    %td
+      %td.total-amount
+        = currency_euro @expenses.inject(0) { |total, e| total + e.amount }
+      %td
+      %td
+      %td
+      %td.total-buoni
+        =h @expenses.inject(0) { |total, e| total + e.buoni } 
+      %td    
+
+  
+
+
+%hr
+
+#form_enter_many
+  = render :partial => "form_many"
+
+%br
