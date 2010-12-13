@@ -7,7 +7,6 @@ require 'spec/rails'
 
 # commented out because of webrat installation fail
 require 'webrat'
-require 'webrat/integrations/rspec-rails'
 
 Webrat.configure do |config|
   config.mode = :rails
