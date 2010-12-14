@@ -68,7 +68,6 @@ class ExpensesController < ApplicationController
   def handle_multiedit_params params
     params["amount"] = params["amount"].sub("," , ".")
     params["description"] = params["description"].capitalize
-    params["ufficio"] == "true" ? params["ufficio"] = true : params["ufficio"] = false
     return params
   end
 

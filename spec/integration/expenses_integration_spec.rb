@@ -18,7 +18,6 @@ describe "Creating an entry" do
     visit 'expenses'
 
     fill_in "elem1[amount]", :with => "-10"
-    fill_in "elem1[buoni]", :with => "1"
     fill_in "elem1[description]", :with => "Spesa di prova"
 
     select "Altro", :from => "elem1_category_id"
@@ -36,17 +35,14 @@ describe "Creating an entry" do
     visit 'expenses'
 
     fill_in "elem1[amount]", :with => -10
-    fill_in "elem1[buoni]", :with => 1
     fill_in "elem1[description]", :with => "Spesa di prova n. 1"
     select "Altro", :from => "elem1_category_id"
 
     fill_in "elem2[amount]", :with => -15
-    fill_in "elem2[buoni]", :with => 0
     fill_in "elem2[description]", :with => "Spesa di prova n. 2"
     select "Elettronica", :from => "elem2_category_id"
 
     fill_in "elem3[amount]", :with => -20
-    fill_in "elem3[buoni]", :with => 2
     fill_in "elem3[description]", :with => "Spesa di prova n. 3"
     select "Cibo", :from => "elem3_category_id"
 

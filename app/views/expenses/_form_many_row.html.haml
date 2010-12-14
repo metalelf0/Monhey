@@ -3,12 +3,8 @@
 %td
   = text_field_tag("elem#{i}[amount]", "", :size => 5)
 %td
-  = text_field_tag("elem#{i}[buoni]", "", :size => 5) 
-%td
   = text_field_tag("elem#{i}[description]", "", :size => 25) 
 %td
   = select_tag "elem#{i}[category_id]", categories 
 %td
   = select_tag "elem#{i}[account_id]", accounts 
-%td
-  = check_box_tag "elem#{i}[ufficio]",  "true", false 

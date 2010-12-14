@@ -15,27 +15,21 @@ describe ExpensesController do
  			  :amount => 0,
  			  :date => Date.new(2009,1,1),
  			  :category => @altro, 
- 			  :account => @bancomat, 
- 			  :ufficio => true, 
- 			  :buoni => 1)
+ 			  :account => @bancomat)
  			
   		@second = mock_model(Expense, 
   		  :description => "Second", 
   		  :amount => 10, 
   		  :date => Date.new(2009,2,1), 
   		  :category => @altro, 
-  		  :account => @bancomat, 
-  		  :ufficio => true, 
-  		  :buoni => 2)
+  		  :account => @bancomat)
   		
   		@third = mock_model(Expense,
   		  :description => "Third", 
   		  :amount => 20, 
   		  :date => Date.new(2009,3,1), 
   		  :category => @altro, 
-  		  :account => @bancomat, 
-  		  :ufficio => true, 
-  		  :buoni => 3)
+  		  :account => @bancomat)
 
       @bancomat.stub!(:is_bancomat?).and_return true      
  			

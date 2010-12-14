@@ -56,8 +56,6 @@
     %th Amount
     %th Category
     %th Bancomat
-    %th Ufficio
-    %th Buoni
     %th Date
 
 
@@ -71,9 +69,6 @@
         = currency_euro @expenses.inject(0) { |total, e| total + e.amount }
       %td
       %td
-      %td
-      %td.total-buoni
-        =h @expenses.inject(0) { |total, e| total + e.buoni } 
       %td    
 
   

@@ -7,10 +7,6 @@
     =h expense.category.nil? ? "N/A" : expense.category.name
   %td.expense-cell-bancomat
     =h expense.account.is_bancomat? ? 'X' : ''
-  %td.expense-cell-ufficio
-    =h expense.ufficio  ? 'X' : ''
-  %td
-    =h expense.buoni
   %td
     =h expense.date
   %td
