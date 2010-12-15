@@ -1,13 +1,13 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 require 'fastercsv'
 
-describe ExpenseCsvImporter do
+describe ExpenseImporter do
 
   fixtures_path = RAILS_ROOT + "/spec/fixtures/expenses.csv"
   fixtures_path_easymoney = RAILS_ROOT + "/spec/fixtures/expenses_easymoney.csv"
 
   it "should parse a line from the csv file" do
-    importer = ExpenseCsvImporter.new("a path")
+    importer = ExpenseImporter.new("a path")
     parsed_row = ["2009-06-21","-15","Pranzo terme primia","Cibo"]
     category = mock_model(Category)
     Category.should_receive(:find_or_create_by_name).with("Cibo").and_return(category)
@@ -18,7 +18,7 @@ describe ExpenseCsvImporter do
   end
  
   it "should parse a line from the easymoney csv file" do
-    importer = ExpenseCsvImporter.new("a path", :easymoney)
+    importer = ExpenseImporter.new("a path", :easymoney)
     parsed_row = ["Benza", "Transportation", "-60.68", "Uncleared", "15 Mar 2010"]
     category = mock_model(Category)
     Date.should_receive(:parse).with("15 Mar 2010").and_return(:some_date)
@@ -30,14 +30,14 @@ describe ExpenseCsvImporter do
   
   
   it "should parse all the lines from the csv file" do
-    importer = ExpenseCsvImporter.new fixtures_path
+    importer = ExpenseImporter.new fixtures_path
     Category.should_receive(:find_or_create_by_name).exactly(40).times
     Expense.should_receive(:create).exactly(40).times
     importer.import
   end
 
   it "should parse all the lines from the easymoney csv file" do
-    importer = ExpenseCsvImporter.new fixtures_path_easymoney, :easymoney
+    importer = ExpenseImporter.new fixtures_path_easymoney, :easymoney
     Category.should_receive(:find_or_create_by_name).exactly(8).times
     Expense.should_receive(:create).exactly(8).times
     importer.import

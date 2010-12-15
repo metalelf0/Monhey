@@ -1,7 +1,7 @@
 require 'fastercsv'
 require 'pp'
 
-class ExpenseCsvImporter
+class ExpenseImporter
 
   attr_accessor :path
   attr_accessor :mode
