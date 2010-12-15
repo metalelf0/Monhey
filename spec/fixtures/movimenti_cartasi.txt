@@ -1,0 +1,8 @@
+ -------------------------------------------------------------------------------------------------------------------------------------------- 
+| Mese Add. |    Data    | Riferimento |     Categoria    | Importo |                    Descrizione                    |  Divisa |  Cambio  |
+|-----------|------------|-------------|------------------|---------|---------------------------------------------------|---------|----------|
+| Novembre  | 30/10/2010 | 28070170716 | ABBIGLIAMENTO    |    14,95| CC ZARA 3988 547 VARESE I                         | 0,00    |          |
+| Novembre  | 02/11/2010 | 30760304769 | ALTRE SPESE      |     3,60| TRENITALIA GALLARATE SELFGALLARATE                | 0,00    |          |
+| Novembre  | 02/11/2010 | 40012973889 | ALTRE SPESE      |     1,80| GOOGLE PAOLO CONTE GOOGLE.COM/CH G                | 0,00    |          |
+| Novembre  | 05/11/2010 | 44907216720 | ALTRE SPESE      |    25,00| PAYPAL DONAZIONI 35314369001 L                    | 0,00    |          |
+| Novembre  | 06/11/2010 | 00507815831 | SUPERMERCATI     |    22,16| SUPERMERCATO IL MERCAT GALLARATE I                | 0,00    |          |

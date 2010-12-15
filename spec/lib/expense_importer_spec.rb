@@ -5,6 +5,7 @@ describe ExpenseImporter do
 
   fixtures_path = RAILS_ROOT + "/spec/fixtures/expenses.csv"
   fixtures_path_easymoney = RAILS_ROOT + "/spec/fixtures/expenses_easymoney.csv"
+  fixtures_path_cartasi = RAILS_ROOT + "/spec/fixtures/movimenti_cartasi.txt"
 
   it "should parse a line from the csv file" do
     importer = ExpenseImporter.new("a path")
@@ -42,5 +43,16 @@ describe ExpenseImporter do
     Expense.should_receive(:create).exactly(8).times
     importer.import
   end
+
+  it "should parse all lines from a cartasi report" do
+    importer = ExpenseImporter.new fixtures_path_cartasi, :cartasi
+    Category.should_receive(:find_or_create_by_name).exactly(5).times
+    Expense.should_receive(:create).exactly(5).times
+    importer.import
+  end
+
+  it "should swap month and year when importing an expense from a cartasi report"
+
+  it "should log exceptions somewhere better than STDOUT"
 
 end
