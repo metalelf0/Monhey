@@ -18,18 +18,23 @@ class ExpenseImporter
     else
       date = Date.parse(parsed_row[ @fields[:date] ]) 
     end
-    Expense.create(:date => date, 
-                   :amount => parsed_row[ @fields[:amount] ],
-                   :description => parsed_row[ @fields[:description] ], 
-                   :category => Category.find_or_create_by_name(parsed_row[ @fields[:category] ]))
+    Expense.create!(:date => date, 
+                   :amount => intelligent_to_f(parsed_row[ @fields[:amount] ]),
+                   :description => parsed_row[ @fields[:description] ].strip, 
+                   :category => Category.find_or_create_by_name(parsed_row[ @fields[:category] ].strip))
   end
+
+  def intelligent_to_f string
+    string.gsub(",", ".").to_f
+  end
+  
   
   def import
     FasterCSV.foreach(@path, {:col_sep => @col_sep}) do |parsed_row|
       begin
         import_row parsed_row
       rescue Exception => e
-        # puts "Error importing row: #{e}" 
+        puts "Error importing row: #{e}" 
       end
     end
   end
