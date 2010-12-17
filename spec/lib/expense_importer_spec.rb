@@ -13,8 +13,8 @@ describe ExpenseImporter do
     category = mock_model(Category)
     Category.should_receive(:find_or_create_by_name).with("Cibo").and_return(category)
     Date.should_receive(:parse).with("2009-06-21").and_return(:some_date)
-    Expense.should_receive(:create!).with(:date => :some_date, :amount => -15,
-      :description => "Pranzo terme primia", :category => category)
+    Expense.should_receive(:create!).with(hash_including(:date => :some_date, :amount => 15.0,
+      :description => "Pranzo terme primia", :category => category))
     importer.import_row parsed_row
   end
  
@@ -24,8 +24,8 @@ describe ExpenseImporter do
     category = mock_model(Category)
     Date.should_receive(:parse).with("15 Mar 2010").and_return(:some_date)
     Category.should_receive(:find_or_create_by_name).with("Transportation").and_return(category)
-    Expense.should_receive(:create!).with(:date => :some_date, :amount => -60.68,
-      :description => "Benza", :category => category)
+    Expense.should_receive(:create!).with(hash_including(:date => :some_date, :amount => 60.68,
+      :description => "Benza", :category => category))
     importer.import_row parsed_row
   end
   

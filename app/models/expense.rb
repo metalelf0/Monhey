@@ -54,12 +54,12 @@ class Expense < ActiveRecord::Base
     today = Date.today
     if (date.is_in_current_month)
       start_date, end_date = start_and_end_of_month(today)
-      return stipendio + Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date BETWEEN ? AND ? AND cat.name != 'Stipendio'", start_date, end_date])
+      return stipendio - Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date BETWEEN ? AND ? AND cat.name != 'Stipendio'", start_date, end_date])
     else
       if date > today
         return stipendio.to_f
       else
-        return stipendio + Expense.total_for_month(date)
+        return stipendio - Expense.total_for_month(date)
       end
     end
   end

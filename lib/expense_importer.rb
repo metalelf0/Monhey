@@ -19,13 +19,14 @@ class ExpenseImporter
       date = Date.parse(parsed_row[ @fields[:date] ]) 
     end
     Expense.create!(:date => date, 
-                   :amount => intelligent_to_f(parsed_row[ @fields[:amount] ]),
+                   :amount => expense_from_string(parsed_row[ @fields[:amount] ]),
                    :description => parsed_row[ @fields[:description] ].strip, 
+                   :account => Account.find_or_create_by_name("CartaSi"),
                    :category => Category.find_or_create_by_name(parsed_row[ @fields[:category] ].strip))
   end
 
-  def intelligent_to_f string
-    string.gsub(",", ".").to_f
+  def expense_from_string string
+    0 - string.gsub(",", ".").to_f
   end
   
   

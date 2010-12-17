@@ -6,7 +6,7 @@
 - total = Expense.total_for_month @date
 - average = Expense.average_for_month @date
 - prevision = Expense.prevision_for_month @date
-- left = Expense.left_for_month_with_stipendio @date, 1190
+- left = Expense.left_for_month_with_stipendio @date, CONFIG[:monthly_wage]
 - bancomat = Expense.total_for_bancomat_in_month(@date)
   
 - expenses_for = "Listing expenses for #{Date::MONTHNAMES[@date.month] + " " + @date.year.to_s}"

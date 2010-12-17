@@ -43,7 +43,7 @@ class Expense
        base_url = "http://chart.apis.google.com/chart?cht=p&chd=t:"
        categories = ""
        category_amounts.each_pair do |category, amount|
-         if amount < 0
+         if amount > 0
            base_url += amount.to_f.round.abs.to_s+","
            categories += category+"|"
          end
