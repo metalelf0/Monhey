@@ -1,6 +1,7 @@
-require 'consoleLibs.rb'
+require File.join(File.dirname(__FILE__), '..', 'spec_helper')
+include ConsoleLibs
 
-describe Object do
+describe ConsoleLibs do
   
   validArguments = {
     DESCRIPTION => "Sample expense",
@@ -23,16 +24,6 @@ describe Object do
     DATE => "2009/05/01"
   }
   
-  before :each do
-    ENV["RAILS_ENV"]="test"
-    if (ENV["RAILS_ENV"] != "test")
-      puts "Che fai? Non sei in test!"
-      exit -1
-    end
-    Expense.all.each do |exp|
-      exp.destroy
-    end
-  end
 
   it "should pad and trim strings correctly" do
     sample = "string"
@@ -78,18 +69,18 @@ describe Object do
     Expense.count.should eql(before)
   end
 
-  # it "should show the right entries in list mode" do
-  #     build_and_save_expense_from_params validArguments
-  #     build_and_save_expense_from_params validArguments2
-  #     build_and_save_expense_from_params validArguments3
-  #     Expense.all.size.should eql(3)
-  #     Expense.view_reduce(Expense.database_name, "by_date_arr", :include_docs => true, :startkey => [2009, 5], :endkey => [2009, 6], :reduce => false).should have(1).element
-  #     Expense.view_reduce(Expense.database_name, "by_date_arr", :include_docs => true, :startkey => [2009, 6], :endkey => [2009, 7], :reduce => false).should have(1).element
-  #     Expense.view_reduce(Expense.database_name, "by_date_arr", :include_docs => true, :startkey => [2009, 7], :endkey => [2009, 8], :reduce => false).should have(1).element
-  #     expenses_in(2009, 5).should have(1).expense
-  #     expenses_in(2009, 6).should have(1).expense
-  #     expenses_in(2009, 7).should have(1).expense
-  #     expensesFromTo(2009, 5, 2009, 7).should have(3).expenses
-  #   end
+   it "should show the right entries in list mode" do
+       build_and_save_expense_from_params validArguments
+       build_and_save_expense_from_params validArguments2
+       build_and_save_expense_from_params validArguments3
+       Expense.all.size.should eql(3)
+       expenses_in(2009, 5).should have(1).expense
+       expenses_in(2009, 6).should have(1).expense
+       expenses_in(2009, 7).should have(1).expense
+     end
+
+   it "prompts for a choice over a list of arguments" do
+     category = stub_model(Category)
+   end
   
 end

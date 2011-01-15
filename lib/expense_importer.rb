@@ -1,5 +1,6 @@
 require 'fastercsv'
 require 'pp'
+include ConsoleLibs
 
 class ExpenseImporter
 
@@ -35,7 +36,7 @@ class ExpenseImporter
       begin
         import_row parsed_row
       rescue Exception => e
-        puts "Error importing row: #{e}" 
+        console_puts "Error importing row: #{e}" 
       end
     end
   end

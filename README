@@ -1,7 +1,15 @@
 == Welcome to Finanze
 
-mysqldump -uroot -pPASSWORD --no-create-db=TRUE -t --compact finanze_development > dbdump.sql
+This is a simple Rails application to manage your daily expenses. 
 
-mysql -uroot -psatana --database=finanze_production < dbdump.sql
+Features included:
+- monthly view of your expenses
+- filter your expenses by category with tag cloud
+- google charts for monthly reports
+- current month total expense prevision
+- left for this month based on your wage
 
-export RAILS_ENV=production; rake db:migrate; export RAILS_ENV=development;
+Todo list:
+
+- Move wage configuration from environment to yml file
+- Introduce Rails.logger instead of puts where required

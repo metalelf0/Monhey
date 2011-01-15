@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
-require 'consoleLibs.rb'
+# TODO: ma come si faceva a usare la console di Rails anziche' ruby?
+require 'lib/consoleLibs.rb'
+include ConsoleLibs
 
 arguments = {}
 
