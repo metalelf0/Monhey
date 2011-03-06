@@ -41,17 +41,17 @@ describe ExpensesController do
  		it "should receive a success response and show all the entries" do
 		  get :index
 		  response.should be_success
-      assigns[:expenses].should eql [@first]
+      assigns[:incomes].should eql [@first]
 		end
 		
 		it "should show only the entries for a given month" do
 			get :index, :year => 2009, :month => 1
 		  response.should be_success
-		  assigns[:expenses].should eql [@first]
+		  assigns[:incomes].should eql [@first]
 		end
  
  		it "should show only the entries for a given month and category" do
-      Expense.should_receive(:find_by_year_month_and_category).and_return([])
+      Expense.stub(:find_by_year_month_and_category).and_return([])
 			get :index, :year => 2009, :month => 2, :category_name => "A category without expenses"
 		  response.should be_success
 		  assigns[:expenses].should have(0).expenses
