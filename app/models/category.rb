@@ -3,6 +3,7 @@ class Category < ActiveRecord::Base
   MONTHS = "1|2|3|4|5|6|7|8|9|10|11|12"
 
   has_many :expenses
+  validates_presence_of :name
 
   def totals_for_year(year)
     totals = []

@@ -5,6 +5,9 @@
 %td
   = text_field_tag("elem#{i}[description]", "", :size => 25) 
 %td
-  = select_tag "elem#{i}[category_id]", categories 
+  = text_field_tag("elem#{i}[category_name]", "", :size => 25) 
 %td
   = select_tag "elem#{i}[account_id]", accounts 
+
+
+    

@@ -19,8 +19,7 @@ describe "Creating an entry" do
 
     fill_in "elem1[amount]", :with => "-10"
     fill_in "elem1[description]", :with => "Spesa di prova"
-
-    select "Altro", :from => "elem1_category_id"
+    fill_in "elem1[category_name]", :with => "Altro"
 
     click_button "Save"
     Expense.count.should eql(1)
@@ -28,6 +27,7 @@ describe "Creating an entry" do
     expense.description.should eql("Spesa di prova") 
     expense.amount.should eql(-10.0)
     expense.date.should eql(Date.today)
+    expense.category.name.should == "Altro"
   end
 
   it "should save more than one entry through edit fields-rows" do
@@ -36,15 +36,15 @@ describe "Creating an entry" do
 
     fill_in "elem1[amount]", :with => -10
     fill_in "elem1[description]", :with => "Spesa di prova n. 1"
-    select "Altro", :from => "elem1_category_id"
+    fill_in "elem1[category_name]", :with => "Altro"
 
     fill_in "elem2[amount]", :with => -15
     fill_in "elem2[description]", :with => "Spesa di prova n. 2"
-    select "Elettronica", :from => "elem2_category_id"
+    fill_in "elem2[category_name]", :with => "Elettronica"
 
     fill_in "elem3[amount]", :with => -20
     fill_in "elem3[description]", :with => "Spesa di prova n. 3"
-    select "Cibo", :from => "elem3_category_id"
+    fill_in "elem3[category_name]", :with => "Cibo"
 
 
     click_button "Save"

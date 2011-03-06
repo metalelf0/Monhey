@@ -2,6 +2,7 @@ class ExpensesController < ApplicationController
  
   def index
   	@date = build_date_from_params(params)
+    @categories = Category.all(:select => :name).map {|category| category.name }.compact.sort
   	if params[:category_name].blank?
       @expenses = Expense.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date } 
     else
@@ -20,13 +21,14 @@ class ExpensesController < ApplicationController
 
   def edit
     @expense = Expense.find(params[:id])
+    @categories = Category.all(:select => :name).map {|category| category.name }.compact.sort
   end
 
   def create
     @expense = Expense.new(params[:expense])
 	  if @expense.save
 	    flash[:notice] = 'Expense was successfully created.'
-	    redirect_to(@expense)
+      redirect_to expenses_url
 	  else
 	    render :action => "new" 
 	  end
@@ -34,26 +36,26 @@ class ExpensesController < ApplicationController
   
   def create_many
     @page_title = "Create many movements"
-    @saved = ""
     for i in 1..10 do
       if !(params["elem" + i.to_s]["amount"].blank? || params["elem" + i.to_s]["description"].blank?)
-        expense = Expense.new(@database_name)
+        expense = Expense.new
         # TODO: "elem" a costante
         params["elem" + i.to_s] = handle_multiedit_params(params["elem" + i.to_s])       
         expense.attributes = expense.attributes.merge(params["elem" + i.to_s])
-        expense.save(params["elem" + i.to_s])
-        @saved = @saved + i.to_s
+        expense.save()
       end
     end
-    flash[:notice] = @saved.to_s+" expenses correctly saved"
-    redirect_to :action => :index
+    flash[:notice] = "expenses correctly saved"
+    redirect_to expenses_url
   end
 
   def update
     @expense = Expense.find(params[:id])
+    @expense.category = Category.find_or_create_by_name(params[:category_name])
+    params.delete("category_name")
     if @expense.update_attributes(params[:expense])
       flash[:notice] = 'Expense was successfully updated.'
-      redirect_to(@expense)
+      redirect_to expenses_url
     else
     	render :action => "edit" 
     end
@@ -68,6 +70,8 @@ class ExpensesController < ApplicationController
   def handle_multiedit_params params
     params["amount"] = params["amount"].sub("," , ".")
     params["description"] = params["description"].capitalize
+    params["category_id"] = Category.find_or_create_by_name(params[:category_name]).id
+    params.delete("category_name")
     return params
   end
 

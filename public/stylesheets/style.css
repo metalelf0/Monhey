@@ -65,6 +65,10 @@ th {
 	font-weight: bold;
 }	
 
+tr.expense-row.even {
+  background: #ccffff;
+}
+
 tr.expense-row td {
 	padding: 0.5em;
 }

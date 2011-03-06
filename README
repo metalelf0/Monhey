@@ -12,4 +12,5 @@ Features included:
 Todo list:
 
 - Move wage configuration from environment to yml file
+- Complete translating views to HAML
 - Introduce Rails.logger instead of puts where required

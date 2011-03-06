@@ -1,0 +1,34 @@
+%h1 Editing expense
+
+- form_for(@expense) do |f|
+  = f.error_messages 
+  %p
+    = f.label :date 
+    %br
+    = f.date_select :date 
+  %p
+    = f.label :description 
+    %br
+    = f.text_field :description
+  %p
+    = f.label :amount
+    %br
+    = f.text_field :amount
+  %p
+    = f.label :category
+    %br
+    = text_field_tag("category_name", "", :size => 25) 
+  %p
+    = f.submit 'Update'
+
+= link_to 'Back', expenses_path 
+
+:javascript
+  $(document).ready(function(){ 
+    var categories = #{@categories.compact.to_json} ;
+    $("#category_name").autocomplete({
+      source: categories,
+      minLength: 0,
+      delay: 0
+    });
+  });

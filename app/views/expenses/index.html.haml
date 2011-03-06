@@ -1,5 +1,5 @@
 :javascript
-  $(function() {
+  $(document).ready(function() {
     $("#tabs").tabs();
   });
 
@@ -56,12 +56,13 @@
       %th Description
       %th Amount
       %th Category
-      %th Bancomat
+      %th Account
       %th Date
 
 
     - @expenses.each do |expense|
-      = render :partial => 'expense_row', :locals => {:expense => expense }
+      - html_row_class=cycle('odd','even')
+      = render :partial => 'expense_row', :locals => {:expense => expense, :html_row_class => html_row_class }
 
 
     %tr.totals

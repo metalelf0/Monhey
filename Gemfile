@@ -6,6 +6,7 @@ gem "thoughtbot-factory_girl"
 gem "haml"
 gem "mysql"
 gem "fastercsv"
+gem "ruby-debug"
 
 group :test, :cucumber do
   gem "rspec-rails", ">= 1.3.2"
