@@ -49,27 +49,30 @@
 
 
 
-%table
+- unless @expenses.empty?
+  %table
 
-  %tr
-    %th Description
-    %th Amount
-    %th Category
-    %th Bancomat
-    %th Date
-
-
-  - @expenses.each do |expense|
-    = render :partial => 'expense_row', :locals => {:expense => expense }
+    %tr
+      %th Description
+      %th Amount
+      %th Category
+      %th Bancomat
+      %th Date
 
 
-  %tr.totals
-    %td
-      %td.total-amount
-        = currency_euro @expenses.inject(0) { |total, e| total + e.amount }
+    - @expenses.each do |expense|
+      = render :partial => 'expense_row', :locals => {:expense => expense }
+
+
+    %tr.totals
       %td
-      %td
-      %td    
+        %td.total-amount
+          = currency_euro @expenses.inject(0) { |total, e| total + e.amount }
+        %td
+        %td
+        %td    
+- else
+  %span No expenses found for current month :)
 
   
 
