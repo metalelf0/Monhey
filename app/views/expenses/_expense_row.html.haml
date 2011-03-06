@@ -5,7 +5,7 @@
     = currency_euro expense.amount
   %td
     =h expense.category.nil? ? "N/A" : expense.category.name
-  %td.expense-cell-bancomat
+  %td
     =h expense.account.name
   %td
     =h expense.date

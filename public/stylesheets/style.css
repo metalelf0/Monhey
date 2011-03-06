@@ -73,10 +73,6 @@ tr.expense-row td {
 	padding: 0.5em;
 }
 
-tr.expense-row td.expense-cell-bancomat,
-tr.expense-row td.expense-cell-ufficio {
-	text-align: center;
-}
 
 tr.expense-row td.expense-cell-amount,
 tr.totals td.total-amount {
