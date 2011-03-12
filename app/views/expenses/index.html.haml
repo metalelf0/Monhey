@@ -7,7 +7,6 @@
 - average = Expense.average_for_month @date
 - prevision = Expense.prevision_for_month @date
 - left = Expense.left_for_month_with_stipendio @date, CONFIG[:monthly_wage]
-- bancomat = Expense.total_for_bancomat_in_month(@date)
   
 - expenses_for = "Listing expenses for #{Date::MONTHNAMES[@date.month] + " " + @date.year.to_s}"
 
@@ -41,7 +40,7 @@
       %a(href="#tabs-3") Categories chart
 
   #tabs-1
-    = render :partial => 'layouts/statistics', :locals => {:total => total, :average => average, :bancomat => bancomat, :prevision => prevision, :left => left }
+    = render :partial => 'layouts/statistics', :locals => {:total => total, :average => average, :prevision => prevision, :left => left }
   #tabs-2
     %img{:src => Expense.generate_daily_chart_for(@date) }
   #tabs-3

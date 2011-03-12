@@ -10,11 +10,10 @@ module ConsoleLibs
   MODE        = "-m"
   DESCRIPTION = "-d"
   AMOUNT      = "-a"
+  ACCOUNT     = "-b"
   CATEGORY    = "-c"
   UFFICIO     = "-u"
-  BANCOMAT    = "-b"
   DATE        = "-y"
-  BUONI       = "-p"
   RANGE       = "-r"
 
   def console_puts output
@@ -37,7 +36,7 @@ module ConsoleLibs
        - h(elp)
 
     Insert mode parameters:
-      -d <description> -a <amount> -b <bancomat> (S or N) -c <category> -y <day> (YYYY/MM/DD) 
+      -d <description> -a <amount> -b <account_name> -c <category> -y <day> (YYYY/MM/DD) 
       
     List mode parameters:
       -r <year> <month>: specifies a month to display expenses from"
@@ -56,10 +55,10 @@ module ConsoleLibs
           expenses = expenses_in(year, month)
       end
     n = 0
-    console_puts "N\tDate    \tAmount  \tDescription              \tCategory  \tBan."
+    console_puts "N\tDate    \tAmount  \tDescription              \tCategory"
     console_puts "------------------------------------------------------------------------------------------------------------"
     expenses.each do |exp|
-      console_puts "#{n}\t#{exp.date}\t#{exp.amount.to_s.pad_to(8)}\t#{exp.description.pad_to(25)}\t#{exp.category.name.pad_to(10)}\t#{exp.account.is_bancomat? ? "X" : " "}"
+      console_puts "#{n}\t#{exp.date}\t#{exp.amount.to_s.pad_to(8)}\t#{exp.description.pad_to(25)}\t#{exp.category.name.pad_to(10)}"
       n = n+1
     end
   end
@@ -73,7 +72,7 @@ module ConsoleLibs
       arguments[AMOUNT]   = ask_in_line "amount"
       arguments[CATEGORY] = ask_in_line "category"
       arguments[DATE]     = ask_in_line "date"
-      arguments[BANCOMAT] = ask_for "Bancomat"
+      arguments[ACCOUNT] = ask_in_line "account"
       end
 
   def build_expense_from_params arguments
@@ -81,9 +80,7 @@ module ConsoleLibs
       "description" => arguments[DESCRIPTION],
       "amount"      => arguments[AMOUNT],
       "category"    => Category.find_or_create_by_name(arguments[CATEGORY]),
-      "account"    => ((["S", "s"].include? arguments[BANCOMAT]) ?
-        Account.find_or_create_by_name("Bancomat") :
-        Account.find_or_create_by_name("Contanti")),
+      "account"     =>  Account.find_or_create_by_name(arguments[ACCOUNT]),
       "date"        => arguments[DATE].blank? ? Date.today : Date.parse(arguments[DATE])
     )
     return exp
