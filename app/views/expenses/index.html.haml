@@ -48,60 +48,9 @@
 
 
 .container_16
-  .grid_8
-    - unless @expenses.empty?
-      
-      %table
+  = render :partial => 'movements_list', :locals => {:movements => @expenses, :movement_name => 'expense' }
+  = render :partial => 'movements_list', :locals => {:movements => @incomes, :movement_name => 'income'  }
 
-        %tr
-          %th Description
-          %th Amount
-          %th Category
-          %th Account
-          %th Date
-
-
-        - @expenses.each do |expense|
-          - html_row_class=cycle('odd','even')
-          = render :partial => 'expense_row', :locals => {:expense => expense, :html_row_class => html_row_class }
-
-
-        %tr.totals
-          %td
-            %td.total-amount
-              = currency_euro @expenses.inject(0) { |total, e| total + e.amount }
-            %td
-            %td
-            %td    
-    - else
-      %span No expenses found for current month :)
-
-  .grid_8
-    - unless @incomes.empty?
-      %table
-
-        %tr
-          %th Description
-          %th Amount
-          %th Category
-          %th Account
-          %th Date
-
-
-        - @incomes.each do |income|
-          - html_row_class=cycle('odd','even')
-          = render :partial => 'expense_row', :locals => {:expense => income, :html_row_class => html_row_class }
-
-
-        %tr.totals
-          %td
-            %td.total-amount
-              = currency_euro @incomes.inject(0) { |total, income| total + income.amount }
-            %td
-            %td
-            %td    
-    - else
-      %span No incomes found for current month :(
 
 .container_16
   .grid_16
