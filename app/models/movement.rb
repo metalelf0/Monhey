@@ -7,13 +7,12 @@ class Movement < ActiveRecord::Base
   validates_presence_of :to_account, :message => "can't be blank"
 
   validate :accounts_are_different
-  
-  
+
   private
-  
+
   def accounts_are_different
     if (self.from_account == self.to_account)
-      errors.add_to_base "Accounts should be different"
+      errors.add(:base, "Accounts should be different")
     end
   end
 

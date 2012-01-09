@@ -6,25 +6,27 @@
 - total = Expense.total_for_month @date
 - average = Expense.average_for_month @date
 - prevision = Expense.prevision_for_month @date
-- left = Expense.left_for_month_with_stipendio @date, CONFIG[:monthly_wage]
-  
+- left = Expense.left_for_month_with_stipendio @date, 1500 #TODO: extract this somewhere
+
 - expenses_for = "Listing expenses for #{Date::MONTHNAMES[@date.month] + " " + @date.year.to_s}"
 
 = render :partial => 'layouts/header', :locals => {:title => "Expenses Manager", :subtitle => expenses_for }
 
 #navigation-links
-  = link_to "&lt;&lt; Prev month", :action => :index, :month => (@date << 1).month, :year => (@date << 1).year
+  = link_to "<< Prev month", :action => :index, :month => (@date << 1).month, :year => (@date << 1).year
   &nbsp; &nbsp;
-  = link_to "Next month &gt;&gt;", :action => :index, :month => (@date >> 1).month, :year => (@date >> 1).year
-  | 
+  = link_to "Next month >>", :action => :index, :month => (@date >> 1).month, :year => (@date >> 1).year
+  |
   = link_to 'Categories', categories_path
-  | 
+  |
   = link_to 'Accounts', accounts_path
   |
   = link_to 'Movements', movements_path
 
-  - if RAILS_ENV != "production"
-    = "<BR/><b>WARNING!!! APPLICATION RUNNING IN #{RAILS_ENV.upcase} MODE</b>"
+  - if ::Rails.env != "production"
+    %br
+    %b
+      = "WARNING!!! APPLICATION RUNNING IN #{::Rails.env.upcase} MODE"
 
 
 
@@ -32,11 +34,11 @@
 
 #tabs
   %ul
-    %li 
+    %li
       %a(href="#tabs-1") Statistics
-    %li 
+    %li
       %a(href="#tabs-2") Daily chart
-    %li 
+    %li
       %a(href="#tabs-3") Categories chart
 
   #tabs-1

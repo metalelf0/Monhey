@@ -1,11 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require File.join(Rails.root.to_s, "lib", "expense_importer")
 require 'fastercsv'
 
 describe ExpenseImporter do
 
-  fixtures_path = RAILS_ROOT + "/spec/fixtures/expenses.csv"
-  fixtures_path_easymoney = RAILS_ROOT + "/spec/fixtures/expenses_easymoney.csv"
-  fixtures_path_cartasi = RAILS_ROOT + "/spec/fixtures/movimenti_cartasi.txt"
+  fixtures_path           = File.join(Rails.root.to_s , "/spec/fixtures/expenses.csv")
+  fixtures_path_easymoney = File.join(Rails.root.to_s , "/spec/fixtures/expenses_easymoney.csv")
+  fixtures_path_cartasi   = File.join(Rails.root.to_s , "/spec/fixtures/movimenti_cartasi.txt")
 
   it "should parse a line from the csv file" do
     importer = ExpenseImporter.new("a path")
@@ -17,7 +18,7 @@ describe ExpenseImporter do
       :description => "Pranzo terme primia", :category => category))
     importer.import_row parsed_row
   end
- 
+
   it "should parse a line from the easymoney csv file" do
     importer = ExpenseImporter.new("a path", :easymoney)
     parsed_row = ["Benza", "Transportation", "-60.68", "Uncleared", "15 Mar 2010"]
@@ -28,8 +29,7 @@ describe ExpenseImporter do
       :description => "Benza", :category => category))
     importer.import_row parsed_row
   end
-  
-  
+
   it "should parse all the lines from the csv file" do
     importer = ExpenseImporter.new fixtures_path
     Category.should_receive(:find_or_create_by_name).exactly(40).times

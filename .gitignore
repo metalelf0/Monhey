@@ -1,7 +1,6 @@
-*.swp
-log/*
-tmp/*
-rerun.txt
-tags
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+webrat.log
 config/database.yml
-db/*
