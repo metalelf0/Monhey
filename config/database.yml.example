@@ -1,0 +1,24 @@
+development:
+  adapter: mysql
+  encoding: utf8
+  database: finanze_development
+  username:
+  password:
+  host: localhost
+
+test: &TEST
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: mysql
+  encoding: utf8
+  database: finanze_production
+  username:
+  password:
+  host: localhost
+
+cucumber:
+  <<: *TEST
