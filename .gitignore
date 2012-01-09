@@ -3,3 +3,5 @@ log/*
 tmp/*
 rerun.txt
 tags
+config/database.yml
+db/*
