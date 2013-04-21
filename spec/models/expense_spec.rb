@@ -95,7 +95,7 @@ describe Expense do
       "Mance" => -200 # this is negative (= income), so it wont appear in the list
     })
     
-    expected_url = "http://chart.apis.google.com/chart?cht=p&chd=t:15,100&chs=350x150&chl=Benza|Cibo&chco=FF0000"
+    expected_url = "http://chart.apis.google.com/chart?cht=p&chd=t:100,15&chs=350x150&chl=Cibo|Benza&chco=FF0000"
     Expense.generate_expenses_pie_chart(Date.new(2009, 1, 1)).should eql(expected_url)
   end
   
