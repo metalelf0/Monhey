@@ -5,7 +5,6 @@ gem "haml"
 gem 'sass'
 gem "mysql"
 gem "fastercsv"
-gem "ruby-debug"
 gem "sqlite3"
 gem "i18n"
 
