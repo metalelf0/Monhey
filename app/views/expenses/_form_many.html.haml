@@ -1,43 +1,24 @@
-:javascript
-  $(function() {
-    $(".datepicker").datepicker();
-  });
-
 - categories = options_for_select(Category.all.map { |category| [category.name, category.id ] }, 0 )
 - accounts = options_for_select(Account.all.map { |account| [account.name, account.id ] }, 0 )
 - date = Date.today
 
-%span#add_expenses_title Add expenses
-%br/
-%span#add_expenses_subtitle ...as many as you want!     
+= render :partial => 'layouts/header', :locals => {:title => "Add expenses", :subtitle => "...as many as you want!" }
 
+.row
+  .span8
+    = form_tag :action => :create_many, :controller => :expenses do
+      %table.table
+        %tr
+          %th Date
+          %th Amount
+          %th Description
+          %th Category
+          %th Account
 
-.container_16
-  = form_tag :action => :create_many, :controller => :expenses do
-    %table
-      %tr
-        %th Date
-        %th Amount
-        %th Description
-        %th Category
-        %th Account
+        - (1..10).each  do |i|
+          %tr{ :class => "insert_" + cycle("rowA", "rowB") }    
+            = render :partial => 'form_many_row', :locals => {:i => i, :date => date, :categories => categories, :accounts => accounts }
 
-      - (1..10).each  do |i|
-        %tr{ :class => "insert_" + cycle("rowA", "rowB") }    
-          = render :partial => 'form_many_row', :locals => {:i => i, :date => date, :categories => categories, :accounts => accounts }
+        %tr{ :class => cycle("rowA", "rowB") }
+          %td= submit_tag "Save"
 
-      %tr{ :class => cycle("rowA", "rowB") }
-        %td= submit_tag "Save"
-
-:javascript
-  $(document).ready(function(){ 
-    var categories = #{@categories.compact.to_json} ;
-    for(i = 1; i < 11; i = i + 1 ) {
-      $("#elem" + i + "_category_name").autocomplete({
-        source: categories,
-        minLength: 0,
-        delay: 0
-      });
-    }
-  });
-  
