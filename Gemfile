@@ -2,18 +2,21 @@ source 'http://rubygems.org'
 
 gem 'rails'
 gem "haml"
-gem 'sass'
+gem 'haml-rails'
 gem "mysql"
 gem "fastercsv"
 gem "sqlite3"
 gem "i18n"
-gem 'jquery-rails'
+gem "therubyracer"
+gem "twitter-bootstrap-rails"
 
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
 end
+
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec'
