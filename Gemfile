@@ -10,6 +10,7 @@ gem "i18n"
 gem "therubyracer"
 gem "twitter-bootstrap-rails"
 
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'

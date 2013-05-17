@@ -1,52 +1,28 @@
-- total = Expense.total_for_month @date
-- average = Expense.average_for_month @date
-- prevision = Expense.prevision_for_month @date
-- left = Expense.left_for_month_with_stipendio @date, 1500 #TODO: extract this somewhere
-
-
--# #navigation-links
-  -# = link_to "<< Prev month", :action => :index, :month => (@date << 1).month, :year => (@date << 1).year
-  -# &nbsp; &nbsp;
-  -# = link_to "Next month >>", :action => :index, :month => (@date >> 1).month, :year => (@date >> 1).year
-
-  -# - if ::Rails.env != "production"
-    -# %br
-    -# %b
-      -# = "WARNING!!! APPLICATION RUNNING IN #{::Rails.env.upcase} MODE"
-
-
-
--# = render :partial => 'tag_cloud'
-
 #main-container.row
+
   - expenses_for = "Listing expenses for #{Date::MONTHNAMES[@date.month] + " " + @date.year.to_s}"
 
-  = render :partial => 'layouts/header', :locals => {:title => "Expenses Manager", :subtitle => expenses_for }
+  = render :partial => "layouts/header", :locals => {:title => "Expenses Manager", :subtitle => expenses_for }
 
-  #tabs
-    %ul{:class => "nav nav-tabs"} 
-      %li.active
-        %a{:href => "#tabs-1", :'data-toggle' => "tab" } Statistics
-      %li
-        %a(href="#tabs-2") Daily chart
-      %li
-        %a(href="#tabs-3") Categories chart
+  #navigation-links
+    - prev_month = raw(content_tag(:i, "", :class => "icon icon-chevron-left") + " Prev month")
+    = link_to prev_month, { :action => :index, :month => (@date << 1).month, :year => (@date << 1).year }, :class => "btn btn-primary"
+    &nbsp;
+    - next_month = raw("Next month " + content_tag(:i, "", :class => "icon icon-chevron-right"))
+    = link_to next_month, { :action => :index, :month => (@date >> 1).month, :year => (@date >> 1).year }, :class => "btn btn-primary"
 
-
-    #myTabContent.tab-content
-      #tabs-1.tab-pane.fade.in.active
-        = render :partial => 'layouts/statistics', :locals => {:total => total, :average => average, :prevision => prevision, :left => left }
-      #tabs-2.tab-pane.fade
-        %img{:src => Expense.generate_daily_chart_for(@date) }
-      #tabs-3.tab-pane.fade
-        %img{:src => Expense.generate_expenses_pie_chart(@date) }
-
+  %hr
+  
+  = render :partial => 'info_boxes'
+  
   %hr
 
 
-  .container_16
-    = render :partial => 'movements_list', :locals => {:movements => @expenses, :movement_name => 'expense' }
-    = render :partial => 'movements_list', :locals => {:movements => @incomes, :movement_name => 'income'  }
+  .row
+    .span6.collapsable-expenses
+      = render :partial => 'movements_list', :locals => {:movements => @expenses, :movement_name => 'expense' }
+    .span6.collapsable-expenses
+      = render :partial => 'movements_list', :locals => {:movements => @incomes, :movement_name => 'income'  }
 
 
   .container_16
