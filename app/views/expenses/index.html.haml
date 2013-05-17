@@ -17,19 +17,16 @@
   
   %hr
 
-
   .row
     .span6.collapsable-expenses
       = render :partial => 'movements_list', :locals => {:movements => @expenses, :movement_name => 'expense' }
     .span6.collapsable-expenses
       = render :partial => 'movements_list', :locals => {:movements => @incomes, :movement_name => 'income'  }
 
-
-  .container_16
-    .grid_16
-
+  .row
+    .span16
 
       #form_enter_many
         = render :partial => "form_many"
-
-      %br
+        
+  %hr
