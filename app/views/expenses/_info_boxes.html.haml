@@ -1,7 +1,7 @@
-- total = Expense.total_for_month @date
-- average = Expense.average_for_month @date
+- total     = ExpenseRepository.new.total_for_month @date
+- average   = Expense.average_for_month @date
 - prevision = Expense.prevision_for_month @date
-- left = Expense.left_for_month_with_stipendio @date, 1500 #TODO: extract this somewhere
+- left      = Expense.left_for_month_with_stipendio @date, 1500 #TODO: extract this somewhere
 
 .row   
   .span6

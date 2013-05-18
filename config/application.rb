@@ -14,5 +14,6 @@ module Finanze
 
     config.assets.enabled = true
     config.assets.version = '1.0'
+    config.autoload_paths += [ "#{config.root}/lib" ]
   end
 end

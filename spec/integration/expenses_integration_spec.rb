@@ -17,9 +17,11 @@ describe "Creating an entry" do
     Expense.count.should eql(0)
     visit 'expenses'
 
-    fill_in "elem1[amount]", :with => "-10"
+    set_hidden_field "elem1[sign]", :to => "-"
+    fill_in "elem1[amount]", :with => "10"
     fill_in "elem1[description]", :with => "Spesa di prova"
     fill_in "elem1[category_name]", :with => "Altro"
+
 
     click_button "Save"
     Expense.count.should eql(1)

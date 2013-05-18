@@ -11,11 +11,9 @@
         %th Account
         %th Date
 
-
       - movements.each do |expense|
         - html_row_class=cycle('odd','even')
         = render :partial => 'expense_row', :locals => {:expense => expense, :html_row_class => html_row_class }
-
 
       %tr.totals
         %td
@@ -23,6 +21,6 @@
             = currency_euro movements.inject(0) { |total, e| total + e.amount }
           %td
           %td
-          %td    
+          %td
   - else
     %span No expenses found for current month :)

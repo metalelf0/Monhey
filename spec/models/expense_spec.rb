@@ -14,7 +14,7 @@ describe Expense do
     date.should_receive(:is_in_current_month).and_return(true)
     Date.should_receive(:today).and_return(today)
     today.should_receive(:day).and_return(10)
-    Expense.should_receive(:total_for_month).with(date).and_return(-100.0)
+    ExpenseRepository.any_instance.should_receive(:total_for_month).with(date).and_return(-100.0)
     Expense.average_for_month(date).should eql(-10.0)
   end
   
@@ -24,7 +24,7 @@ describe Expense do
     date.should_receive(:is_in_current_month).and_return(false)
     date.should_receive(:end_of_month).and_return(some_day)
     some_day.should_receive(:day).and_return(31)
-    Expense.should_receive(:total_for_month).with(date).and_return(-310.0)
+    ExpenseRepository.any_instance.should_receive(:total_for_month).with(date).and_return(-310.0)
     Expense.average_for_month(date).should eql(-10.0)
   end
     
@@ -72,7 +72,7 @@ describe Expense do
     category = Category.new(:name => "category")
     Category.should_receive(:all).and_return([category])
   
-    Expense.should_receive(:total_for_month_by_category).with(date, category.name).and_return 1000.0
+    ExpenseRepository.any_instance.should_receive(:total_for_month_by_category).with(date, category.name).and_return 1000.0
     amounts = Expense.amounts_for_categories(date)
     amounts["category"].should eql(1000.0)
   end

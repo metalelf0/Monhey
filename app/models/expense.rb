@@ -12,14 +12,14 @@ class Expense < ActiveRecord::Base
 
   def Expense.average_for_month date
     days_passed = (date.is_in_current_month ? Date.today.day : date.end_of_month.day)
-    total = Expense.total_for_month date
+    total = ExpenseRepository.new.total_for_month date
     total.to_f / days_passed
   end
       
   def Expense.amounts_for_categories(date)
     hash = Hash.new
     Category.all.map(&:name).each do |category|
-      hash[category] = Expense.total_for_month_by_category date, category
+      hash[category] = ExpenseRepository.new.total_for_month_by_category date, category
     end
     hash
   end
@@ -46,7 +46,7 @@ class Expense < ActiveRecord::Base
   end
   
   def Expense.in_current_month #TODO: is this shit still needed?
-    ExpenseRepository.find_by_year_month_and_category(:date => Date.today)
+    ExpenseRepository.new.find_by_year_month_and_category(:date => Date.today)
   end
   
   def Expense.left_for_month_with_stipendio(date, stipendio)

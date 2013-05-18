@@ -70,9 +70,10 @@ class ExpensesController < ApplicationController
   end
   
   def handle_multiedit_params params
-    params["amount"] = params["amount"].sub("," , ".")
+    params["amount"] = "#{params["sign"]}#{params["amount"].sub("," , ".")}"
     params["description"] = params["description"].capitalize
     params["category_id"] = Category.find_or_create_by_name(params[:category_name]).id
+    params.delete("sign")
     params.delete("category_name")
     return params
   end
