@@ -5,3 +5,4 @@ tmp/
 webrat.log
 config/database.yml
 .sass-cache/
+bin/
