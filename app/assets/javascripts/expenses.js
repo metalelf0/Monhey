@@ -3,7 +3,7 @@ $(document).ready(function(){
     e.preventDefault();
     $(this).tab('show');
   })
-  console.log("Ciao");
+
   // FIXME: var categories = #{@categories.compact.to_json}; 
   var categories = []; 
   for(i = 1; i < 11; i = i + 1 ) {

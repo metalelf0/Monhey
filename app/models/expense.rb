@@ -2,7 +2,6 @@ include ExpensesHelper
 
 class Expense < ActiveRecord::Base
 
-  include Expense::Finders
   include Expense::Charts
 
   belongs_to :category
@@ -46,8 +45,8 @@ class Expense < ActiveRecord::Base
     end
   end
   
-  def Expense.in_current_month
-    Expense.find_by_year_month(:date => Date.today)
+  def Expense.in_current_month #TODO: is this shit still needed?
+    ExpenseRepository.find_by_year_month_and_category(:date => Date.today)
   end
   
   def Expense.left_for_month_with_stipendio(date, stipendio)

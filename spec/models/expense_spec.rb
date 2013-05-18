@@ -3,10 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe Expense do
 
   it "should retrieve expenses in a given month" do
-        Expense.should_receive(:find).and_return([@e1])
-        expenses_of_february = Expense.find_by_year_month(:date => Date.new(2009, 2, 1))
-        expenses_of_february.size.should eql(1)
-      end
+    Expense.should_receive(:find).and_return([@e1])
+    expenses_of_february = ExpenseRepository.new.find_by_year_month(:date => Date.new(2009, 2, 1))
+    expenses_of_february.size.should eql(1)
+  end
   
   it "should calculate correctly the average value for the current month" do
     date = mock("date")
@@ -93,79 +93,79 @@ describe Expense do
     {"Cibo" => 100,
       "Benza" => 15,
       "Mance" => -200 # this is negative (= income), so it wont appear in the list
-    })
+      })
     
-    expected_url = "http://chart.apis.google.com/chart?cht=p&chd=t:100,15&chs=350x150&chl=Cibo|Benza&chco=FF0000"
-    Expense.generate_expenses_pie_chart(Date.new(2009, 1, 1)).should eql(expected_url)
-  end
-  
-  it "should get a correct daily expenses string for an expense-empty month" do
-    Date.stub!(:today).and_return(Date.new(2009, 11, 30)) # thirty days month...
-    1.upto(30) do |i|
-      Expense.should_receive(:total_for_day).with(Date.new(2009, 11, i)).and_return(0)
+      expected_url = "http://chart.apis.google.com/chart?cht=p&chd=t:100,15&chs=350x150&chl=Cibo|Benza&chco=FF0000"
+      Expense.generate_expenses_pie_chart(Date.new(2009, 1, 1)).should eql(expected_url)
     end
-    expected_string = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" # ...thirty zeros
-    Expense.amounts_by_date_for_month(Date.today).should eql(expected_string)
-  end
   
-  it "should get a correct daily expenses string for a month with expenses" do
-    Date.stub!(:today).and_return(Date.new(2009, 11, 30))
-    first = Date.new(2009, 11, 1)
-    last = Date.new(2009, 11, 30)
-    Expense.stub!(:total_for_day).and_return(0)
-    Expense.should_receive(:total_for_day).with(first).and_return(10)
-    Expense.should_receive(:total_for_day).with(last).and_return(5)
+    it "should get a correct daily expenses string for an expense-empty month" do
+      Date.stub!(:today).and_return(Date.new(2009, 11, 30)) # thirty days month...
+      1.upto(30) do |i|
+        Expense.should_receive(:total_for_day).with(Date.new(2009, 11, i)).and_return(0)
+      end
+      expected_string = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" # ...thirty zeros
+      Expense.amounts_by_date_for_month(Date.today).should eql(expected_string)
+    end
+  
+    it "should get a correct daily expenses string for a month with expenses" do
+      Date.stub!(:today).and_return(Date.new(2009, 11, 30))
+      first = Date.new(2009, 11, 1)
+      last = Date.new(2009, 11, 30)
+      Expense.stub!(:total_for_day).and_return(0)
+      Expense.should_receive(:total_for_day).with(first).and_return(10)
+      Expense.should_receive(:total_for_day).with(last).and_return(5)
     
-    expected_string = "-10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5"
-    Expense.amounts_by_date_for_month(Date.today).should eql(expected_string)
-  end
+      expected_string = "-10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5"
+      Expense.amounts_by_date_for_month(Date.today).should eql(expected_string)
+    end
   
-  it "should invert expense amounts on the daily expenses chart" do
-    Date.stub!(:today).and_return(Date.new(2009, 11, 30))
-    first = Date.new(2009, 11, 1)
-    last = Date.new(2009, 11, 30)
-    Expense.stub!(:total_for_day).and_return(0)
-    Expense.should_receive(:total_for_day).with(first).and_return(-10.0)
-    Expense.should_receive(:total_for_day).with(last).and_return(-5.0)
-    actual_url = Expense.generate_daily_chart_for(Date.today)
-    expected_string = "10.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.0"
-    expected_url = "http://chart.apis.google.com/chart?cht=lc&chxt=x,y&chg=0,25&chd=t:" + expected_string + "&chxl=0:|" + daily_labels_for_month_of(Date.today) + "|1:|0|250|500|750|1000&chs=500x150&chds=0,1000"
-    actual_url.should eql(expected_url)
-  end
+    it "should invert expense amounts on the daily expenses chart" do
+      Date.stub!(:today).and_return(Date.new(2009, 11, 30))
+      first = Date.new(2009, 11, 1)
+      last = Date.new(2009, 11, 30)
+      Expense.stub!(:total_for_day).and_return(0)
+      Expense.should_receive(:total_for_day).with(first).and_return(-10.0)
+      Expense.should_receive(:total_for_day).with(last).and_return(-5.0)
+      actual_url = Expense.generate_daily_chart_for(Date.today)
+      expected_string = "10.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.0"
+      expected_url = "http://chart.apis.google.com/chart?cht=lc&chxt=x,y&chg=0,25&chd=t:" + expected_string + "&chxl=0:|" + daily_labels_for_month_of(Date.today) + "|1:|0|250|500|750|1000&chs=500x150&chds=0,1000"
+      actual_url.should eql(expected_url)
+    end
   
-  it "should calculate the right font size in tag cloud" do
-    total, lowest, highest = 0, 0, 0
-    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("display:none;")
+    it "should calculate the right font size in tag cloud" do
+      total, lowest, highest = 0, 0, 0
+      Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("display:none;")
   
-    total, lowest, highest = 0, -10, 10
-    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("display:none;")
+      total, lowest, highest = 0, -10, 10
+      Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("display:none;")
   
-    # total == lowest means highest expense!
-    total, lowest, highest = 10, -10, 10
-    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:12px;")
+      # total == lowest means highest expense!
+      total, lowest, highest = 10, -10, 10
+      Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:12px;")
   
-    # total == highest means lowest expense!  
-    total, lowest, highest = -10, -10, 10
-    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
+      # total == highest means lowest expense!  
+      total, lowest, highest = -10, -10, 10
+      Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
     
-    # don't panic if highest is zero
-    total, lowest, highest = -10, -10, 0
-    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
+      # don't panic if highest is zero
+      total, lowest, highest = -10, -10, 0
+      Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
     
-    #don't panic if they're all the same
-    total, lowest, highest = -10, -10, -10
-    Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
+      #don't panic if they're all the same
+      total, lowest, highest = -10, -10, -10
+      Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
     
-  end
+    end
   
-  it "should generate correctly the hash for categories cloud" do
-    amounts = { "Cibo" => -10, "Altro" => -20}
-    Expense.stub!(:amounts_for_categories).and_return amounts
-    hash = Expense.generate_hash_for_categories_cloud(Date.today)
-    hash["Altro"][:style].should eql("font-size:32px;")
-    hash["Altro"][:amount].should eql(-20)
-    hash["Cibo"][:style].should  eql("font-size:12px;")
-    hash["Cibo"][:amount].should  eql(-10)
-  end
+    it "should generate correctly the hash for categories cloud" do
+      amounts = { "Cibo" => -10, "Altro" => -20}
+      Expense.stub!(:amounts_for_categories).and_return amounts
+      hash = Expense.generate_hash_for_categories_cloud(Date.today)
+      hash["Altro"][:style].should eql("font-size:32px;")
+      hash["Altro"][:amount].should eql(-20)
+      hash["Cibo"][:style].should  eql("font-size:12px;")
+      hash["Cibo"][:amount].should  eql(-10)
+    end
 
-end
+  end

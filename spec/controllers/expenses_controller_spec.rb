@@ -35,7 +35,7 @@ describe ExpensesController do
 
       Category.stub(:all).and_return([@altro])
       Expense.stub(:all).and_return([@first, @second, @third])
-      Expense.stub(:find_by_year_month).and_return([@first])
+      ExpenseRepository.any_instance.stub(:find_by_year_month).and_return([@first])
     end
 
     it "should receive a success response and show all the entries" do

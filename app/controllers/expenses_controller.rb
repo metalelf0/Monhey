@@ -4,11 +4,11 @@ class ExpensesController < ApplicationController
   	@date = build_date_from_params(params)
     @categories = Category.all(:select => :name).map {|category| category.name }.compact.sort
   	if params[:category_name].blank?
-      @expenses = Expense.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount < 0}
-      @incomes =  Expense.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount >= 0}
+      @expenses = ExpenseRepository.new.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount < 0}
+      @incomes =  ExpenseRepository.new.find_by_year_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount >= 0}
     else
-      @expenses = Expense.find_by_year_month_and_category(@date, params[:category_name]).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount < 0}
-      @incomes =  Expense.find_by_year_month_and_category(@date, params[:category_name]).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount >= 0}
+      @expenses = ExpenseRepository.new.find_by_year_month_and_category(@date, params[:category_name]).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount < 0}
+      @incomes =  ExpenseRepository.new.find_by_year_month_and_category(@date, params[:category_name]).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount >= 0}
     end
     @hash_for_cloud = Expense.generate_hash_for_categories_cloud(@date) 
   end
