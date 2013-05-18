@@ -1,3 +1,4 @@
 [ ] you must create at least one category before inserting expenses
 [ ] you must create at least one account  before inserting expenses
 [ ] fix the daily chart scale: top limit should not be 1000 but the highest daily expense
+[ ] prevent inserting chars like - or + in the expense text field
