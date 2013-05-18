@@ -2,3 +2,5 @@
 [ ] you must create at least one account  before inserting expenses
 [ ] fix the daily chart scale: top limit should not be 1000 but the highest daily expense
 [ ] prevent inserting chars like - or + in the expense text field
+[ ] introduce users!
+[ ] move wage to config file (or user configuration)

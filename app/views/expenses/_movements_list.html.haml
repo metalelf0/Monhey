@@ -28,4 +28,7 @@
             %td
 
   - else
-    %span No expenses found for current month :)
+    %span No #{movement_name.pluralize} found for current month
+    %i{:class => "icon #{movement_name.pluralize == 'expenses' ? 'icon-heart' : 'icon-heart-empty'}"}
+    - # TODO: replace with this when fontawesome 3.1.1 becomes available
+    - # %i{:class => "icon #{movement_name.pluralize == 'expenses' ? 'icon-smile' : 'icon-frown'}"}    

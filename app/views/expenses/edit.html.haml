@@ -1,34 +1,24 @@
-%h1 Editing expense
+= form_for @expense, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :date, :class => 'control-label'
+    .controls
+      = f.date_select :date
+  
+  .control-group
+    = f.label :description, :class => 'control-label'
+    .controls
+      = f.text_field :description, :class => 'text_field'
 
-- form_for(@expense) do |f|
-  = f.error_messages 
-  %p
-    = f.label :date 
-    %br
-    = f.date_select :date 
-  %p
-    = f.label :description 
-    %br
-    = f.text_field :description
-  %p
-    = f.label :amount
-    %br
-    = f.text_field :amount
-  %p
-    = f.label :category
-    %br
-    = text_field_tag("category_name", "", :size => 25) 
-  %p
-    = f.submit 'Update'
+  .control-group
+    = f.label :amount, :class => 'control-label'
+    .controls
+      = f.text_field :amount, :class => 'text_field'
 
-= link_to 'Back', expenses_path 
+  .control-group
+    = f.label :category, :class => 'control-label'
+    .controls
+      = text_field_tag :category_name, @expense.category.name, :class => 'text_field'
 
-:javascript
-  $(document).ready(function(){ 
-    var categories = #{@categories.compact.to_json} ;
-    $("#category_name").autocomplete({
-      source: categories,
-      minLength: 0,
-      delay: 0
-    });
-  });
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), expenses_path, :class => 'btn'
