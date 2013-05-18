@@ -24,4 +24,6 @@ group :development, :test do
   gem 'cucumber'
   gem "factory_girl_rails"
   gem 'webrat'
+  gem 'pry'
+  gem 'spectator'
 end
