@@ -36,15 +36,15 @@ describe "Creating an entry" do
     Expense.count.should eql(0)
     visit 'expenses'
 
-    fill_in "elem1[amount]", :with => -10
+    fill_in "elem1[amount]", :with => 10
     fill_in "elem1[description]", :with => "Spesa di prova n. 1"
     fill_in "elem1[category_name]", :with => "Altro"
 
-    fill_in "elem2[amount]", :with => -15
+    fill_in "elem2[amount]", :with => 15
     fill_in "elem2[description]", :with => "Spesa di prova n. 2"
     fill_in "elem2[category_name]", :with => "Elettronica"
 
-    fill_in "elem3[amount]", :with => -20
+    fill_in "elem3[amount]", :with => 20
     fill_in "elem3[description]", :with => "Spesa di prova n. 3"
     fill_in "elem3[category_name]", :with => "Cibo"
 

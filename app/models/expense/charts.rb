@@ -19,11 +19,11 @@ class Expense
     
     def Expense.generate_hash_for_categories_cloud(date)
       hash = {}
-      amounts_for_categories = amounts_for_categories(date)
-      lowest  = amounts_for_categories.values.sort.first
-      highest = amounts_for_categories.values.sort.last
+      monthly_categories_report = monthly_categories_report(date)
+      lowest  = monthly_categories_report.values.sort.first
+      highest = monthly_categories_report.values.sort.last
 
-      amounts_for_categories.each_pair do |category, total|
+      monthly_categories_report.each_pair do |category, total|
         hash[category] = {}
         hash[category][:style] = Expense.font_size_for_tag_cloud(
           total,
@@ -39,17 +39,17 @@ class Expense
     # chl=Altro|Benza|Cibo|Elettronica&chco=FF0000"
     
      def Expense.generate_expenses_pie_chart(date)
-       category_amounts = Expense.amounts_for_categories(date)
+       category_amounts = Expense.monthly_categories_report(date)
        base_url = "http://chart.apis.google.com/chart?cht=p&chd=t:"
        categories = ""
        category_amounts.each_pair do |category, amount|
-         if amount > 0
+         if amount < 0
            base_url += amount.to_f.round.abs.to_s+","
-           categories += category+"|"
+           categories += URI.encode(category+"|")
          end
        end
        # remove last "|"
-       categories = categories[0..-2]
+       categories = categories.gsub(/%7C$/,"")
        base_url = base_url[0..-2]+"&chs=350x150&chl="+categories+"&chco=FF0000"
        return base_url
      end

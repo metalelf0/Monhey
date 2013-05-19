@@ -1,171 +1,127 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Expense do
+  
+  #         Aprile 2013           Maggio 2013           Giugno 2013
+  #  Do Lu Ma Me Gi Ve Sa  Do Lu Ma Me Gi Ve Sa  Do Lu Ma Me Gi Ve Sa
+  #      1  2  3  4  5  6            1  2  3  4                     1
+  #   7  8  9 10 11 12 13   5  6  7  8  9 10 11   2  3  4  5  6  7  8
+  #  14 15 16 17 18 19 20  12 13 14_15_ 16 17 18   9 10 11 12 13 14 15
+  #  21 22 23 24 25 26 27  19 20 21 22 23 24 25  16 17 18 19 20 21 22
+  #  28 29 30              26 27 28 29 30 31     23 24 25 26 27 28 29
+  #                                              30
+  #  
+  let!(:today) { Date.new(2013, 5, 15) }
+  let!(:first_category) { Factory(:category, :name => "First category")}
+  let!(:second_category) { Factory(:category, :name => "Second category")}
+  let!(:third_category) { Factory(:category, :name => "Incomes category")}
+  let!(:expense_today) { Factory(:expense, :amount => -10.0, :category => first_category, :date => today) }
+  let!(:expense_yesterday) { Factory(:expense, :amount => -20.0, :category => second_category, :date => today - 1) }
+  let!(:income_yesterday) { Factory(:expense, :amount =>  5.0, :category => third_category, :date => today - 1) }
+  let!(:expense_one_month_ago) {Factory(:expense, :amount => -30.0, :date => today - 1.month) }
 
   it "should retrieve expenses in a given month" do
-    Expense.should_receive(:find).and_return([@e1])
-    expenses_of_february = ExpenseRepository.new.find_by_year_month(:date => Date.new(2009, 2, 1))
-    expenses_of_february.size.should eql(1)
+    expenses_in_current_month = ExpenseRepository.new.find_by_year_month(:date => today)
+    expenses_in_current_month.size.should eql(3)
   end
+
+
+  context "Calculating daily average" do
+
+    before do
+      Date.stub(:today).and_return(Date.new(2013, 5, 15))
+    end
+
+    context "and date is in current month" do
+
+      it "should calculate the daily average only on passed days" do
+        Expense.daily_average_for_month(today).should == (-10.0 + -20.0 + 5) / 15
+      end
   
-  it "should calculate correctly the average value for the current month" do
-    date = mock("date")
-    today = mock("today")
-    date.should_receive(:is_in_current_month).and_return(true)
-    Date.should_receive(:today).and_return(today)
-    today.should_receive(:day).and_return(10)
-    ExpenseRepository.any_instance.should_receive(:total_for_month).with(date).and_return(-100.0)
-    Expense.average_for_month(date).should eql(-10.0)
-  end
-  
-  it "should calculate correctly the average value for the another month" do
-    date = mock("date")
-    some_day = mock("today")
-    date.should_receive(:is_in_current_month).and_return(false)
-    date.should_receive(:end_of_month).and_return(some_day)
-    some_day.should_receive(:day).and_return(31)
-    ExpenseRepository.any_instance.should_receive(:total_for_month).with(date).and_return(-310.0)
-    Expense.average_for_month(date).should eql(-10.0)
-  end
+    end
+
+    context "and date is in another month" do
     
-  it "should calculate correctly a monthly prevision - current month" do
-    date = mock("date")
-    some_day = mock("some_day")
-    date.should_receive(:is_in_current_month).and_return(true)
-    Expense.should_receive(:average_for_month).with(date).and_return(10.0)
-    date.should_receive(:end_of_month).and_return(some_day)
-    some_day.should_receive(:day).and_return(31)
-    Expense.prevision_for_month(date).should eql(310.0)
+      it "should calculate the daily average on the whole month" do
+        # 30 -> days in april
+        Expense.daily_average_for_month(today - 1.month).should == -30.0 / 30
+      end
+  
+    end
+  
   end
   
-  it "should calculate correctly a monthly prevision - another month" do
-    date = mock("date")
-    date.should_receive(:is_in_current_month).and_return(false)
-    Expense.should_receive(:total_for_month).with(date).and_return(100.0)
-    Expense.prevision_for_month(date).should eql(100.0)
+  context "Calculating monthly prevision" do
+
+    before do
+      Date.stub(:today).and_return(Date.new(2013, 5, 15))
+    end
+  
+    context "when current month" do
+  
+      it "should multiply daily average and days in current month" do
+        average = Expense.daily_average_for_month today
+        Expense.prevision_for_month(today).should == average * 31
+      end
+    
+    end
+    
+    context "when another month" do
+
+      it "should calculate correctly a monthly prevision - another month" do
+        Expense.prevision_for_month(today - 1.month).should == -30.0
+      end
+      
+    end
+  
   end
+
+  context "Calculating money left" do
+
+    before do
+      Date.stub(:today).and_return(Date.new(2013, 5, 15))
+    end      
+    
+    context "when current month" do
+
+      it "should return the difference between wage and expenses" do
+        Expense.left_for_month(today, 100).should == 100 + (-25)
+      end
+    
+    end
+    
+    context "when a future month" do
+
+      it "should return the wage" do
+        Expense.left_for_month(today + 1.year, 100.0).should == 100.0
+      end
+    
+    end
+    
+    context "when an old month" do
+
+      it "should return the difference between wage and expenses" do
+        Expense.left_for_month(today - 1.month, 1000).should == 970 
+      end
+      
+    end
   
-  it "should calculate how much money is left for the current month" do
-    date = mock("date")
-    date.should_receive(:is_in_current_month).and_return(true)
-    Expense.should_receive(:sum).and_return(150.0)
-    Expense.left_for_month_with_stipendio(date, 100).should eql(-50.0)   
   end
-  
-  it "should calculate how much money is left for a future month - eql stipendio" do
-    date = mock("date")
-    date.should_receive(:is_in_current_month).and_return(false)
-    date.should_receive(">").with(Date.today).and_return(true)
-    Expense.left_for_month_with_stipendio(date, 100).should eql(100.0) 
-  end
-  
-  it "should calculate how much money is left for an old month" do
-    date = mock("date")
-    date.should_receive(:is_in_current_month).and_return(false)
-    date.should_receive(">").with(Date.today).and_return(false)
-    Expense.should_receive(:total_for_month).with(date).and_return(100.0)
-    Expense.left_for_month_with_stipendio(date, 1000).should eql(900.0) 
-  end
-  
-  it "should retrieve expenses by category, year and month" do
-    date = mock("date")
-    category = Category.new(:name => "category")
-    Category.should_receive(:all).and_return([category])
-  
-    ExpenseRepository.any_instance.should_receive(:total_for_month_by_category).with(date, category.name).and_return 1000.0
-    amounts = Expense.amounts_for_categories(date)
-    amounts["category"].should eql(1000.0)
+
+  it "should retrieve monthly categories report" do
+    report = Expense.monthly_categories_report(today)
+    report["First category"].should == -10
+    report["Second category"].should == -20
   end
   
   it "should get the right per-day amount" do
-    date = Date.new(2009,1,30)
-    one = mock(:amount => 10.0, :date => date)
-    Expense.should_receive(:find_all_by_date).with(date).and_return( [one] )
-    Expense.total_for_day(date).should eql(10.0)
-    
-    two = mock(:amount => 5.0, :date => date)
-    Expense.should_receive(:find_all_by_date).with(date).and_return( [one, two] )
-    Expense.total_for_day(date).should eql(15.0)
+    Expense.total_for_day(today).should == -10
   end
-  
-  it "should generate a correct google chart with only negative values" do
-    Expense.stub!(:amounts_for_categories).and_return(
-    {"Cibo" => 100,
-      "Benza" => 15,
-      "Mance" => -200 # this is negative (= income), so it wont appear in the list
-      })
-    
-      expected_url = "http://chart.apis.google.com/chart?cht=p&chd=t:100,15&chs=350x150&chl=Cibo|Benza&chco=FF0000"
-      Expense.generate_expenses_pie_chart(Date.new(2009, 1, 1)).should eql(expected_url)
-    end
-  
-    it "should get a correct daily expenses string for an expense-empty month" do
-      Date.stub!(:today).and_return(Date.new(2009, 11, 30)) # thirty days month...
-      1.upto(30) do |i|
-        Expense.should_receive(:total_for_day).with(Date.new(2009, 11, i)).and_return(0)
-      end
-      expected_string = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" # ...thirty zeros
-      Expense.amounts_by_date_for_month(Date.today).should eql(expected_string)
-    end
-  
-    it "should get a correct daily expenses string for a month with expenses" do
-      Date.stub!(:today).and_return(Date.new(2009, 11, 30))
-      first = Date.new(2009, 11, 1)
-      last = Date.new(2009, 11, 30)
-      Expense.stub!(:total_for_day).and_return(0)
-      Expense.should_receive(:total_for_day).with(first).and_return(10)
-      Expense.should_receive(:total_for_day).with(last).and_return(5)
-    
-      expected_string = "-10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-5"
-      Expense.amounts_by_date_for_month(Date.today).should eql(expected_string)
-    end
-  
-    it "should invert expense amounts on the daily expenses chart" do
-      Date.stub!(:today).and_return(Date.new(2009, 11, 30))
-      first = Date.new(2009, 11, 1)
-      last = Date.new(2009, 11, 30)
-      Expense.stub!(:total_for_day).and_return(0)
-      Expense.should_receive(:total_for_day).with(first).and_return(-10.0)
-      Expense.should_receive(:total_for_day).with(last).and_return(-5.0)
-      actual_url = Expense.generate_daily_chart_for(Date.today)
-      expected_string = "10.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5.0"
-      expected_url = "http://chart.apis.google.com/chart?cht=lc&chxt=x,y&chg=0,25&chd=t:" + expected_string + "&chxl=0:|" + daily_labels_for_month_of(Date.today) + "|1:|0|250|500|750|1000&chs=500x150&chds=0,1000"
-      actual_url.should eql(expected_url)
-    end
-  
-    it "should calculate the right font size in tag cloud" do
-      total, lowest, highest = 0, 0, 0
-      Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("display:none;")
-  
-      total, lowest, highest = 0, -10, 10
-      Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("display:none;")
-  
-      # total == lowest means highest expense!
-      total, lowest, highest = 10, -10, 10
-      Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:12px;")
-  
-      # total == highest means lowest expense!  
-      total, lowest, highest = -10, -10, 10
-      Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
-    
-      # don't panic if highest is zero
-      total, lowest, highest = -10, -10, 0
-      Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
-    
-      #don't panic if they're all the same
-      total, lowest, highest = -10, -10, -10
-      Expense.font_size_for_tag_cloud(total, lowest, highest).should eql("font-size:32px;")
-    
-    end
-  
-    it "should generate correctly the hash for categories cloud" do
-      amounts = { "Cibo" => -10, "Altro" => -20}
-      Expense.stub!(:amounts_for_categories).and_return amounts
-      hash = Expense.generate_hash_for_categories_cloud(Date.today)
-      hash["Altro"][:style].should eql("font-size:32px;")
-      hash["Altro"][:amount].should eql(-20)
-      hash["Cibo"][:style].should  eql("font-size:12px;")
-      hash["Cibo"][:amount].should  eql(-10)
-    end
 
+  it "should generate a correct google chart with only negative values" do
+    expected_url = 'http://chart.apis.google.com/chart?cht=p&chd=t:10,20&chs=350x150&chl=First%20category%7CSecond%20category&chco=FF0000'
+    Expense.generate_expenses_pie_chart(today).should eql(expected_url)
   end
+
+  
+end
