@@ -7,4 +7,6 @@ config/database.yml
 .sass-cache/
 bin/
 .env_vars
-
+.env
+.rvmrc
+.DS_Store

@@ -12,6 +12,10 @@ gem "twitter-bootstrap-rails"
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'heroku'
+gem "koala"
+gem "httparty"
+gem "thin"
+gem "rack"
 
 group :assets do
   gem 'sass-rails'
