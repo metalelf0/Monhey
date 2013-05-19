@@ -11,6 +11,7 @@ module Finanze
     config.encoding = "utf-8"
 
     config.filter_parameters += [:password]
+    config.assets.initialize_on_precompile = false
 
     config.assets.enabled = true
     config.assets.version = '1.0'
