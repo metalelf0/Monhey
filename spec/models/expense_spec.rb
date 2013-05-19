@@ -63,6 +63,11 @@ describe Expense do
         average = Expense.daily_average_for_month today
         Expense.prevision_for_month(today).should == average * 31
       end
+      
+      it "should also be able to include wage" do
+        average = Expense.daily_average_for_month today
+        Expense.prevision_for_month(today, :wage => 1000).should == 1000 + average * 31
+      end
     
     end
     

@@ -1,34 +1,33 @@
-.grid_8
-  - unless movements.empty?
-    
-    = render :partial => 'layouts/header', :locals => {:title => "#{movement_name.pluralize}", :subtitle => "for this month" }
-    %table.table
-      %thead
-        %tr
-          %th Description
-          %th Amount
-          %th Category
-          %th Account
-          %th Date
-        
-      %tbody
-
-        - movements.each do |expense|
-          - html_row_class=cycle('odd','even')
-          = render :partial => 'expense_row', :locals => {:expense => expense, :html_row_class => html_row_class }
+- unless movements.empty?
+  
+  = render :partial => 'layouts/header', :locals => {:title => "#{movement_name.pluralize}", :subtitle => "for this month" }
+  %table.table
+    %thead
+      %tr
+        %th Description
+        %th Amount
+        %th Category
+        %th Account
+        %th Date
       
-      %tfoot
+    %tbody
 
-        %tr.totals
+      - movements.each do |expense|
+        - html_row_class=cycle('odd','even')
+        = render :partial => 'expense_row', :locals => {:expense => expense, :html_row_class => html_row_class }
+    
+    %tfoot
+
+      %tr.totals
+        %td
+          %td.total-amount
+            = currency_euro movements.inject(0) { |total, e| total + e.amount }
           %td
-            %td.total-amount
-              = currency_euro movements.inject(0) { |total, e| total + e.amount }
-            %td
-            %td
-            %td
+          %td
+          %td
 
-  - else
-    %span No #{movement_name.pluralize} found for current month
-    %i{:class => "icon #{movement_name.pluralize == 'expenses' ? 'icon-heart' : 'icon-heart-empty'}"}
-    - # TODO: replace with this when fontawesome 3.1.1 becomes available
-    - # %i{:class => "icon #{movement_name.pluralize == 'expenses' ? 'icon-smile' : 'icon-frown'}"}    
+- else
+  %span No #{movement_name.pluralize} found for current month
+  %i{:class => "icon #{movement_name.pluralize == 'expenses' ? 'icon-heart' : 'icon-heart-empty'}"}
+  - # TODO: replace with this when fontawesome 3.1.1 becomes available
+  - # %i{:class => "icon #{movement_name.pluralize == 'expenses' ? 'icon-smile' : 'icon-frown'}"}    

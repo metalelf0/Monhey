@@ -6,6 +6,7 @@
 ## UI features
 
 [ ] prevent inserting chars like - or + in the expense text field
+[ ] fix autocomplete on categories
 
 ## New features
 

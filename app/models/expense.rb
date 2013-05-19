@@ -33,15 +33,17 @@ class Expense < ActiveRecord::Base
   
   def Expense.amounts_by_date_for_month(date)
     start_date, end_date = start_and_end_of_month(date)
+    expenses = Expense.between(start_date, end_date)
     daily_expenses = ""
     start_date.upto(end_date) do |date|
-      daily_expenses += (-1 * Expense.total_for_day(date)).to_s + ","
+      daily_expenses += (-1 * expenses.select {|e| e.date == date }.sum(&:amount)).to_s + ","
     end
-    return daily_expenses[0..-2]
+    return daily_expenses.gsub(/,$/, "")
   end
   
-  def Expense.prevision_for_month date
-    return Expense.daily_average_for_month(date) * date.end_of_month.day
+  def Expense.prevision_for_month date, options={}
+    wage = options[:wage] || 0
+    return wage + Expense.daily_average_for_month(date) * date.end_of_month.day
   end
   
   def Expense.in_current_month #TODO: is this shit still needed?
