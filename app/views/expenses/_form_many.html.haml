@@ -4,21 +4,22 @@
 
 = render :partial => 'layouts/header', :locals => {:title => "Add expenses", :subtitle => "...as many as you want!" }
 
-.row
-  .span8
-    = form_tag :action => :create_many, :controller => :expenses do
-      %table.table
-        %tr
-          %th Date
-          %th &nbsp;
-          %th Amount
-          %th Description
-          %th Category
-          %th Account
+= form_tag :action => :create_many, :controller => :expenses do
 
-        - (1..10).each  do |i|
-          %tr{ :class => "insert_" + cycle("rowA", "rowB") }    
-            = render :partial => 'form_many_row', :locals => {:i => i, :date => date, :categories => categories, :accounts => accounts }
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Date
+        %th Amount
+        %th Description
+        %th Category
+        %th Account
 
-        %tr{ :class => cycle("rowA", "rowB") }
-          %td= submit_tag "Save"
+    %tbody
+      - (1..10).each  do |i|
+        %tr   
+          = render :partial => 'form_many_row', :locals => {:i => i, :date => date, :categories => categories, :accounts => accounts }
+
+    %tfoot
+      %tr.form-actions
+        %td= submit_tag "Save", :class => 'btn btn-primary'
