@@ -6,3 +6,5 @@ webrat.log
 config/database.yml
 .sass-cache/
 bin/
+.env_vars
+

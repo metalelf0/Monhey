@@ -10,6 +10,11 @@ Finanze::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
   match 'expenses/create_many' => 'expenses#create_many'
+  
+  # sessions
+  get   '/login', :to => 'sessions#new', :as => :login
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/failure', :to => 'sessions#failure'
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :accounts

@@ -9,6 +9,9 @@ gem "sqlite3"
 gem "i18n"
 gem "therubyracer"
 gem "twitter-bootstrap-rails"
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'heroku'
 
 group :assets do
   gem 'sass-rails'
