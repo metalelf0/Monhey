@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails'
 gem "haml"
 gem 'haml-rails'
-gem "mysql"
+gem  "pg"
 gem "fastercsv"
 gem "i18n"
 gem "therubyracer"
