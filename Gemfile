@@ -5,7 +5,6 @@ gem "haml"
 gem 'haml-rails'
 gem "mysql"
 gem "fastercsv"
-gem "sqlite3"
 gem "i18n"
 gem "therubyracer"
 gem "twitter-bootstrap-rails"
@@ -33,4 +32,5 @@ group :development, :test do
   gem 'webrat'
   gem 'pry'
   gem 'spectator'
+  gem "sqlite3"
 end
