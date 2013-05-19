@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     auth_hash = request.env['omniauth.auth']
+    logger.info auth_hash 
  
     @authorization = Authorization.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
     if @authorization
@@ -14,7 +15,8 @@ class SessionsController < ApplicationController
       user.save
  
       render :text => "Hi #{user.name}! You've signed up."
-    end  end
+    end
+  end
 
   def failure
   end
