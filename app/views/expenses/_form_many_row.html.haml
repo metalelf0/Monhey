@@ -1,8 +1,10 @@
 %td
   = text_field_tag("elem#{i}[date]", date, :class => "datepicker")
 %td
-  %i{:id => "elem#{i}SignIcon", :class => "sign-icon icon icon-minus-sign"}
   = hidden_field_tag("elem#{i}[sign]", "-")
+  .input-prepend
+    %span.add-on.expense-sign -
+    = text_field_tag("elem#{i}[amount]", "", :class => "input-mini")
 %td
   = text_field_tag("elem#{i}[amount]", "", :size => 5)
 %td

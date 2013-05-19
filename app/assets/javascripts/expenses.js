@@ -18,9 +18,10 @@ $(document).ready(function(){
   	format: 'yyyy-mm-dd'
   });
 
-  $('.sign-icon').click(function() {
-	  $(this).toggleClass("icon-minus-sign icon-plus-sign");
-	  var signInput = $(this).parent().find('input')
-	  signInput.val( (signInput.val() == "-" ? "+" : "-") );
+  $('.expense-sign').click(function() {
+    var newSign = ( $(this).text() == "-" ? "+" : "-" );
+    var signInput = $(this).parent().parent().find("input[type='hidden']");
+    $(signInput).val(newSign);
+    $(this).text(newSign);
   });
 });
