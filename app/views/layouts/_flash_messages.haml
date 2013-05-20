@@ -1,0 +1,11 @@
+- unless flash[:notice].blank?
+  .row
+    .span12
+      .alert.alert-success
+        = flash[:notice]
+
+- unless flash[:alert].blank?
+  .row
+    .span12
+      .alert.alert-error
+        = flash[:alert]
