@@ -12,4 +12,13 @@ module ApplicationHelper
       nil
     end
   end
+  
+  def page_title_for_current_action
+    if ::Rails.env == "production"
+      environment_prefix = nil
+    else
+      environment_prefix = "[#{::Rails.env}] - "
+    end
+    "#{environment_prefix}#{controller.controller_name}: #{controller.action_name}"
+  end
 end

@@ -5,15 +5,17 @@
 
 ## UI features
 
+[X] Remove env from page title when == production
 [ ] prevent inserting chars like - or + in the expense text field
 [ ] fix autocomplete on categories
 
 ## New features
 
-[ ] introduce users!
+[X] introduce users!
+  [ ] add user_id to models and default scopes
 [ ] move wage to config file (or user configuration)
 
 ## Charts
 
 [ ] fix the daily chart scale: top limit should not be 1000 but the highest daily expense
-[ ] daily chart should only include expenses (no incomes)
+[ ] daily chart should only include expenses (no incomes) 
