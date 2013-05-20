@@ -26,7 +26,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand(href="#") Finanze
+          %a.brand(href="#") MonHey!
           .container.nav-collapse
             %ul.nav
               %li= link_to "Expenses", expenses_path
@@ -34,8 +34,9 @@
               %li= link_to 'Accounts', accounts_path
             %ul.nav.pull-right
               - if current_user
-                %p.navbar-text
-                  = "Logged in as #{current_user.name}"
+                %li
+                  %p.navbar-text
+                    = "Logged in as #{current_user.name}"
                 %li= link_to "Log Out", logout_path
               - else
                 %li= link_to "Login using Facebook", login_path
