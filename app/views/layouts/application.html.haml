@@ -32,7 +32,14 @@
               %li= link_to "Expenses", expenses_path
               %li= link_to 'Categories', categories_path
               %li= link_to 'Accounts', accounts_path
-              %li= link_to 'Movements', movements_path
+            %ul.nav.pull-right
+              - if current_user
+                %p.navbar-text
+                  = "Logged in as #{current_user.name}"
+                %li= link_to "Log Out", logout_path
+              - else
+                %li= link_to "Login using Facebook", login_path
+              
 
     .container
 
