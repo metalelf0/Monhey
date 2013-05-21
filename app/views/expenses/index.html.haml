@@ -1,31 +1,29 @@
-#main-container.row
+- expenses_for = "Listing expenses for #{Date::MONTHNAMES[@date.month] + " " + @date.year.to_s}"
 
-  - expenses_for = "Listing expenses for #{Date::MONTHNAMES[@date.month] + " " + @date.year.to_s}"
+= render :partial => "layouts/header", :locals => {:title => "Expenses Manager", :subtitle => expenses_for }
 
-  = render :partial => "layouts/header", :locals => {:title => "Expenses Manager", :subtitle => expenses_for }
+#navigation-links
+  - prev_month = raw(content_tag(:i, "", :class => "icon icon-chevron-left") + " Prev month")
+  = link_to prev_month, { :action => :index, :month => (@date << 1).month, :year => (@date << 1).year }, :class => "btn btn-primary"
+  &nbsp;
+  - next_month = raw("Next month " + content_tag(:i, "", :class => "icon icon-chevron-right"))
+  = link_to next_month, { :action => :index, :month => (@date >> 1).month, :year => (@date >> 1).year }, :class => "btn btn-primary"
 
-  #navigation-links
-    - prev_month = raw(content_tag(:i, "", :class => "icon icon-chevron-left") + " Prev month")
-    = link_to prev_month, { :action => :index, :month => (@date << 1).month, :year => (@date << 1).year }, :class => "btn btn-primary"
-    &nbsp;
-    - next_month = raw("Next month " + content_tag(:i, "", :class => "icon icon-chevron-right"))
-    = link_to next_month, { :action => :index, :month => (@date >> 1).month, :year => (@date >> 1).year }, :class => "btn btn-primary"
+%hr
 
-  %hr
-  
-  = render :partial => 'info_boxes'
-  
-  %hr
+= render :partial => 'info_boxes'
 
-  .row
-    .span6.collapsable-expenses
-      = render :partial => 'movements_list', :locals => {:movements => @expenses, :movement_name => 'expense' }
-    .span6.collapsable-expenses
-      = render :partial => 'movements_list', :locals => {:movements => @incomes, :movement_name => 'income'  }
+%hr
 
-  .row
-    .span12
-      #form_enter_many
-        = render :partial => "form_many"
-        
-  %hr
+.row
+  .span6.collapsable-expenses
+    = render :partial => 'movements_list', :locals => {:movements => @expenses, :movement_name => 'expense' }
+  .span6.collapsable-expenses
+    = render :partial => 'movements_list', :locals => {:movements => @incomes, :movement_name => 'income'  }
+
+.row
+  .span12
+    #form_enter_many
+      = render :partial => "form_many"
+      
+%hr

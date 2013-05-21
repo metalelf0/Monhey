@@ -2,3 +2,4 @@ if [ -f "$rvm_path/scripts/rvm" ] && ([ -f ".rvmrc" ] || [ -f ".ruby-version" ])
   source "$rvm_path/scripts/rvm"
   [ -f ".rvmrc" ] && source ".rvmrc" || rvm `cat .ruby-version`
 fi
+source .env_vars
