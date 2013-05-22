@@ -14,6 +14,7 @@ describe "Creating an entry" do
   end
 
   it "should save an entry through the first insert fields-row" do
+    login_with_oauth
     Expense.count.should eql(0)
     visit 'expenses'
 
@@ -21,7 +22,6 @@ describe "Creating an entry" do
     fill_in "elem1[amount]", :with => "10"
     fill_in "elem1[description]", :with => "Spesa di prova"
     fill_in "elem1[category_name]", :with => "Altro"
-
 
     click_button "Save"
     Expense.count.should eql(1)
@@ -33,6 +33,7 @@ describe "Creating an entry" do
   end
 
   it "should save more than one entry through edit fields-rows" do
+    login_with_oauth
     Expense.count.should eql(0)
     visit 'expenses'
 

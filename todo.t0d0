@@ -1,7 +1,11 @@
-## App behaviour
+## App behaviour 
 
 [ ] you must create at least one category before inserting expenses
 [ ] you must create at least one account  before inserting expenses
+
+## Refactoring
+
+[ ] extract chart logic into separate objects 
 
 ## UI features
 
@@ -12,7 +16,13 @@
 ## New features
 
 [X] introduce users!
-  [ ] add user_id to models and default scopes
+  [X] add user_id to models and default scopes
+    [X] Category
+    [X] Expense
+    [X] Account
+  [ ] add user saving to forms
+  [ ] add default scope to models
+    [ ] fixing all shitty SQL queries
 [ ] move wage to config file (or user configuration)
 
 ## Charts

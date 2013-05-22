@@ -42,9 +42,9 @@ class ExpensesController < ApplicationController
       if !(params["elem" + i.to_s]["amount"].blank? || params["elem" + i.to_s]["description"].blank?)
         expense = Expense.new
         # TODO: "elem" a costante
-        params["elem" + i.to_s] = handle_multiedit_params(params["elem" + i.to_s])       
-        expense.attributes = expense.attributes.merge(params["elem" + i.to_s])
-        expense.save()
+        params["elem" + i.to_s] = handle_multiedit_params(params["elem" + i.to_s])
+        expense.attributes = expense.attributes.merge(params["elem" + i.to_s]).merge(:user_id => current_user.id)
+        expense.save
       end
     end
     flash[:notice] = "expenses correctly saved"

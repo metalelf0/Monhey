@@ -20,6 +20,12 @@ describe Expense do
   let!(:income_yesterday) { Factory(:expense, :amount =>  5.0, :category => third_category, :date => today - 1) }
   let!(:expense_one_month_ago) {Factory(:expense, :amount => -30.0, :date => today - 1.month) }
 
+  it "should belong to an user" do
+    user = Factory(:user)
+    expense = Factory(:expense, :user => user)
+    expense.user.should == user
+  end
+
   it "should retrieve expenses in a given month" do
     expenses_in_current_month = ExpenseRepository.new.find_by_year_month(:date => today)
     expenses_in_current_month.size.should eql(3)

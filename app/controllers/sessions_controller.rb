@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # binding.pry
     auth_hash = request.env['omniauth.auth']
  
     if session[:user_id]
@@ -15,7 +16,8 @@ class SessionsController < ApplicationController
       auth = Authorization.find_or_create(auth_hash)
  
       # Create the session
-      session[:user_id] = auth.user.id
+      @user = auth.user
+      session[:user_id] = @user.id
  
       flash[:notice] = "Welcome #{auth.user.name}!"
     end

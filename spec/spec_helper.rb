@@ -19,6 +19,20 @@ RSpec.configure do |config|
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  
+  # integration_spec_helper for request specs
+  config.include IntegrationSpecHelper, :type => :request
+  # Capybara.default_host = 'http://monhey.dev'
+  
+  OmniAuth.config.test_mode = true
+  
+  OmniAuth.config.add_mock(:facebook, {
+    :info => {
+      :name => 'zapnap',
+      :email => "john@doe.com"
+    },
+    :uid => '12345'
+  })
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

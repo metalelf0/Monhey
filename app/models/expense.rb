@@ -6,8 +6,9 @@ class Expense < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :account
+  belongs_to :user
   
-  validates_presence_of :description, :category
+  validates_presence_of :description, :category, :user_id
   validates_numericality_of :amount
   
   scope :between, lambda { |start_date, end_date| { :conditions => ['created_at >= ? AND created_at <= ?', start_date.beginning_of_day, end_date.end_of_day ] } }
