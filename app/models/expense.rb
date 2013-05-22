@@ -11,7 +11,8 @@ class Expense < ActiveRecord::Base
   validates_presence_of :description, :category, :user_id
   validates_numericality_of :amount
   
-  scope :between, lambda { |start_date, end_date| { :conditions => ['created_at >= ? AND created_at <= ?', start_date.beginning_of_day, end_date.end_of_day ] } }
+  scope :between, lambda { |start_date, end_date| { :conditions => ['date >= ? AND date <= ?', start_date, end_date ] } }
+  scope :by_user_id, lambda { |user_id| where("user_id = ?", user_id) }
 
   def Expense.daily_average_for_month date
     days_passed = (date.is_in_current_month ? Date.today.day : date.end_of_month.day)

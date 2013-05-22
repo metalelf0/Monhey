@@ -26,12 +26,6 @@ describe Expense do
     expense.user.should == user
   end
 
-  it "should retrieve expenses in a given month" do
-    expenses_in_current_month = ExpenseRepository.new.find_by_year_month(:date => today)
-    expenses_in_current_month.size.should eql(3)
-  end
-
-
   context "Calculating daily average" do
 
     before do
