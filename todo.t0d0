@@ -6,6 +6,7 @@
 ## Refactoring
 
 [ ] extract chart logic into separate objects 
+[ ] remove select in ExpenseRepository\#expenses_by_year_month_and_category
 
 ## UI features
 
@@ -22,8 +23,9 @@
     [X] Account
   [ ] add user saving to forms
   [ ] add default scope to models
-    [ ] fixing all shitty SQL queries
-[ ] move wage to config file (or user configuration)
+    [.] fixing all shitty SQL queries
+[ ] move wage to user configuration
+  [ ] add user configuration page
 
 ## Charts
 

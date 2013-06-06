@@ -46,7 +46,7 @@ describe ExpensesController do
     end
 
     it "should show only the entries for a given month and category" do
-      Expense.stub(:find_by_year_month_and_category).and_return([])
+      @user.stub(:expenses_by_year_month_and_category).and_return([])
       get :index, :year => 2009, :month => 2, :category_name => "A category without expenses"
       response.should be_success
       assigns[:expenses].should have(0).expenses
