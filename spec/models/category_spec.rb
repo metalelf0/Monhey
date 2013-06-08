@@ -9,8 +9,9 @@ describe Category do
   end
 
   it "should be able to calculate monthly totals" do
-    ExpenseRepository.any_instance.should_receive(:total_for_month_by_category).exactly(12).times
-    cat = Factory.build(:category)
+    user = Factory(:user)
+    cat = Factory.build(:category, :user => user)
+    user.should_receive(:total_for_month_by_category).exactly(12).times
     cat.totals_for_year(2009)
   end
 

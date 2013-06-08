@@ -66,5 +66,14 @@ describe ExpenseRepository do
     end
   
   end  
+
+  context "Daily total" do
+
+    it "gets the right per-day amount" do
+      john.total_for_day(:date => Date.new(2012, 1, 10)).should == -20
+    end
+
+  end
+
   
 end

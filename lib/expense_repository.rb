@@ -9,7 +9,7 @@ class ExpenseRepository
   end
   
   def expenses
-    Expense.by_user_id(user.id)
+    Expense.where(:user_id => user.id)
   end
 
   def expenses_by_year_and_month params
@@ -34,7 +34,6 @@ class ExpenseRepository
     total.to_f / days_passed
   end
   
-  
   # TODO: move this somewhere else
   def prevision_for_month params
     date = params[:date]
@@ -48,11 +47,20 @@ class ExpenseRepository
     expenses_by_year_and_month(:date => date).select { |e| e.category.name == category_name }
   end
 
-  # OLD METHODS
-  
-  def total_for_month_by_category date, category_name
+  def total_for_day params
+    date = params[:date]
+    expenses.where(:date => date).sum(&:amount)
+  end
+
+  def amounts_by_date_for_month(params)
+    date = params[:date]
     start_date, end_date = start_and_end_of_month(date)
-    Expense.sum(:amount, :joins => "INNER JOIN categories as cat ON category_id = cat.id", :conditions => ["date BETWEEN ? AND ? AND cat.name = ?", start_date, end_date, category_name])
-  end 
+    user_expenses = expenses.between(start_date, end_date)
+    daily_expenses = ""
+    start_date.upto(end_date) do |date|
+      daily_expenses += (-1 * user_expenses.select {|e| e.date == date }.sum(&:amount)).to_s + ","
+    end
+    return daily_expenses.gsub(/,$/, "")
+  end
 
 end

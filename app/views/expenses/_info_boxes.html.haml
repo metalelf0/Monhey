@@ -19,9 +19,9 @@
         #tabs-1.tab-pane.fade.in.active
           = render :partial => 'layouts/statistics', :locals => {:total => total, :average => average, :prevision => prevision, :left => left }
         #tabs-2.tab-pane.fade
-          %img{:src => Expense.generate_daily_chart_for(@date) }
+          %img{:src => @expenses_daily_chart.url }
         #tabs-3.tab-pane.fade
-          %img{:src => Expense.generate_expenses_pie_chart(@date) }
+          %img{:src => @categories_pie_chart.url }
       
   .span6
     = render :partial => 'tag_cloud'

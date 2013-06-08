@@ -2,9 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name
   has_many :authorizations
   validates :name, :email, :presence => true
-  delegate :expenses, :expenses_by_year_and_month, :total_for_month, :left_for_month,
-           :daily_average_for_month, :prevision_for_month, :expenses_by_year_month_and_category,
-           :to => :expense_repository
+  delegate :expenses, :expenses_by_year_and_month, :total_for_month, :left_for_month, :daily_average_for_month, :prevision_for_month, :expenses_by_year_month_and_category, :total_for_month_by_category, :total_for_day, :amounts_by_date_for_month, :to => :expense_repository
   
   def expense_repository
     @expense_repository ||= ExpenseRepository.new(self)

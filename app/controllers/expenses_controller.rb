@@ -11,7 +11,9 @@ class ExpensesController < ApplicationController
       @expenses = current_user.expenses_by_year_month_and_category(:date => @date, :category_name => params[:category_name]).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount < 0}
       @incomes =  current_user.expenses_by_year_month_and_category(:date => @date, :category_name => params[:category_name]).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount >= 0}
     end
-    @hash_for_cloud = Expense.generate_hash_for_categories_cloud(@date) 
+    @categories_cloud_chart = CategoriesCloudChart.new(:user => current_user, :date => @date)
+    @categories_pie_chart = CategoriesPieChart.new(:user => current_user, :date => @date)
+    @expenses_daily_chart = ExpensesDailyChart.new(:user => current_user, :date => @date)
   end
 
   def show

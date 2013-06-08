@@ -8,9 +8,8 @@ class Category < ActiveRecord::Base
 
   def totals_for_year(year)
     totals = []
-    expense_repository = ExpenseRepository.new
     1.upto(12) do |month|
-			totals << expense_repository.total_for_month_by_category(Date.new(year, month, 1), self.name ) 
+			totals << user.total_for_month_by_category(Date.new(year, month, 1), self.name ) 
 		end 
 		totals
   end
