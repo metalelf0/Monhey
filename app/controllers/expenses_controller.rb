@@ -1,19 +1,22 @@
 class ExpensesController < ApplicationController
 
   def index
-    # binding.pry
-    @date = build_date_from_params(params)
-    @categories = Category.all(:select => :name).map {|category| category.name }.compact.sort
-    if params[:category_name].blank?
-      @expenses = current_user.expenses_by_year_and_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount < 0}
-      @incomes =  current_user.expenses_by_year_and_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount >= 0}
+    if current_user
+      @date = build_date_from_params(params)
+      @categories = Category.all(:select => :name).map {|category| category.name }.compact.sort
+      if params[:category_name].blank?
+        @expenses = current_user.expenses_by_year_and_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount < 0}
+        @incomes =  current_user.expenses_by_year_and_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount >= 0}
+      else
+        @expenses = current_user.expenses_by_year_month_and_category(:date => @date, :category_name => params[:category_name]).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount < 0}
+        @incomes =  current_user.expenses_by_year_month_and_category(:date => @date, :category_name => params[:category_name]).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount >= 0}
+      end
+      @categories_cloud_chart = CategoriesCloudChart.new(:user => current_user, :date => @date)
+      @categories_pie_chart = CategoriesPieChart.new(:user => current_user, :date => @date)
+      @expenses_daily_chart = ExpensesDailyChart.new(:user => current_user, :date => @date)
     else
-      @expenses = current_user.expenses_by_year_month_and_category(:date => @date, :category_name => params[:category_name]).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount < 0}
-      @incomes =  current_user.expenses_by_year_month_and_category(:date => @date, :category_name => params[:category_name]).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount >= 0}
+      redirect_to login_url
     end
-    @categories_cloud_chart = CategoriesCloudChart.new(:user => current_user, :date => @date)
-    @categories_pie_chart = CategoriesPieChart.new(:user => current_user, :date => @date)
-    @expenses_daily_chart = ExpensesDailyChart.new(:user => current_user, :date => @date)
   end
 
   def show
