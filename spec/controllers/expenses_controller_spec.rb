@@ -8,8 +8,10 @@ describe ExpensesController do
     before(:each) do
       Date.stub(:today).and_return(Date.new(2009, 1, 10))
       @user = Factory(:user)
-      @altro = Factory(:category, :name => "Altro")
-      @bancomat = Factory(:account, :name => "Bancomat")
+      @another_user = Factory(:user)
+      @altro = Factory(:category, :name => "Altro", :user => @user)
+      @bancomat = Factory(:account, :name => "Bancomat", :user => @user)
+      @another_category = Factory(:category, :name => "Another category", :user => @another_user)
       @first = Factory(:expense,
         :description => "First",
         :amount => -10,
@@ -50,6 +52,11 @@ describe ExpensesController do
       get :index, :year => 2009, :month => 2, :category_name => "A category without expenses"
       response.should be_success
       assigns[:expenses].should have(0).expenses
+    end
+
+    it "should map categories only for current user" do
+      get :index, :year => 2009, :month => 2
+      assigns[:categories].should_not include "Another category"
     end
 
   end

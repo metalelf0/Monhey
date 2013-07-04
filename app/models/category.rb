@@ -5,11 +5,12 @@ class Category < ActiveRecord::Base
   belongs_to :user
   has_many :expenses
   validates_presence_of :name
+  validates_presence_of :user
 
   def totals_for_year(year)
     totals = []
     1.upto(12) do |month|
-			totals << user.total_for_month_by_category(Date.new(year, month, 1), self.name ) 
+			totals << user.total_for_month_by_category(:date => Date.new(year, month, 1), :category_name => self.name ) 
 		end 
 		totals
   end

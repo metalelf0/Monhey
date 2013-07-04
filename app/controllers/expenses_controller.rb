@@ -3,7 +3,7 @@ class ExpensesController < ApplicationController
   def index
     if current_user
       @date = build_date_from_params(params)
-      @categories = Category.all(:select => :name).map {|category| category.name }.compact.sort
+      @categories = current_user.categories.map {|category| category.name }.compact.sort
       if params[:category_name].blank?
         @expenses = current_user.expenses_by_year_and_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount < 0}
         @incomes =  current_user.expenses_by_year_and_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount >= 0}

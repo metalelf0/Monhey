@@ -39,7 +39,7 @@
                     = "Logged in as #{current_user.name}"
                 %li= link_to "Log Out", logout_path
               - else
-                %li= link_to "Login using Facebook", login_path
+                %li= link_to_unless_current "Login using Facebook", login_path do nil end
               
 
     .container

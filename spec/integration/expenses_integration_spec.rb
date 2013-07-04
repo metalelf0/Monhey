@@ -6,11 +6,12 @@ describe "Creating an entry" do
     Expense.delete_all
     Category.delete_all
     Account.delete_all
-    Account.create(:name => 'Contanti')
-    Account.create(:name => 'Bancomat')
-    Category.create(:name => 'Cibo')
-    Category.create(:name => 'Altro')
-    Category.create(:name => 'Elettronica')    
+    user        = Factory(:user)
+    contanti    = Factory(:account,  :user => user, :name => 'Contanti')
+    bancomat    = Factory(:account,  :user => user, :name => 'Bancomat')
+    cibo        = Factory(:category, :user => user, :name => 'Cibo')
+    altro       = Factory(:category, :user => user, :name => 'Altro')
+    elettronica = Factory(:category, :user => user, :name => 'Elettronica')
   end
 
   it "should save an entry through the first insert fields-row" do

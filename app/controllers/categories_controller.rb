@@ -1,23 +1,27 @@
 class CategoriesController < ApplicationController
+
   def index
-    @categories = Category.all
+    @categories = current_user.categories
   end
 
   def show
+    #TODO: filter by current_user
     @category = Category.find(params[:id])
     @totals = @category.totals_for_year Date.today.year
   end
 
   def new
-    @category = Category.new
+    @category = Category.new(:user => current_user)
   end
 
   def edit
+    #TODO: filter by current_user
     @category = Category.find(params[:id])
   end
 
   def create
     @category = Category.new(params[:category])
+    @category.user = current_user
 
     if @category.save
       flash[:notice] = 'Category was successfully created.'
@@ -28,6 +32,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
+    #TODO: filter by current_user
     @category = Category.find(params[:id])
 
     if @category.update_attributes(params[:category])
@@ -39,6 +44,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    #TODO: filter by current_user
     @category = Category.find(params[:id])
     @category.destroy
 
