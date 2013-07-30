@@ -1,13 +1,14 @@
 class CategoriesController < ApplicationController
 
+  load_and_authorize_resource
+
   def index
     @categories = current_user.categories
   end
 
   def show
-    #TODO: filter by current_user
     @category = Category.find(params[:id])
-    @totals = @category.totals_for_year Date.today.year
+    @totals = @category.try(:totals_for_year, Date.today.year)
   end
 
   def new
@@ -15,7 +16,6 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    #TODO: filter by current_user
     @category = Category.find(params[:id])
   end
 
@@ -32,7 +32,6 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    #TODO: filter by current_user
     @category = Category.find(params[:id])
 
     if @category.update_attributes(params[:category])
@@ -44,7 +43,6 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    #TODO: filter by current_user
     @category = Category.find(params[:id])
     @category.destroy
 

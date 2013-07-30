@@ -5,7 +5,7 @@
 
 ## BUGS!
 
-[ ] restrict categories to current_user in categories_controller !!!
+[x] restrict categories to current_user in categories_controller
 
 ## Refactoring
 

@@ -15,6 +15,7 @@ gem "koala"
 gem "httparty"
 gem "thin"
 gem "rack"
+gem 'cancan'
 
 group :assets do
   gem 'sass-rails'
