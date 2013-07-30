@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+ruby '1.9.3-p392'
+
 gem 'rails'
 gem "haml"
 gem 'haml-rails'
