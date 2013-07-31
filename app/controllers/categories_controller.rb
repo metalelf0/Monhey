@@ -1,6 +1,6 @@
-class CategoriesController < ApplicationController
+# include CanCan::ControllerAdditions::ClassMethods
 
-  load_and_authorize_resource
+class CategoriesController < ApplicationController
 
   def index
     @categories = current_user.categories
@@ -8,7 +8,9 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @totals = @category.try(:totals_for_year, Date.today.year)
+    authorize_resource(@category) do
+      @totals = @category.try(:totals_for_year, Date.today.year)
+    end
   end
 
   def new
@@ -17,6 +19,7 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
+    authorize_resource(@category)
   end
 
   def create
@@ -25,7 +28,7 @@ class CategoriesController < ApplicationController
 
     if @category.save
       flash[:notice] = 'Category was successfully created.'
-      redirect_to(@category) 
+      redirect_to(@category)
     else
       render :action => "new"
     end
@@ -34,18 +37,22 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
 
-    if @category.update_attributes(params[:category])
-      flash[:notice] = 'Category was successfully updated.'
-      redirect_to(@category)
-    else
-      render :action => "edit"
+    authorize_resource @category do
+      if @category.update_attributes(params[:category])
+        flash[:notice] = 'Category was successfully updated.'
+        redirect_to(@category)
+      else
+        render :action => "edit"
+      end
     end
   end
 
   def destroy
     @category = Category.find(params[:id])
-    @category.destroy
-
-    redirect_to(categories_url)
+    authorize_resource @category do
+      @category.destroy
+      redirect_to(categories_url)
+    end
   end
+
 end

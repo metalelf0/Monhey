@@ -6,8 +6,6 @@
   %td
     =h expense.category.nil? ? "N/A" : expense.category.name
   %td
-    =h expense.account.name
-  %td
     =h expense.date
   %td
     = link_to content_tag(:i, "", :class => "icon icon-pencil"), edit_expense_path(expense)

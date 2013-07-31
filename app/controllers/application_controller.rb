@@ -1,12 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = "Access denied."
-    redirect_to root_url
+  private
+
+  def authorize_resource resource
+    if resource.user == current_user
+      yield
+    else
+      flash[:error] = "You are not authorized to view this resource!"
+      redirect_to root_url
+    end
   end
 
-  private
 
   def current_user
     if Rails.env == "test"

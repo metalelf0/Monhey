@@ -5,13 +5,10 @@ describe "Creating an entry" do
   before :each do
     Expense.delete_all
     Category.delete_all
-    Account.delete_all
-    user        = Factory(:user)
-    contanti    = Factory(:account,  :user => user, :name => 'Contanti')
-    bancomat    = Factory(:account,  :user => user, :name => 'Bancomat')
-    cibo        = Factory(:category, :user => user, :name => 'Cibo')
-    altro       = Factory(:category, :user => user, :name => 'Altro')
-    elettronica = Factory(:category, :user => user, :name => 'Elettronica')
+    user = Factory(:user)
+    Factory(:category, :user => user, :name => 'Cibo')
+    Factory(:category, :user => user, :name => 'Altro')
+    Factory(:category, :user => user, :name => 'Elettronica')
   end
 
   it "should save an entry through the first insert fields-row" do

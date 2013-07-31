@@ -3,7 +3,6 @@ include ExpensesHelper
 class Expense < ActiveRecord::Base
 
   belongs_to :category
-  belongs_to :account
   belongs_to :user
   
   validates_presence_of :description, :category, :user_id

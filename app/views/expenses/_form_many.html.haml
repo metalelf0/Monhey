@@ -1,5 +1,4 @@
 - categories = options_for_select(Category.all.map { |category| [category.name, category.id ] }, 0 )
-- accounts = options_for_select(Account.all.map { |account| [account.name, account.id ] }, 0 )
 - date = Date.today
 
 = render :partial => 'layouts/header', :locals => {:title => "Add expenses", :subtitle => "...as many as you want!" }
@@ -13,12 +12,11 @@
         %th Amount
         %th Description
         %th Category
-        %th Account
 
     %tbody
       - (1..10).each  do |i|
         %tr   
-          = render :partial => 'form_many_row', :locals => {:i => i, :date => date, :categories => categories, :accounts => accounts }
+          = render :partial => 'form_many_row', :locals => {:i => i, :date => date, :categories => categories }
 
     %tfoot
       %tr.form-actions

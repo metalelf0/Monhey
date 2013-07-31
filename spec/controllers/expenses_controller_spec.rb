@@ -10,28 +10,24 @@ describe ExpensesController do
       @user = Factory(:user)
       @another_user = Factory(:user)
       @altro = Factory(:category, :name => "Altro", :user => @user)
-      @bancomat = Factory(:account, :name => "Bancomat", :user => @user)
       @another_category = Factory(:category, :name => "Another category", :user => @another_user)
       @first = Factory(:expense,
         :description => "First",
         :amount => -10,
         :date => Date.new(2009,1,1),
         :category => @altro,
-        :account => @bancomat,
         :user => @user)
       @second = Factory(:expense,
         :description => "Second",
         :amount => 10,
         :date => Date.new(2009,2,1),
         :category => @altro,
-        :account => @bancomat,
         :user => @user)
       @third = Factory(:expense,
         :description => "Third",
         :amount => 20,
         :date => Date.new(2009,3,1),
         :category => @altro,
-        :account => @bancomat,
         :user => @user)
     end
 

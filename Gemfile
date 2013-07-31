@@ -17,7 +17,6 @@ gem "koala"
 gem "httparty"
 gem "thin"
 gem "rack"
-gem 'cancan'
 
 group :assets do
   gem 'sass-rails'
@@ -33,7 +32,7 @@ group :development, :test do
   gem 'cucumber'
   gem "factory_girl_rails"
   gem 'webrat'
-  gem 'pry'
+  gem 'pry-remote'
   gem 'spectator'
   gem "sqlite3"
 end

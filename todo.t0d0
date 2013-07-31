@@ -1,7 +1,8 @@
 ## App behaviour 
 
+[ ] remove accounts!
+  [ ] fix UI
 [ ] you must create at least one category before inserting expenses
-[ ] you must create at least one account  before inserting expenses
 
 ## BUGS!
 
@@ -24,7 +25,6 @@
   [X] add user_id to models and default scopes
     [X] Category
     [X] Expense
-    [X] Account
   [ ] add user saving to forms
   [ ] add default scope to models
     [.] fixing all shitty SQL queries

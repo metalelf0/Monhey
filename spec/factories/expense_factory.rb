@@ -3,6 +3,5 @@ Factory.define :expense do |e|
   e.amount -10
   e.date { Date.new(2009,3,1) } 
   e.association :category
-  e.association :account
   e.association :user
 end
