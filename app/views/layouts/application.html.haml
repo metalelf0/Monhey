@@ -19,7 +19,7 @@
 
 
   %body
-    .navbar.navbar-fixed-top
+    .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
         .container
           %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
@@ -33,13 +33,15 @@
               %li= link_to 'Categories', categories_path
             %ul.nav.pull-right
               - if current_user
-                %li
-                  %p.navbar-text
-                    = "Logged in as #{current_user.name}"
                 %li= link_to "Log Out", logout_path
+                %li
+                  = link_to "Logged in as #{current_user.name}", "#"
+                %li
+                  .pull-right.profile-image
+                    = image_tag current_user.profile_pic
               - else
                 %li= link_to_unless_current "Login using Facebook", login_path do nil end
-              
+
 
     .container
       = render "layouts/flash_messages"

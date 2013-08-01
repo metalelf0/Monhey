@@ -10,6 +10,8 @@
 
   [ ] prevent inserting chars like - or + in the expense text field
 
+  [x] add user profile pic in navbar
+
   [ ] you must create at least one category before inserting expenses
     [ ] create default categories for user after new user login?
 

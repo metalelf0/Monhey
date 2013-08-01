@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
  
       # Create the session
       @user = auth.user
+      @user.update_attribute(:profile_pic, auth_hash["info"]["image"])
       session[:user_id] = @user.id
  
       flash[:notice] = "Welcome #{auth.user.name}!"
