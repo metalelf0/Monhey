@@ -19,7 +19,7 @@ describe "Creating an entry" do
     set_hidden_field "elem1[sign]", :to => "-"
     fill_in "elem1[amount]", :with => "10"
     fill_in "elem1[description]", :with => "Spesa di prova"
-    fill_in "elem1[category_name]", :with => "Altro"
+    select "Altro", :from => "elem1[category_name]"
 
     click_button "Save"
     Expense.count.should eql(1)
@@ -37,15 +37,15 @@ describe "Creating an entry" do
 
     fill_in "elem1[amount]", :with => 10
     fill_in "elem1[description]", :with => "Spesa di prova n. 1"
-    fill_in "elem1[category_name]", :with => "Altro"
+    select "Altro", :from => "elem1[category_name]"
 
     fill_in "elem2[amount]", :with => 15
     fill_in "elem2[description]", :with => "Spesa di prova n. 2"
-    fill_in "elem2[category_name]", :with => "Elettronica"
+    select "Elettronica", :from => "elem2[category_name]"
 
     fill_in "elem3[amount]", :with => 20
     fill_in "elem3[description]", :with => "Spesa di prova n. 3"
-    fill_in "elem3[category_name]", :with => "Cibo"
+    select "Cibo", :from => "elem3[category_name]"
 
 
     click_button "Save"

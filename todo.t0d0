@@ -5,9 +5,12 @@
   [x] remove accounts!
     [x] fix UI
 
+  [x] categories should be drop down
+
   [ ] prevent inserting chars like - or + in the expense text field
 
   [ ] you must create at least one category before inserting expenses
+    [ ] create default categories for user after new user login?
 
   [X] introduce users!
     [X] add user_id to models and default scopes
