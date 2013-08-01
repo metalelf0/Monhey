@@ -8,7 +8,7 @@
 %td
   = text_field_tag("elem#{i}[description]", "") 
 %td
-  = select_tag("elem#{i}[category_name]", options_for_select(@categories.prepend(["   ", ''])), :class => "form-control") 
+  = select_tag("elem#{i}[category_id]", options_from_collection_for_select(@categories, :id, :name), :class => "form-control") 
 
 
     

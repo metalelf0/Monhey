@@ -3,7 +3,7 @@ class ExpensesController < ApplicationController
   def index
     if current_user
       @date = build_date_from_params(params)
-      @categories = current_user.categories.map {|category| category.name }.compact.sort
+      @categories = current_user.categories
       if params[:category_name].blank?
         @expenses = current_user.expenses_by_year_and_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount < 0}
         @incomes =  current_user.expenses_by_year_and_month(:date => @date).sort { |e1, e2| e1.date <=> e2.date }.select {|e| e.amount >= 0}
@@ -59,7 +59,7 @@ class ExpensesController < ApplicationController
 
   def update
     @expense = Expense.find(params[:id])
-    @expense.category = Category.find_or_create_by_name(params[:category_name])
+    @expense.category = current_user.categories.find_by_name(params[:category_name])
     params.delete("category_name")
     if @expense.update_attributes(params[:expense])
       flash[:notice] = 'Expense was successfully updated.'
@@ -78,9 +78,7 @@ class ExpensesController < ApplicationController
   def handle_multiedit_params params
     params["amount"] = "#{params["sign"]}#{params["amount"].sub("," , ".")}"
     params["description"] = params["description"].capitalize
-    params["category_id"] = Category.find_or_create_by_name(params[:category_name]).id
     params.delete("sign")
-    params.delete("category_name")
     return params
   end
 

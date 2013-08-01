@@ -6,6 +6,7 @@
     [x] fix UI
 
   [x] categories should be drop down
+    [ ] also in edit expense page
 
   [ ] prevent inserting chars like - or + in the expense text field
 
