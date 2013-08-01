@@ -37,8 +37,9 @@
                 %li
                   = link_to "Logged in as #{current_user.name}", "#"
                 %li
-                  .pull-right.profile-image
-                    = image_tag current_user.profile_pic
+                  - unless current_user.profile_pic.blank?
+                    .pull-right.profile-image
+                      = image_tag current_user.profile_pic
               - else
                 %li= link_to_unless_current "Login using Facebook", login_path do nil end
 
