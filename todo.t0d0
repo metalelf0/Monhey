@@ -1,37 +1,35 @@
 ## App behaviour 
 
-[ ] remove accounts!
-  [ ] fix UI
-[ ] you must create at least one category before inserting expenses
+[ ] ### FEATURES ###
 
-## BUGS!
+  [x] remove accounts!
+    [x] fix UI
 
-[x] restrict categories to current_user in categories_controller
+  [ ] prevent inserting chars like - or + in the expense text field
 
-## Refactoring
+  [ ] you must create at least one category before inserting expenses
 
-[ ] extract chart logic into separate objects 
-[ ] remove select in ExpenseRepository\#expenses_by_year_month_and_category
+  [X] introduce users!
+    [X] add user_id to models and default scopes
+      [X] Category
+      [X] Expense
+    [ ] add user saving to forms
+    [ ] add default scope to models
+      [.] fixing all shitty SQL queries
+    [ ] add user configuration page
+      [ ] move wage to user configuration
 
-## UI features
+  [ ] fix the daily chart scale: top limit should not be 1000 but the highest daily expense
+  [ ] daily chart should only include expenses (no incomes) 
 
-[X] Remove env from page title when == production
-[ ] prevent inserting chars like - or + in the expense text field
-[ ] fix autocomplete on categories
+[ ] ### BUGFIX ###
 
-## New features
+  [x] restrict categories to current_user in categories_controller
+  [X] Remove env from page title when == production
 
-[X] introduce users!
-  [X] add user_id to models and default scopes
-    [X] Category
-    [X] Expense
-  [ ] add user saving to forms
-  [ ] add default scope to models
-    [.] fixing all shitty SQL queries
-[ ] move wage to user configuration
-  [ ] add user configuration page
+[ ] ### REFACTORING ###
 
-## Charts
+  [ ] extract chart logic into separate objects 
+  [ ] remove select in ExpenseRepository\#expenses_by_year_month_and_category
 
-[ ] fix the daily chart scale: top limit should not be 1000 but the highest daily expense
-[ ] daily chart should only include expenses (no incomes) 
+
