@@ -1,12 +1,15 @@
+
 = form_for @category, :html => { :class => 'form-horizontal' } do |f|
   .control-group
     = f.label :name, :class => 'control-label'
     .controls
       = f.text_field :name, :class => 'text_field'
   .control-group
-    - @colors.each do |color|
-      = render :partial => 'color_box', :locals => { :color => color }
-
+    = f.label :color, :class => 'control-label'
+    .controls.colors
+      = f.hidden_field :color_code
+      - @colors.each do |color|
+        = render :partial => 'color_box', :locals => { :color => color, :category_color => @category.color }
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), categories_path, :class => 'btn'

@@ -1,0 +1,15 @@
+span.color-box {
+    float: left;
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 0px 6px 6px 0px;
+}
+
+span#current-color {
+  /* display: none; */
+}
+
+span.color-box.current {
+  border-bottom: 2px solid black;
+}

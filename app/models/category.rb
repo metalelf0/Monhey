@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
+  attr_accessible :color_code, :name
 
   MONTHS = "1|2|3|4|5|6|7|8|9|10|11|12"
 
@@ -24,6 +25,12 @@ class Category < ActiveRecord::Base
   def color_code
     color.try(:code) || "#111"
   end
+
+  def color_code= color_code
+    self.color = Color.find_by_code(color_code)
+  end
+
+  
   
 
 end
