@@ -1,4 +1,4 @@
-%tr.expense-row{:class => html_row_class}
+%tr.expense-row{:class => html_row_class, :style => "border-left: 4px solid #{expense.category.color_code}"}
   %td
     = h expense.description
   %td.expense-cell-amount

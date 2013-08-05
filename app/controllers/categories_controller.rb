@@ -8,9 +8,6 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    authorize_resource(@category) do
-      @totals = @category.try(:totals_for_year, Date.today.year)
-    end
   end
 
   def new
@@ -19,7 +16,9 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
-    authorize_resource(@category)
+    authorize_resource(@category) do
+      @colors = Color.all
+    end
   end
 
   def create

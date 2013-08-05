@@ -29,7 +29,7 @@ class ExpensesController < ApplicationController
 
   def edit
     @expense = Expense.find(params[:id])
-    @categories = Category.all(:select => :name).map {|category| category.name }.compact.sort
+    @categories = current_user.categories
   end
 
   def create
@@ -59,8 +59,6 @@ class ExpensesController < ApplicationController
 
   def update
     @expense = Expense.find(params[:id])
-    @expense.category = current_user.categories.find_by_name(params[:category_name])
-    params.delete("category_name")
     if @expense.update_attributes(params[:expense])
       flash[:notice] = 'Expense was successfully updated.'
       redirect_to expenses_url

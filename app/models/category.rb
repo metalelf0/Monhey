@@ -3,6 +3,7 @@ class Category < ActiveRecord::Base
   MONTHS = "1|2|3|4|5|6|7|8|9|10|11|12"
 
   belongs_to :user
+  belongs_to :color
   has_many :expenses
   validates_presence_of :name
   validates_presence_of :user
@@ -18,6 +19,10 @@ class Category < ActiveRecord::Base
   def google_chart_for_year year
     totals = totals_for_year year
     return "http://chart.apis.google.com/chart?cht=lc&chxt=x,y&chg=0,25&chd=t:" + totals.join(',') + "&chxl=0:|" + MONTHS + "|1:|0|250|500|750|1000&chs=500x150&chds=0,1000"
+  end
+
+  def color_code
+    color.try(:code) || "#111"
   end
   
 

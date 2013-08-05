@@ -17,7 +17,7 @@
   .control-group
     = f.label :category, :class => 'control-label'
     .controls
-      = text_field_tag :category_name, @expense.category.name, :class => 'text_field'
+      = f.select(:category_id, options_from_collection_for_select(@categories, :id, :name, @expense.category_id), :class => "form-control") 
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

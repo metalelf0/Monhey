@@ -3,6 +3,10 @@
     = f.label :name, :class => 'control-label'
     .controls
       = f.text_field :name, :class => 'text_field'
+  .control-group
+    - @colors.each do |color|
+      = render :partial => 'color_box', :locals => { :color => color }
+
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), categories_path, :class => 'btn'

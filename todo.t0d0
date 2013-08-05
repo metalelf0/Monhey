@@ -6,7 +6,14 @@
     [x] fix UI
 
   [x] categories should be drop down
-    [ ] also in edit expense page
+    [x] also in edit expense page
+
+  [.] Category colors
+    [x] create Color class and migration
+    [x] add color to category
+    [ ] add dropdown to choose category color in edit category view
+    [x] use category color in listing
+    [ ] use category color in charts
 
   [ ] prevent inserting chars like - or + in the expense text field
 
@@ -15,10 +22,10 @@
   [ ] you must create at least one category before inserting expenses
     [ ] create default categories for user after new user login?
 
-  [X] introduce users!
-    [X] add user_id to models and default scopes
-      [X] Category
-      [X] Expense
+  [x] introduce users!
+    [x] add user_id to models and default scopes
+      [x] Category
+      [x] Expense
     [ ] add user saving to forms
     [ ] add default scope to models
       [.] fixing all shitty SQL queries
@@ -28,14 +35,16 @@
   [ ] fix the daily chart scale: top limit should not be 1000 but the highest daily expense
   [ ] daily chart should only include expenses (no incomes) 
 
+  [ ] favicon
+
 [ ] ### BUGFIX ###
 
   [x] restrict categories to current_user in categories_controller
-  [X] Remove env from page title when == production
+  [x] Remove env from page title when == production
 
 [ ] ### REFACTORING ###
 
   [ ] extract chart logic into separate objects 
-  [ ] remove select in ExpenseRepository\#expenses_by_year_month_and_category
+  [ ] remove select in ExpenseRepository#expenses_by_year_month_and_category
 
 
