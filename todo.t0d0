@@ -11,7 +11,7 @@
   [.] Category colors
     [x] create Color class and migration
     [x] add color to category
-    [ ] add dropdown to choose category color in edit category view
+    [x] add dropdown to choose category color in edit category view
     [x] use category color in listing
     [ ] use category color in charts
 
