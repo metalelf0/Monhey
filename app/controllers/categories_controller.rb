@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new(:user => current_user)
+    @colors = Color.all
   end
 
   def edit

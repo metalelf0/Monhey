@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  attr_accessible :color_code, :name
+  attr_accessible :color_code, :name, :user
 
   MONTHS = "1|2|3|4|5|6|7|8|9|10|11|12"
 
@@ -12,9 +12,9 @@ class Category < ActiveRecord::Base
   def totals_for_year(year)
     totals = []
     1.upto(12) do |month|
-			totals << user.total_for_month_by_category(:date => Date.new(year, month, 1), :category_name => self.name ) 
-		end 
-		totals
+      totals << user.total_for_month_by_category(:date => Date.new(year, month, 1), :category_name => self.name )
+    end
+    totals
   end
 
   def google_chart_for_year year
@@ -29,8 +29,5 @@ class Category < ActiveRecord::Base
   def color_code= color_code
     self.color = Color.find_by_code(color_code)
   end
-
-  
-  
 
 end
