@@ -8,12 +8,12 @@
   [x] categories should be drop down
     [x] also in edit expense page
 
-  [.] Category colors
+  [x] Category colors
     [x] create Color class and migration
     [x] add color to category
     [x] add dropdown to choose category color in edit category view
     [x] use category color in listing
-    [ ] use category color in charts
+    [x] use category color in charts
 
   [ ] prevent inserting chars like - or + in the expense text field
 

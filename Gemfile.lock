@@ -63,6 +63,7 @@ GEM
     ffi (1.8.1)
     gherkin (2.7.2)
       json (>= 1.4.6)
+    google_visualr (2.1.7)
     haml (3.1.4)
     haml-rails (0.4)
       actionpack (>= 3.1, < 4.1)
@@ -234,6 +235,7 @@ DEPENDENCIES
   cucumber
   factory_girl_rails
   fastercsv
+  google_visualr (~> 2.1.0)
   haml
   haml-rails
   heroku

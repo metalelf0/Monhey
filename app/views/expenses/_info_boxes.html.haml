@@ -21,7 +21,7 @@
         #tabs-2.tab-pane.fade
           %img{:src => @expenses_daily_chart.url }
         #tabs-3.tab-pane.fade
-          %img{:src => @categories_pie_chart.url }
+          = render_chart @categories_pie_chart.chart, 'tabs-3' 
       
   .span6
     = render :partial => 'tag_cloud'

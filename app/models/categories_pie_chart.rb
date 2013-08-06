@@ -1,37 +1,49 @@
 class CategoriesPieChart
 
-  GOOGLE_CHART_BASE_URL =  "http://chart.apis.google.com/chart?cht=p&chd=t:"
-
-  attr_accessor :user, :date, :url
+  attr_accessor :user, :date, :chart
 
   def initialize args
     args.each do |key, value|
       self.send("#{key}=", value)
     end
-    @url = generate_url
+    @chart = pie_chart
   end
 
-  def generate_url
-    category_amounts = monthly_categories_report
-    chart_url = GOOGLE_CHART_BASE_URL
-    categories = ""
-    category_amounts.each_pair do |category, amount|
-      if amount < 0
-        chart_url += amount.to_f.round.abs.to_s+","
-        categories += URI.encode(category+"|")
-      end
+  def pie_chart
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_column('string', 'Category')
+    data_table.new_column('number', 'Amount')
+    data_table.add_rows(monthly_categories_report.size)
+    count = 0
+    colors = []
+    monthly_categories_report.each_pair do |category, amount_and_color|
+      data_table.set_cell(count, 0, category)
+      data_table.set_cell(count, 1, amount_and_color[:amount].abs)
+      colors << amount_and_color[:color]
+      count += 1
     end
-    # remove last "|"
-    categories = categories.gsub(/%7C$/,"")
-    chart_url = chart_url[0..-2]+"&chs=350x150&chl="+categories+"&chco=FF0000"
+
+    opts   = { :width => 400, 
+               :height => 240, 
+               :is3D => false,
+               :colors => colors,
+               :pieSliceText => "none"
+    }
+    GoogleVisualr::Interactive::PieChart.new(data_table, opts)
   end
 
   def monthly_categories_report
-    user.expenses_by_year_and_month(:date => date).group_by { |e| e.category.name }.tap do |expenses_by_category|
+    report = {}
+    user.expenses_by_year_and_month(:date => date).group_by { |e| e.category }.tap do |expenses_by_category|
       expenses_by_category.each do |category, expenses|
-        expenses_by_category[category] = expenses.sum(&:amount)
+        category_total = expenses.sum { |expense| expense.amount < 0 ? expense.amount : 0 } 
+        report[category.name] = { 
+          :amount => category_total,
+          :color => category.color_code
+        }
       end
     end
+    report
   end 
 
 end

@@ -17,6 +17,8 @@ gem "koala"
 gem "httparty"
 gem "thin"
 gem "rack"
+gem "google_visualr", "~> 2.1.0"
+
 
 group :assets do
   gem 'sass-rails'
