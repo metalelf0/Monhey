@@ -1,14 +1,15 @@
 %td
-  = text_field_tag("elem#{i}[date]", date, :class => "datepicker input-small")
+  = text_field_tag("elem#{i}[date]", date, :class => "datepicker form-control")
 %td
   = hidden_field_tag("elem#{i}[sign]", "-")
-  .input-prepend
-    %span.add-on.expense-sign -
-    = text_field_tag("elem#{i}[amount]", "", :class => "input-mini")
+  .input-group
+    .input-group-addon
+      %span.add-on.expense-sign -
+    = text_field_tag("elem#{i}[amount]", "", :class => "form-control")
 %td
-  = text_field_tag("elem#{i}[description]", "") 
+  = text_field_tag("elem#{i}[description]", "", :class => "form-control")
 %td
-  = select_tag("elem#{i}[category_id]", options_from_collection_for_select(@categories, :id, :name), :class => "form-control") 
+  = select_tag("elem#{i}[category_id]", options_from_collection_for_select(@categories, :id, :name), :class => "form-control")
 
 
-    
+
