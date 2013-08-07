@@ -1,18 +1,9 @@
-== Welcome to Finanze
+# Welcome to MonHey! :)
 
 This is a simple Rails application to manage your daily expenses. 
 
-Features included:
-- monthly view of your expenses
-- filter your expenses by category with tag cloud
-- google charts for monthly reports
-- current month total expense prevision
-- left for this month based on your wage
+## Libraries used, resources and stuff
 
-Todo list:
+### Google charts
 
-- Move wage configuration from environment to yml file
-- Complete translating views to HAML
-- Introduce Rails.logger instead of puts where required
-- Complete the transition to 960gs
-- Add better notifications
+- https://github.com/winston/google_visualr

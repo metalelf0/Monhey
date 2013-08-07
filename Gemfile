@@ -9,7 +9,7 @@ gem  "pg"
 gem "fastercsv"
 gem "i18n"
 gem "therubyracer"
-gem "twitter-bootstrap-rails"
+# gem "twitter-bootstrap-rails", :branch => 'bootstrap3'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'heroku'

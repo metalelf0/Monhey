@@ -20,43 +20,42 @@
 
 
   %body
-    .navbar.navbar-fixed-top.navbar-inverse
-      .navbar-inner
-        .container
-          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.brand(href="#") MonHey!
-          .container.nav-collapse
-            %ul.nav
-              %li= link_to "Expenses", expenses_path
-              %li= link_to 'Categories', categories_path
-            %ul.nav.pull-right
-              - if current_user
-                %li= link_to "Log Out", logout_path
-                %li
-                  = link_to "Logged in as #{current_user.name}", "#"
-                %li
-                  - unless current_user.profile_pic.blank?
-                    .pull-right.profile-image
-                      = image_tag current_user.profile_pic
-              - else
-                %li= link_to_unless_current "Login using Facebook", login_path do nil end
+    #monhey-nav.navbar.navbar-fixed-top.navbar-inverse
+      .container
+        -# %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+          -# %span.icon-bar
+          -# %span.icon-bar
+          -# %span.icon-bar
+        %a.navbar-brand.monhey-brand(href="#") MonHey!
+        .nav-collapse.collapse.bs-navbar-collapse
+          %ul.nav.navbar-nav
+            = menu_link_to "Expenses", expenses_path
+            = menu_link_to 'Categories', categories_path
+          -# %ul.nav.pull-right
+            -# - if current_user
+              -# %li= link_to "Log Out", logout_path
+              -# %li
+                -# = link_to "Logged in as #{current_user.name}", "#"
+              -# %li
+                -# - unless current_user.profile_pic.blank?
+                  -# .pull-right.profile-image
+                    -# = image_tag current_user.profile_pic
+            -# - else
+              -# %li= link_to_unless_current "Login using Facebook", login_path do nil end
 
 
     .container
       = render "layouts/flash_messages"
 
       .row
-        .span12
-          = bootstrap_flash
+        .col-lg-12
+          //= bootstrap_flash
           #main-container.row
             = yield
   %footer.footer
     .container
       .row
-        .span12
+        .col-lg-12
           %p @metalelf0 2013
 
     = javascript_include_tag "application"
