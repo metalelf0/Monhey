@@ -8,6 +8,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    redirect_to root_url unless @category.user == current_user
   end
 
   def new
