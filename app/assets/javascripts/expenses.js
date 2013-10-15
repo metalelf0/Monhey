@@ -1,11 +1,11 @@
-$(document).ready(function(){ 
+$(document).ready(function(){
   $('#tabs a').click(function (e) {
     e.preventDefault();
     $(this).tab('show');
   })
 
-  // FIXME: var categories = #{@categories.compact.to_json}; 
-  // var categories = []; 
+  // FIXME: var categories = #{@categories.compact.to_json};
+  // var categories = [];
   // for(i = 1; i < 11; i = i + 1 ) {
   //   $("#elem" + i + "_category_name").autocomplete({
   //     source: categories,
@@ -14,9 +14,30 @@ $(document).ready(function(){
   //   });
   // }
 
+  var nowTemp = new Date();
+  var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+
   $(".datepicker").datepicker({
-  	format: 'yyyy-mm-dd'
+    format: 'yyyy-mm-dd'
   });
+
+  $(".datepicker-end-date").datepicker({
+    format: 'yyyy-mm-dd',
+    viewMode: 'months',
+    minViewMode: 'months',
+    onRender: function(date) {
+      return date.valueOf() < now.valueOf() ? 'disabled' : '';
+    }
+  }).on('changeDate', function(ev) {
+    console.log(ev);
+    if (ev.date.valueOf() < now.valueOf() ) {
+      console.log("No buono");
+    } else {
+      $(ev.target).datepicker('hide');
+    }
+  });
+
 
   $('.expense-sign').click(function() {
     var newSign = ( $(this).text() == "-" ? "+" : "-" );

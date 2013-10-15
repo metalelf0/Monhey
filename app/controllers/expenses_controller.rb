@@ -57,6 +57,24 @@ class ExpensesController < ApplicationController
     redirect_to expenses_url
   end
 
+  def recurring
+    @page_title = "Create recurring expenses"
+    @recurring_expense = RecurringExpense.new(user: current_user)
+    @categories = current_user.categories
+  end
+
+  def create_recurring
+    RecurringExpense.new(
+      user: current_user,
+      amount: params[:amount],
+      description: params[:description],
+      interval: params[:interval],
+      category_id: params[:category_id]
+    ).create_items
+    flash[:notice] = "recurring expenses correctly created"
+    redirect_to expenses_url
+  end
+
   def update
     @expense = Expense.find(params[:id])
     if @expense.update_attributes(params[:expense])

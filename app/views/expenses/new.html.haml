@@ -1,4 +1,4 @@
-- categories = options_for_select(Category.all.map { |category| [category.name, category.id ] }, 0 )
+- categories = options_for_select(current_user.categories.map { |category| [category.name, category.id ] }, 0 )
 
 %h1 New expense
 

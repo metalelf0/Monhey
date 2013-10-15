@@ -10,6 +10,8 @@ Finanze::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
   match 'expenses/create_many' => 'expenses#create_many'
+  match 'expenses/recurring' => 'expenses#recurring', :as => :recurring_expenses
+  match 'expenses/create_recurring' => 'expenses#create_recurring'
   
   # sessions
   get   '/login', :to => 'sessions#new', :as => :login

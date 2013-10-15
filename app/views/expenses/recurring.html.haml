@@ -1,0 +1,32 @@
+- categories = options_for_select(@categories.map { |category| [category.name, category.id ] }, 0 )
+%h1 Create monthly expenses
+
+%div{:style=>"width:400px;"}
+
+  = form_for(@recurring_expense, html: { class: 'form-horizontal' }) do |f|
+
+    .form-group
+      =f.label :description, :class => 'col-lg-4 control-label'
+      .col-lg-8
+        = f.text_field :description, :class => 'form-control', :placeholder => 'Description'
+
+    .form-group
+      =f.label :amount, :class => 'col-lg-4 control-label'
+      .col-lg-8
+        = f.text_field :amount, :class => 'form-control', :placeholder => 'Amount'
+
+    .form-group
+      =f.label :end_date, :class => 'col-lg-4 control-label'
+      .col-lg-8
+        = f.text_field :end_date, :class => 'form-control datepicker-end-date', :placeholder => "End date"
+
+    .form-group
+      =f.label :category_id, :class => 'col-lg-4 control-label'
+      .col-lg-8
+        = f.select :category_id, categories, {}, :class => 'form-control'
+
+    .form-group
+      .col-lg-offset-4.col-lg-8
+        = f.submit 'Create', :class => 'btn btn-default'
+
+= link_to 'Back', expenses_path

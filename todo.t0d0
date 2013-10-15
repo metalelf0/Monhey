@@ -29,8 +29,6 @@
     [ ] add user saving to forms
     [ ] add default scope to models
       [.] fixing all shitty SQL queries
-    [ ] add user configuration page
-      [ ] move wage to user configuration
 
   [ ] fix the daily chart scale: top limit should not be 1000 but the highest daily expense
   [ ] daily chart should only include expenses (no incomes) 
