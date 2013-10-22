@@ -1,4 +1,5 @@
-- categories = options_for_select(@categories.map { |category| [category.name, category.id ] }, 0 )
+- categories    = options_for_select(@categories.map { |category| [category.name, category.id ] }, 0 )
+- days_of_month = options_for_select((1..28).map { |day| [ day.to_s, day.to_s ] }, 1 )
 %h1 Create monthly expenses
 
 %div{:style=>"width:400px;"}
@@ -16,9 +17,19 @@
         = f.text_field :amount, :class => 'form-control', :placeholder => 'Amount'
 
     .form-group
+      =f.label :start_date, :class => 'col-lg-4 control-label'
+      .col-lg-8
+        = f.text_field :start_date, :class => 'form-control datepicker', :placeholder => "Start date"
+
+    .form-group
       =f.label :end_date, :class => 'col-lg-4 control-label'
       .col-lg-8
-        = f.text_field :end_date, :class => 'form-control datepicker-end-date', :placeholder => "End date"
+        = f.text_field :end_date, :class => 'form-control datepicker', :placeholder => "End date"
+
+    .form-group
+      =f.label :day_of_month, :class => 'col-lg-4 control-label'
+      .col-lg-8
+        = f.select :day_of_month, days_of_month, {}, :class => 'form-control'
 
     .form-group
       =f.label :category_id, :class => 'col-lg-4 control-label'

@@ -1,5 +1,9 @@
 class ExpensesController < ApplicationController
 
+  before_filter do
+    redirect_to :login unless current_user
+  end
+
   def index
     if current_user
       @date = build_date_from_params(params)
@@ -38,7 +42,7 @@ class ExpensesController < ApplicationController
       flash[:notice] = 'Expense was successfully created.'
       redirect_to expenses_url
     else
-      render :action => "new" 
+      render :action => "new"
     end
   end
 
@@ -58,21 +62,30 @@ class ExpensesController < ApplicationController
   end
 
   def recurring
-    @page_title = "Create recurring expenses"
-    @recurring_expense = RecurringExpense.new(user: current_user)
-    @categories = current_user.categories
+    if request.post?
+      recurring_expense_params = recurring_expense_params_from params[:recurring_expense]
+      RecurringExpense.new(recurring_expense_params).create_items
+      flash[:notice] = "recurring expenses correctly created"
+      redirect_to expenses_url
+    else
+      @page_title = "Create recurring expenses"
+      @recurring_expense = RecurringExpense.new(user: current_user)
+      @categories = current_user.categories
+    end
   end
 
-  def create_recurring
-    RecurringExpense.new(
+  def recurring_expense_params_from parameters
+    parameters.merge(
       user: current_user,
-      amount: params[:amount],
-      description: params[:description],
-      interval: params[:interval],
-      category_id: params[:category_id]
-    ).create_items
-    flash[:notice] = "recurring expenses correctly created"
-    redirect_to expenses_url
+      start_date: date_from_string(parameters[:start_date]),
+      end_date: date_from_string(parameters[:end_date]),
+      day_of_month: parameters[:day_of_month].to_i,
+      amount: parameters[:amount].to_f
+    )
+  end
+
+  def date_from_string string
+    string ? Date.parse(string) : nil
   end
 
   def update
@@ -81,7 +94,7 @@ class ExpensesController < ApplicationController
       flash[:notice] = 'Expense was successfully updated.'
       redirect_to expenses_url
     else
-      render :action => "edit" 
+      render :action => "edit"
     end
   end
 

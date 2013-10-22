@@ -9,17 +9,20 @@ class RecurringExpense
     false
   end
 
-  attr_accessor :user, :amount, :description, :end_date, :category_id
+  attr_accessor :user, :amount, :description, :start_date, :end_date, :category_id, :day_of_month
 
   def initialize args
-    args.each_pair { |key, val| self.send("#{key}=", val) }
+    args.reverse_merge!(default_args).each_pair { |key, val| self.send("#{key}=", val) }
+  end
+
+  def default_args
+    { :day_of_month => 1, :start_date => Date.today }
   end
 
   def create_items
-    start_date = Date.today.beginning_of_month
-    current_date = start_date
+    current_date = first_occurrence
     while current_date <= end_date
-      expense = Expense.create!(
+      Expense.create!(
         :user => user,
         :description => description,
         :amount => amount,
@@ -27,6 +30,16 @@ class RecurringExpense
         :category => user.categories.find(category_id)
       )
       current_date += 1.month
+    end
+  end
+
+  private
+
+  def first_occurrence
+    if start_date.day <= day_of_month
+      return Date.new(start_date.year, start_date.month, day_of_month)
+    else
+      return Date.new(start_date.year, start_date.month, day_of_month) + 1.month
     end
   end
 end
