@@ -7,3 +7,7 @@ table .col_amount {
 table .col_category {
   width: 200px;
 }
+
+#infoTabs { 
+  padding: 8px;
+}

@@ -4,16 +4,6 @@ $(document).ready(function(){
     $(this).tab('show');
   })
 
-  // FIXME: var categories = #{@categories.compact.to_json};
-  // var categories = [];
-  // for(i = 1; i < 11; i = i + 1 ) {
-  //   $("#elem" + i + "_category_name").autocomplete({
-  //     source: categories,
-  //     minLength: 0,
-  //     delay: 0
-  //   });
-  // }
-
   var nowTemp = new Date();
   var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 

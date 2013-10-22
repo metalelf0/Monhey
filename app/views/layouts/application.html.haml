@@ -20,28 +20,23 @@
 
 
   %body
-    #monhey-nav.navbar.navbar-fixed-top.navbar-inverse
-      .container
-        -# %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
-          -# %span.icon-bar
-          -# %span.icon-bar
-          -# %span.icon-bar
+    %nav.navbar.navbar-default.navbar-fixed-top
+      .navbar-header
         %a.navbar-brand.monhey-brand(href="#") MonHey!
-        .nav-collapse.collapse.bs-navbar-collapse
-          %ul.nav.navbar-nav
-            = menu_link_to "Expenses", expenses_path
-            = menu_link_to 'Categories', categories_path
-          -# %ul.nav.pull-right
-            -# - if current_user
-              -# %li= link_to "Log Out", logout_path
-              -# %li
-                -# = link_to "Logged in as #{current_user.name}", "#"
-              -# %li
-                -# - unless current_user.profile_pic.blank?
-                  -# .pull-right.profile-image
-                    -# = image_tag current_user.profile_pic
-            -# - else
-              -# %li= link_to_unless_current "Login using Facebook", login_path do nil end
+      .collapse.navbar-collapse.navbar-ex1-collapse
+        %ul.nav.navbar-nav
+          = menu_link_to "Expenses", expenses_path
+          = menu_link_to 'Categories', categories_path
+        %ul.nav.navbar-nav.navbar-right
+          - if current_user
+            %li= link_to "Log Out", logout_path
+            %p.navbar-text= "Logged in as #{current_user.name}"
+            %li
+              - unless current_user.profile_pic.blank?
+                .pull-right.profile-image
+                  = image_tag current_user.profile_pic
+          - else
+            %li= link_to "Please login using Facebook!", "/auth/facebook"
 
 
     .container

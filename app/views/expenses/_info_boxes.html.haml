@@ -3,10 +3,11 @@
 - prevision = current_user.prevision_for_month(:date => @date, :wage => 1500) #TODO: extract this somewhere
 - left      = current_user.left_for_month(:date => @date, :wage => 1500)
 
-.row   
-  .span6
+.row
+  .col-lg-6
+
     #tabs
-      %ul{:class => "nav nav-tabs"} 
+      %ul{:class => "nav nav-tabs"}
         %li.active
           %a{:href => "#tabs-1", :'data-toggle' => "tab" } Statistics
         %li
@@ -15,13 +16,13 @@
           %a(href="#tabs-3") Categories chart
 
 
-      #myTabContent.tab-content
+      #infoTabs.tab-content
         #tabs-1.tab-pane.fade.in.active
           = render :partial => 'layouts/statistics', :locals => {:total => total, :average => average, :prevision => prevision, :left => left }
         #tabs-2.tab-pane.fade
           %img{:src => @expenses_daily_chart.url }
         #tabs-3.tab-pane.fade
-          = render_chart @categories_pie_chart.chart, 'tabs-3' 
-      
-  .span6
+          = render_chart @categories_pie_chart.chart, 'tabs-3'
+
+  .col-lg-6
     = render :partial => 'tag_cloud'
