@@ -1,15 +1,15 @@
-
 = form_for @category, :html => { :class => 'form-horizontal' } do |f|
-  .control-group
-    = f.label :name, :class => 'control-label'
-    .controls
-      = f.text_field :name, :class => 'text_field'
-  .control-group
-    = f.label :color, :class => 'control-label'
-    .controls.colors
+  .form-group
+    = f.label :name, :class => 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :name, :class => 'form-control'
+  .form-group
+    = f.label :color, :class => 'control-label col-lg-2'
+    .colors.col-lg-10
       = f.hidden_field :color_code
       - @colors.each do |color|
         = render :partial => 'color_box', :locals => { :color => color, :category_color => @category.color }
-  .form-actions
+  .clearfix
+  .col-lg-10.col-lg-offset-2
     = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), categories_path, :class => 'btn'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), categories_path, :class => 'btn btn-default'

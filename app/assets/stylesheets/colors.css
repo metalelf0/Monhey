@@ -1,6 +1,6 @@
 span.color-box {
     float: left;
-    display: block;
+    display: inline-block;
     width: 32px;
     height: 32px;
     margin: 0px 6px 6px 0px;
