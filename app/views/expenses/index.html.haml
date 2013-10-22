@@ -25,7 +25,11 @@
 
 .row
   .col-lg-10.col-lg-offset-1
-    #form_enter_many
-      = render :partial => "form_many"
+    - if current_user.can_create_expenses?
+      #form_enter_many
+        = render :partial => "form_many"
+    - else
+      = link_to "Create a category before inserting expenses", { :action => :new, :controller => :categories }, :class => "btn btn-primary btn-lg btn-block"
+
 
 %hr

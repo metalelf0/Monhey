@@ -14,5 +14,9 @@ class User < ActiveRecord::Base
       Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
     end
   end
+
+  def can_create_expenses?
+    !categories.empty?
+  end
   
 end

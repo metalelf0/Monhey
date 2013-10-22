@@ -30,9 +30,10 @@ $(document).ready(function(){
 
 
   $('.expense-sign').click(function() {
-    var newSign = ( $(this).text() == "-" ? "+" : "-" );
     var signInput = $(this).parent().parent().find("input[type='hidden']");
-    $(signInput).val(newSign);
-    $(this).text(newSign);
+    var newSign = ( signInput.val() == "-" ? "+" : "-" );
+    signInput.val(newSign);
+    $($($(this).children()[0]).children()[0]).toggleClass('glyphicon-minus');
+    $($($(this).children()[0]).children()[0]).toggleClass('glyphicon-plus');
   });
 });

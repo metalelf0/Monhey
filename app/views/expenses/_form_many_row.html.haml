@@ -3,8 +3,9 @@
 %td
   = hidden_field_tag("elem#{i}[sign]", "-")
   .input-group
-    .input-group-addon
-      %span.add-on.expense-sign -
+    .input-group-addon.expense-sign
+      %span.add-on
+        %span.glyphicon.glyphicon-minus
     = text_field_tag("elem#{i}[amount]", "", :class => "form-control")
 %td
   = text_field_tag("elem#{i}[description]", "", :class => "form-control")

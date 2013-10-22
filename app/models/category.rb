@@ -5,7 +5,7 @@ class Category < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :color
-  has_many :expenses
+  has_many :expenses, :dependent => :destroy
   validates_presence_of :name
   validates_presence_of :user
 

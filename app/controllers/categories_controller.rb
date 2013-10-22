@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
 
     if @category.save
       flash[:notice] = 'Category was successfully created.'
-      redirect_to(@category)
+      redirect_to categories_url
     else
       render :action => "new"
     end
@@ -41,7 +41,7 @@ class CategoriesController < ApplicationController
     authorize_resource @category do
       if @category.update_attributes(params[:category])
         flash[:notice] = 'Category was successfully updated.'
-        redirect_to(@category)
+        redirect_to categories_url
       else
         render :action => "edit"
       end

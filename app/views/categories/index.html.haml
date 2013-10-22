@@ -9,7 +9,8 @@
           %th=t '.actions', :default => t("helpers.actions")
       %tbody
         - @categories.each do |category|
-          %tr
+          - html_row_class=cycle('odd','even')
+          %tr.expense-row{:class => html_row_class, :style => "border-left: 4px solid #{category.color_code}"}
             %td= link_to category.name, edit_category_path(category)
             %td
               = link_to t('.edit', :default => t("helpers.links.edit")), edit_category_path(category), :class => 'btn btn-mini'
