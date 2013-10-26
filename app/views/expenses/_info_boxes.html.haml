@@ -1,7 +1,5 @@
 - total     = current_user.total_for_month(:date => @date)
 - average   = current_user.daily_average_for_month(:date => @date)
-- prevision = current_user.prevision_for_month(:date => @date, :wage => 1500) #TODO: extract this somewhere
-- left      = current_user.left_for_month(:date => @date, :wage => 1500)
 
 .row
   .col-lg-6
@@ -18,7 +16,7 @@
 
       #infoTabs.tab-content
         #tabs-1.tab-pane.fade.in.active
-          = render :partial => 'layouts/statistics', :locals => {:total => total, :average => average, :prevision => prevision, :left => left }
+          = render :partial => 'layouts/statistics', :locals => {:total => total, :average => average }
         #tabs-2.tab-pane.fade
           %img{:src => @expenses_daily_chart.url }
         #tabs-3.tab-pane.fade
