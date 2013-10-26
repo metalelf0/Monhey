@@ -19,19 +19,17 @@
 
   [x] add user profile pic in navbar
 
-  [ ] you must create at least one category before inserting expenses
-    [ ] create default categories for user after new user login?
+  [x] you must create at least one category before inserting expenses
 
   [x] introduce users!
     [x] add user_id to models and default scopes
       [x] Category
       [x] Expense
-    [ ] add user saving to forms
-    [ ] add default scope to models
-      [.] fixing all shitty SQL queries
 
   [ ] fix the daily chart scale: top limit should not be 1000 but the highest daily expense
   [ ] daily chart should only include expenses (no incomes) 
+
+  [ ] add weekly budgets
 
   [ ] favicon
 
@@ -42,7 +40,7 @@
 
 [ ] ### REFACTORING ###
 
-  [ ] extract chart logic into separate objects 
+  [x] extract chart logic into separate objects 
   [ ] remove select in ExpenseRepository#expenses_by_year_month_and_category
 
 

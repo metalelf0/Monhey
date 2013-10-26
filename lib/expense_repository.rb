@@ -22,23 +22,11 @@ class ExpenseRepository
     expenses_by_year_and_month(params).sum(&:amount)
   end
   
-  def left_for_month(params)
-    date, wage = params[:date], params[:wage]
-    wage + total_for_month(:date => date)
-  end
-  
   def daily_average_for_month params
     date = params[:date]
     total = total_for_month params
     days_passed = (date.is_in_current_month ? Date.today.day : date.end_of_month.day)
     total.to_f / days_passed
-  end
-  
-  # TODO: move this somewhere else
-  def prevision_for_month params
-    date = params[:date]
-    wage = params[:wage] || 0
-    return wage + daily_average_for_month(:date => date) * date.end_of_month.day
   end
   
   def expenses_by_year_month_and_category params
