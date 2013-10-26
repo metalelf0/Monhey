@@ -20,6 +20,6 @@ module ApplicationHelper
     additional_class = (is_current ? "active" : nil)
     content_tag :li, :class => additional_class do
       link_to label, path
-    end
+    end if current_user
   end
 end
