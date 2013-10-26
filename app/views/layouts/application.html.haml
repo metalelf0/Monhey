@@ -18,11 +18,15 @@
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
     %link(href="favicon.ico" rel="shortcut icon")
 
+    -# FONTS
+
+    %link(href='http://fonts.googleapis.com/css?family=Qwigley' rel='stylesheet' type='text/css')
+
 
   %body
     %nav.navbar.navbar-default.navbar-fixed-top
       .navbar-header
-        %a.navbar-brand.monhey-brand(href="#") MonHey!
+        %a.monhey-logo.navbar-brand.monhey-brand(href="#") MonHey!
       .collapse.navbar-collapse.navbar-ex1-collapse
         %ul.nav.navbar-nav
           = menu_link_to "Expenses", expenses_path
