@@ -21,6 +21,7 @@ gem "google_visualr", "~> 2.1.0"
 
 
 group :assets do
+  gem 'less'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'

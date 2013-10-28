@@ -24,9 +24,9 @@
 
 
   %body
-    %nav.navbar.navbar-default.navbar-fixed-top
+    %nav.navbar.navbar-inverse.navbar-fixed-top
       .navbar-header
-        %a.monhey-logo.navbar-brand.monhey-brand(href="#") MonHey!
+        %a.merienda.navbar-brand.monhey-brand(href="#") MonHey!
       .collapse.navbar-collapse.navbar-ex1-collapse
         %ul.nav.navbar-nav
           = menu_link_to "Expenses", expenses_path
@@ -43,13 +43,13 @@
             %li= link_to "Please login using Facebook!", "/auth/facebook"
 
 
-    .container
+    #main-container.container
       = render "layouts/flash_messages"
 
       .row
         .col-lg-12
           //= bootstrap_flash
-          #main-container.row
+          #page-content.row
             = yield
   %footer.footer
     .container
