@@ -1,0 +1,10 @@
+- total     = current_user.total_for_month(:date => @date)
+- average   = current_user.daily_average_for_month(:date => @date)
+
+.inner
+  = render :partial => "layouts/header", :locals => {:title => "Stats", :subtitle => ""}
+  %dl
+    %dt Total for this month
+    %dd= currency_euro(total)
+    %dt Daily average
+    %dd= currency_euro(average)

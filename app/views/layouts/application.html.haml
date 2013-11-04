@@ -46,11 +46,10 @@
     #main-container.container
       = render "layouts/flash_messages"
 
-      .row
-        .col-lg-12
-          //= bootstrap_flash
-          #page-content.row
-            = yield
+
+      #page-content
+        = yield
+
   %footer.footer
     .container
       .row

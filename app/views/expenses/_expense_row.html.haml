@@ -6,9 +6,9 @@
   %td
     =h expense.category.nil? ? "N/A" : expense.category.name
   %td
-    =h expense.date
+    =h expense.date.strftime("%d")
   %td
-    = link_to content_tag(:i, "", :class => "icon icon-pencil"), edit_expense_path(expense)
+    = link_to content_tag(:i, "", :class => "glyphicon glyphicon-pencil"), edit_expense_path(expense)
   %td
-    = link_to content_tag(:i, "", :class => "icon icon-trash"), expense, :method => :delete, :confirm => 'Are you sure?'
+    = link_to content_tag(:i, "", :class => "glyphicon glyphicon-trash"), expense, :method => :delete, :confirm => 'Are you sure?'
 

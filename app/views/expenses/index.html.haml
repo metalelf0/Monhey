@@ -1,35 +1,40 @@
 .row
-  .col-lg-10.col-lg-offset-1
-    - expenses_for = "Listing expenses for #{Date::MONTHNAMES[@date.month] + " " + @date.year.to_s}"
+  .col-md-3.sidebar
+    = render :partial => 'sidebar'
 
-    = render :partial => "layouts/header", :locals => {:title => "Expenses Manager", :subtitle => expenses_for }
+  .col-md-9
+    .row.inner
+      .col-md-12
+        - expenses_for = "Listing expenses for #{Date::MONTHNAMES[@date.month] + " " + @date.year.to_s}"
 
-    #navigation-links
-      - prev_month = raw(content_tag(:span, "", :class => "glyphicon glyphicon-chevron-left") + " Prev month")
-      = link_to prev_month, { :action => :index, :month => (@date << 1).month, :year => (@date << 1).year }, :class => "btn btn-primary"
-      &nbsp;
-      - next_month = raw("Next month " + content_tag(:span, "", :class => "glyphicon glyphicon-chevron-right"))
-      = link_to next_month, { :action => :index, :month => (@date >> 1).month, :year => (@date >> 1).year }, :class => "btn btn-primary"
+        = render :partial => "layouts/header", :locals => {:title => "Expenses Manager", :subtitle => expenses_for }
+
+        #navigation-links
+          - prev_month = raw(content_tag(:span, "", :class => "glyphicon glyphicon-chevron-left") + " Prev month")
+          = link_to prev_month, { :action => :index, :month => (@date << 1).month, :year => (@date << 1).year }, :class => "btn btn-primary"
+          &nbsp;
+          - next_month = raw("Next month " + content_tag(:span, "", :class => "glyphicon glyphicon-chevron-right"))
+          = link_to next_month, { :action => :index, :month => (@date >> 1).month, :year => (@date >> 1).year }, :class => "btn btn-primary"
+
+        %hr
+
+        = render :partial => 'info_boxes'
+
+        %hr
+
+    .row.inner
+      .col-md-6.collapsable-expenses
+        = render :partial => 'movements_list', :locals => {:movements => @expenses, :movement_name => 'expense' }
+      .col-md-6.collapsable-expenses
+        = render :partial => 'movements_list', :locals => {:movements => @incomes, :movement_name => 'income'  }
+
+    .row.inner
+      .col-md-12
+        - if current_user.can_create_expenses?
+          #form_enter_many
+            = render :partial => "form_many"
+        - else
+          = link_to "Create a category before inserting expenses", { :action => :new, :controller => :categories }, :class => "btn btn-primary btn-lg btn-block"
+
 
     %hr
-
-    = render :partial => 'info_boxes'
-
-    %hr
-
-.row
-  .col-lg-5.col-lg-offset-1.collapsable-expenses
-    = render :partial => 'movements_list', :locals => {:movements => @expenses, :movement_name => 'expense' }
-  .col-lg-5.collapsable-expenses
-    = render :partial => 'movements_list', :locals => {:movements => @incomes, :movement_name => 'income'  }
-
-.row
-  .col-lg-10.col-lg-offset-1
-    - if current_user.can_create_expenses?
-      #form_enter_many
-        = render :partial => "form_many"
-    - else
-      = link_to "Create a category before inserting expenses", { :action => :new, :controller => :categories }, :class => "btn btn-primary btn-lg btn-block"
-
-
-%hr

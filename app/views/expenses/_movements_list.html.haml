@@ -1,13 +1,15 @@
 - unless movements.empty?
   
   = render :partial => 'layouts/header', :locals => {:title => "#{movement_name.pluralize}", :subtitle => "for this month" }
-  %table.table
+  %table.table.movements_list
     %thead
       %tr
         %th Description
         %th Amount
         %th Category
         %th Date
+        %th
+        %th
       
     %tbody
 
@@ -21,6 +23,7 @@
         %td
           %td.total-amount
             = currency_euro movements.inject(0) { |total, e| total + e.amount }
+          %td
           %td
           %td
           %td

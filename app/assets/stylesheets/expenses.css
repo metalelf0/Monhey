@@ -8,6 +8,10 @@ table .col_category {
   width: 200px;
 }
 
-#infoTabs { 
+#infoTabs {
   padding: 8px;
+}
+
+.movements_list td {
+  font-size: 12px;
 }

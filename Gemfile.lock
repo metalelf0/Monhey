@@ -101,6 +101,9 @@ GEM
       addressable (~> 2.3)
     less (2.4.0)
       commonjs (~> 0.2.7)
+    less-rails (2.4.2)
+      actionpack (>= 3.1)
+      less (~> 2.4.0)
     libv8 (3.11.8.17)
     listen (1.0.3)
       rb-fsevent (>= 0.9.3)
@@ -242,7 +245,7 @@ DEPENDENCIES
   i18n
   jquery-rails
   koala
-  less
+  less-rails
   omniauth
   omniauth-facebook
   pg

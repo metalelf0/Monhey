@@ -1,26 +1,19 @@
-- total     = current_user.total_for_month(:date => @date)
-- average   = current_user.daily_average_for_month(:date => @date)
-
 .row
-  .col-lg-6
+  .col-lg-8
 
     #tabs
       %ul{:class => "nav nav-tabs"}
         %li.active
-          %a{:href => "#tabs-1", :'data-toggle' => "tab" } Statistics
+          %a(href="#tabs-1") Daily chart
         %li
-          %a(href="#tabs-2") Daily chart
-        %li
-          %a(href="#tabs-3") Categories chart
+          %a(href="#tabs-2") Categories chart
 
 
       #infoTabs.tab-content
         #tabs-1.tab-pane.fade.in.active
-          = render :partial => 'layouts/statistics', :locals => {:total => total, :average => average }
-        #tabs-2.tab-pane.fade
           %img{:src => @expenses_daily_chart.url }
-        #tabs-3.tab-pane.fade
+        #tabs-2.tab-pane.fade
           = render_chart @categories_pie_chart.chart, 'tabs-3'
 
-  .col-lg-6
+  .col-lg-4
     = render :partial => 'tag_cloud'

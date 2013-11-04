@@ -8,5 +8,6 @@
  *= require lavish-variables
  *= require colors
  *= require expenses
+ *= require sessions
  *= require layout
 */

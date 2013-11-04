@@ -5,6 +5,20 @@
   background-color: white;
 }
 
+/* Sidebar
+-------------------------------------------------- */
+
+.sidebar .inner {
+  padding-left: 30px;
+}
+
+.sidebar dd {
+  margin-bottom: 10px;
+}
+
+.row.inner {
+  padding-right: 30px;
+}
 
 /* Footer
 -------------------------------------------------- */
