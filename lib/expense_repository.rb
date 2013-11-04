@@ -18,6 +18,16 @@ class ExpenseRepository
     expenses.between(start_date, end_date)
   end
 
+  def expenses_by_year_and_month_weekly params
+    date = params[:date]
+    start_date, end_date = start_and_end_of_month(date)
+    expenses.between(start_date, end_date).select {
+      |e| Week.new(e.date).month == date.month 
+    }.group_by { 
+      |e| e.date.strftime("%U").to_i
+    }
+  end
+
   def total_for_month params
     expenses_by_year_and_month(params).sum(&:amount)
   end
