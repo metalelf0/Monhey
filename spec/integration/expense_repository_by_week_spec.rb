@@ -23,4 +23,18 @@ describe ExpenseRepository do
     }
   end
 
+  it "computes weekly balances" do
+    john.weekly_balance(:date => Date.new(2013, 11, 1)).should == {
+      45 => -130.0
+    }
+  end
+
+  it "ignores wage from weekly balances" do
+    incomes =  Factory(:category, :user => john, :name => "Incomes")
+    wage = Factory(:expense, :user => john, :date => Date.new(2013, 11, 1), :amount => 100, :category => incomes, :include_in_budget => false)
+    john.weekly_balance(:date => Date.new(2013, 11, 1)).should == {
+      45 => -130.0
+    }
+  end
+
 end

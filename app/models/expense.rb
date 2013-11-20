@@ -11,6 +11,7 @@ class Expense < ActiveRecord::Base
   default_scope :order => :date
   
   scope :between, lambda { |start_date, end_date| { :conditions => ['date >= ? AND date <= ?', start_date, end_date ] } }
+  scope :for_budget, -> { where(include_in_budget: true) } 
   
 end
 
