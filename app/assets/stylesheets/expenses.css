@@ -1,3 +1,11 @@
+.expense-row .description {
+  width: 50%;
+}
+
+.expense-row .category {
+  width: 15%;
+}
+
 table .col_date {
   width: 125px;
 }

@@ -1,14 +1,16 @@
 %tr.expense-row{:class => html_row_class, :style => "border-left: 4px solid #{expense.category.color_code}"}
-  %td
+  %td.description
     = h expense.description
   %td.expense-cell-amount
     = currency_euro expense.amount
-  %td
+  %td.category
     =h expense.category.nil? ? "N/A" : expense.category.name
-  %td
-    =h expense.date.strftime("%d")
-  %td
+  %td.date
+    =h expense.date.strftime("%a %d")
+  %td.budget
+    = expense.include_in_budget ? "B" : "/"
+  %td.actions_edit
     = link_to content_tag(:i, "", :class => "glyphicon glyphicon-pencil"), edit_expense_path(expense)
-  %td
+  %td.actions_delete
     = link_to content_tag(:i, "", :class => "glyphicon glyphicon-trash"), expense, :method => :delete, :confirm => 'Are you sure?'
 

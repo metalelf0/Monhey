@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130801124705) do
+ActiveRecord::Schema.define(:version => 20131105140225) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20130801124705) do
     t.integer  "category_id"
     t.integer  "account_id"
     t.integer  "user_id"
+    t.boolean  "include_in_budget", :default => true
   end
 
   add_index "expenses", ["user_id"], :name => "index_expenses_on_user_id"
@@ -73,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20130801124705) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "profile_pic"
+    t.float    "wage"
   end
 
 end

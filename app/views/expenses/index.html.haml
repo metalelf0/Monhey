@@ -23,10 +23,8 @@
         %hr
 
     .row.inner
-      .col-md-6.collapsable-expenses
-        = render :partial => 'movements_list', :locals => {:movements => @expenses, :movement_name => 'expense' }
-      .col-md-6.collapsable-expenses
-        = render :partial => 'movements_list', :locals => {:movements => @incomes, :movement_name => 'income'  }
+      .col-md-12.collapsable-expenses
+        = render :partial => 'movements_list', :locals => {:movements => @expenses, :movement_name => 'movement' }
 
     .row.inner
       .col-md-12
