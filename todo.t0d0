@@ -30,6 +30,8 @@
   [ ] daily chart should only include expenses (no incomes) 
 
   [ ] add weekly budgets
+    [ ] add warning in expense list for expenses out of current weekly selection, e.g. beginning or
+        end of month
 
   [ ] favicon
 
