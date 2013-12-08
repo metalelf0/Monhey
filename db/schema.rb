@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(:version => 20131105140225) do
   create_table "accounts", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
   end
 
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(:version => 20131105140225) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
     t.integer  "color_id"
   end
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(:version => 20131105140225) do
   create_table "expenses", :force => true do |t|
     t.string   "description"
     t.float    "amount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.date     "date"
     t.integer  "category_id"
     t.integer  "account_id"
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(:version => 20131105140225) do
     t.integer  "to_account_id"
     t.date     "date"
     t.integer  "amount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(:version => 20131105140225) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "profile_pic"
-    t.float    "wage"
   end
 
 end

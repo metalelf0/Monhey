@@ -3,7 +3,7 @@ require 'spec_helper'
 
 
 ### November 2013
-### 
+###
 ### Monday         *4 11 18 25
 ### Tuesday         5 12 19 26
 ### Wednesday       6 13 20 27
@@ -81,7 +81,7 @@ describe Week do
 
       it "belongs to current month when at least 4 days are inside current month" do
         ### November 2013
-        ### 
+        ###
         ### Monday          4 11 18 *25
         ### Tuesday         5 12 19  26
         ### Wednesday       6 13 20  27
@@ -89,7 +89,7 @@ describe Week do
         ### Friday       1  8 15 22  29
         ### Saturday     2  9 16 23  30
         ### Sunday       3 10 17 24
-        
+
         date = Date.new 2013, 9, 25
         week = Week.new date
         week.month.should == 9

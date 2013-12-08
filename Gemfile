@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.0.0'
 
 gem 'rails'
 gem "haml"
@@ -30,12 +30,25 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
+  gem "factory_girl_rails"
+  gem "sqlite3"
+  gem 'childprocess'
+  gem 'guard-livereload'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'pry-remote'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'cucumber'
-  gem "factory_girl_rails"
-  gem 'webrat'
-  gem 'pry-remote'
   gem 'spectator'
-  gem "sqlite3"
+  gem 'spork-rails', github: 'sporkrb/spork-rails' # rubygems version not rails 4 compatible
+  gem 'webrat'
 end
+
+group :test do
+  gem 'capybara', '2.1.0'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver', '2.0.0'
+end
+

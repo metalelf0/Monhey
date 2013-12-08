@@ -8,7 +8,7 @@ class Week
   end
 
   def days
-    (@first_day .. @last_day)
+    (@first_day .. @last_day).to_a
   end
 
   def month
